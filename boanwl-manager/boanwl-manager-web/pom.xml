@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>boanwl-manager</artifactId>
+        <groupId>com.boanwl</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>boanwl-manager-web</artifactId>
+    <packaging>war</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>com.boanwl</groupId>
+            <artifactId>boanwl-manager-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--JSP相关jar配置给了独有的-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+    </dependencies>
+
+   <!-- <name>boanwl-manager-web Maven Webapp</name>
+    &lt;!&ndash; FIXME change it to the project's website &ndash;&gt;
+    <url>http://www.example.com</url>-->
+    <build>
+        <finalName>demo-manager-web</finalName>
+        <plugins>
+            <!--Tomcat的maven插件的坐标-->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <!--配置Tomcat插件-->
+                <configuration>
+                    <!--端口号-->
+                    <port>8181</port>
+                    <!--上下文-->
+                    <path>/boanwl</path>
+                    <!--解决GET请求中的中文乱码问题-->
+                    <uriEncoding>UTF-8</uriEncoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

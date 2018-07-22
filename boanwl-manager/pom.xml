@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>boanwl-parent</artifactId>
+        <groupId>com.boanwl</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../boanwl-parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>boanwl-manager</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>boanwl-manager-pojo</module>
+        <module>boanwl-manager-dao</module>
+        <module>boanwl-manager-interface</module>
+        <module>boanwl-manager-service</module>
+        <module>boanwl-manager-web</module>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>com.boanwl</groupId>
+            <artifactId>boanwl-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+
+</project>
