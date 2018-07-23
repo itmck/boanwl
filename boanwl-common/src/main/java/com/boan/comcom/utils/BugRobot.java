@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public class BugRobot {
 
-
     private  DingtalkChatbotClient client = new DingtalkChatbotClient();
 
     public  SendResult sendErrorToDD(Exception e,String PhoneNumber)  {

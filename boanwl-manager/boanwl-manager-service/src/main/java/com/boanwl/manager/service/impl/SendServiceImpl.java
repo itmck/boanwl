@@ -4,8 +4,10 @@ import com.boanwl.common.dto.ItemDTO;
 import com.boanwl.manager.dao.TbSendMapper;
 import com.boanwl.manager.pojo.dto.SendQueryDTO;
 import com.boanwl.manager.pojo.po.TbSend;
+import com.boanwl.manager.pojo.po.TbSendExample;
 import com.boanwl.manager.service.SendService;
-import org.apache.activemq.kaha.impl.data.Item;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,28 +23,45 @@ import java.util.UUID;
  */
 @Service
 public class SendServiceImpl implements SendService {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     TbSendMapper tbSendMapper;
 
     @Override
     public int saveSend(TbSend send) {
-        send.setSeId(UUID.randomUUID().toString().replaceAll("-",""));
-        double price  = 0.0;
-        double weight  = send.getCargoWeight();
-        if (weight <= 1.0) {
-            price = 7.0;
-        }else if(weight <=10.0){
-            price = 20;
+        int i = 0 ;
+        try {
+            send.setSeId(UUID.randomUUID().toString().replaceAll("-",""));
+            double price  = 0.0;
+            double weight  = send.getCargoWeight();
+            if (weight <= 1.0) {
+                price = 7.0;
+            }else if(weight <=10.0){
+                price = 20;
+            }
+            send.setTotalPrice(price);
+            send.setOrderCrateData(new Date());
+           i =  tbSendMapper.insert(send);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        send.setTotalPrice(price);
-        send.setOrderCrateData(new Date());
-        return tbSendMapper.insert(send);
+        return i;
     }
 
     @Override
     public int updateSendBySids(List<String> sids) {
-        return 0;
+        int i  = 0;
+        try {
+            TbSend tbSend = new TbSend();
+            tbSend.setSeState("1");
+            TbSendExample tbSendExample = new TbSendExample();
+            tbSendExample.createCriteria().andSeIdIn(sids);
+            i = tbSendMapper.updateByExample(tbSend,tbSendExample);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
     }
 
     @Override
