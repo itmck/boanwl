@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boanwl.manager.dao.TbTransMapper" >
+  <resultMap id="BaseResultMap" type="com.boanwl.manager.pojo.po.TbTrans" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="date_created" property="dateCreated" jdbcType="DATE" />
+    <result column="date_updated" property="dateUpdated" jdbcType="DATE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="msg" property="msg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_num, name, city, date_created, date_updated, status, msg
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.boanwl.manager.pojo.po.TbTransExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_trans
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.boanwl.manager.pojo.po.TbTransExample" >
+    delete from tb_trans
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.boanwl.manager.pojo.po.TbTrans" >
+    insert into tb_trans (id, order_num, name, 
+      city, date_created, date_updated, 
+      status, msg)
+    values (#{id,jdbcType=VARCHAR}, #{orderNum,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{dateCreated,jdbcType=DATE}, #{dateUpdated,jdbcType=DATE}, 
+      #{status,jdbcType=INTEGER}, #{msg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boanwl.manager.pojo.po.TbTrans" >
+    insert into tb_trans
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="dateCreated != null" >
+        date_created,
+      </if>
+      <if test="dateUpdated != null" >
+        date_updated,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="msg != null" >
+        msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCreated != null" >
+        #{dateCreated,jdbcType=DATE},
+      </if>
+      <if test="dateUpdated != null" >
+        #{dateUpdated,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="msg != null" >
+        #{msg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.boanwl.manager.pojo.po.TbTransExample" resultType="java.lang.Integer" >
+    select count(*) from tb_trans
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_trans
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNum != null" >
+        order_num = #{record.orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateCreated != null" >
+        date_created = #{record.dateCreated,jdbcType=DATE},
+      </if>
+      <if test="record.dateUpdated != null" >
+        date_updated = #{record.dateUpdated,jdbcType=DATE},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.msg != null" >
+        msg = #{record.msg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_trans
+    set id = #{record.id,jdbcType=VARCHAR},
+      order_num = #{record.orderNum,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      date_created = #{record.dateCreated,jdbcType=DATE},
+      date_updated = #{record.dateUpdated,jdbcType=DATE},
+      status = #{record.status,jdbcType=INTEGER},
+      msg = #{record.msg,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

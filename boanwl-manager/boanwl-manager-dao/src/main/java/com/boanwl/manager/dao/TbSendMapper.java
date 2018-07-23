@@ -9,7 +9,6 @@ import java.util.List;
 public interface TbSendMapper {
     int countByExample(TbSendExample example);
 
-
     int deleteByExample(TbSendExample example);
 
     int deleteByPrimaryKey(String seId);
