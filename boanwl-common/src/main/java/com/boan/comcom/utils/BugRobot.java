@@ -37,9 +37,8 @@ public class BugRobot {
             e1.printStackTrace();
         }
         return result;
-
     }
-    public  SendResult sendErrorToDD(Exception e) throws IOException {
+    public  SendResult sendErrorToDD(Exception e){
 
         ArrayList<String> atMobiles = new ArrayList<String>();
 
@@ -82,5 +81,6 @@ public class BugRobot {
         }
         return result;
     }
+
 
 }
