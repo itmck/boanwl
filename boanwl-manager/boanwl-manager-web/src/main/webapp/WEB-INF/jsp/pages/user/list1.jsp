@@ -47,11 +47,12 @@
                 <%--这个是动态的表格--%>
                 <table class="layui-hide" id="articleList"></table>
                 <script type="text/html" id="operateTpl">
-                    <a title="编辑" onclick="WeAdminEdit('编辑','./edit', 2, 600, 400)" href="javascript:;">
-                        <i class="layui-icon">&#xe642;</i>
+                    <a title="回复" onclick="WeAdminEdit('回复','./edit', 2, 600, 400)" href="javascript:;">
+                        <i class="layui-icon" style="font-size: 20px">&#xe609;</i>
                     </a>
+                    <%--<a class="layui-btn layui-btn-mini news_edit"><i class="iconfont icon-edit"></i>回复</a>--%>
                     <a title="删除" href="javascript:;">
-                        <i class="layui-icon">&#xe640;</i>
+                        <i class="layui-icon" style="font-size: 20px">&#xe640;</i>
                     </a>
                 </script>
             </div>
@@ -77,8 +78,8 @@
                 //field title 列属性
                 {type: 'checkbox'},
                 {field: 'seId', title: '用户Id', sort: true},
-                {field: 'receiverPhone', title: 'dianhua'},
-                // {field: 'orderNo', title: '订单编号'},
+                {field: 'receiverPhone', title: '电话'},//
+                 {field: 'receiverAddress', title: '收货地址'},
                 // {field: 'address', title: '收件地址'},
                 // {field: 'requestMsg', title: '留言信息'},
                 // {field: 'status', title: '代办状态'},
@@ -87,6 +88,9 @@
         });
 
     });
+
+
+
 </script>
 </body>
 </html>
