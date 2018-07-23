@@ -7,4 +7,6 @@ package com.boanwl.manager.pojo.dto;
  * Version:V1.0
  */
 public class SendQueryDTO {
+
+
 }
