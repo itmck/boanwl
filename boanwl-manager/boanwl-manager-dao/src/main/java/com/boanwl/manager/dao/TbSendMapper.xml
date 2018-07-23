@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boanwl.manager.dao.TbSendMapper" >
+  <resultMap id="BaseResultMap" type="com.boanwl.manager.pojo.po.TbSend" >
+    <id column="se_id" property="seId" jdbcType="VARCHAR" />
+    <result column="sender_name" property="senderName" jdbcType="VARCHAR" />
+    <result column="sender_id_number" property="senderIdNumber" jdbcType="VARCHAR" />
+    <result column="sender_phone" property="senderPhone" jdbcType="VARCHAR" />
+    <result column="sender_address" property="senderAddress" jdbcType="VARCHAR" />
+    <result column="sender_adderss_detail" property="senderAdderssDetail" jdbcType="VARCHAR" />
+    <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
+    <result column="receiver_phone" property="receiverPhone" jdbcType="VARCHAR" />
+    <result column="receiver_address" property="receiverAddress" jdbcType="VARCHAR" />
+    <result column="receiver_adderss_detail" property="receiverAdderssDetail" jdbcType="VARCHAR" />
+    <result column="cargo_weight" property="cargoWeight" jdbcType="DOUBLE" />
+    <result column="order_crate_data" property="orderCrateData" jdbcType="TIMESTAMP" />
+    <result column="sender_remarks" property="senderRemarks" jdbcType="VARCHAR" />
+    <result column="total_price" property="totalPrice" jdbcType="DOUBLE" />
+    <result column="se_state" property="seState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    se_id, sender_name, sender_id_number, sender_phone, sender_address, sender_adderss_detail, 
+    receiver_name, receiver_phone, receiver_address, receiver_adderss_detail, cargo_weight, 
+    order_crate_data, sender_remarks, total_price, se_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.boanwl.manager.pojo.po.TbSendExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_send
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_send
+    where se_id = #{seId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_send
+    where se_id = #{seId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.boanwl.manager.pojo.po.TbSendExample" >
+    delete from tb_send
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.boanwl.manager.pojo.po.TbSend" >
+    insert into tb_send (se_id, sender_name, sender_id_number, 
+      sender_phone, sender_address, sender_adderss_detail, 
+      receiver_name, receiver_phone, receiver_address, 
+      receiver_adderss_detail, cargo_weight, order_crate_data, 
+      sender_remarks, total_price, se_state
+      )
+    values (#{seId,jdbcType=VARCHAR}, #{senderName,jdbcType=VARCHAR}, #{senderIdNumber,jdbcType=VARCHAR}, 
+      #{senderPhone,jdbcType=VARCHAR}, #{senderAddress,jdbcType=VARCHAR}, #{senderAdderssDetail,jdbcType=VARCHAR}, 
+      #{receiverName,jdbcType=VARCHAR}, #{receiverPhone,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
+      #{receiverAdderssDetail,jdbcType=VARCHAR}, #{cargoWeight,jdbcType=DOUBLE}, #{orderCrateData,jdbcType=TIMESTAMP}, 
+      #{senderRemarks,jdbcType=VARCHAR}, #{totalPrice,jdbcType=DOUBLE}, #{seState,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boanwl.manager.pojo.po.TbSend" >
+    insert into tb_send
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seId != null" >
+        se_id,
+      </if>
+      <if test="senderName != null" >
+        sender_name,
+      </if>
+      <if test="senderIdNumber != null" >
+        sender_id_number,
+      </if>
+      <if test="senderPhone != null" >
+        sender_phone,
+      </if>
+      <if test="senderAddress != null" >
+        sender_address,
+      </if>
+      <if test="senderAdderssDetail != null" >
+        sender_adderss_detail,
+      </if>
+      <if test="receiverName != null" >
+        receiver_name,
+      </if>
+      <if test="receiverPhone != null" >
+        receiver_phone,
+      </if>
+      <if test="receiverAddress != null" >
+        receiver_address,
+      </if>
+      <if test="receiverAdderssDetail != null" >
+        receiver_adderss_detail,
+      </if>
+      <if test="cargoWeight != null" >
+        cargo_weight,
+      </if>
+      <if test="orderCrateData != null" >
+        order_crate_data,
+      </if>
+      <if test="senderRemarks != null" >
+        sender_remarks,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="seState != null" >
+        se_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seId != null" >
+        #{seId,jdbcType=VARCHAR},
+      </if>
+      <if test="senderName != null" >
+        #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="senderIdNumber != null" >
+        #{senderIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="senderPhone != null" >
+        #{senderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="senderAddress != null" >
+        #{senderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="senderAdderssDetail != null" >
+        #{senderAdderssDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverName != null" >
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAdderssDetail != null" >
+        #{receiverAdderssDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="cargoWeight != null" >
+        #{cargoWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="orderCrateData != null" >
+        #{orderCrateData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="senderRemarks != null" >
+        #{senderRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="seState != null" >
+        #{seState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.boanwl.manager.pojo.po.TbSendExample" resultType="java.lang.Integer" >
+    select count(*) from tb_send
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_send
+    <set >
+      <if test="record.seId != null" >
+        se_id = #{record.seId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.senderName != null" >
+        sender_name = #{record.senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.senderIdNumber != null" >
+        sender_id_number = #{record.senderIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.senderPhone != null" >
+        sender_phone = #{record.senderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.senderAddress != null" >
+        sender_address = #{record.senderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.senderAdderssDetail != null" >
+        sender_adderss_detail = #{record.senderAdderssDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverName != null" >
+        receiver_name = #{record.receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverPhone != null" >
+        receiver_phone = #{record.receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverAddress != null" >
+        receiver_address = #{record.receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverAdderssDetail != null" >
+        receiver_adderss_detail = #{record.receiverAdderssDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cargoWeight != null" >
+        cargo_weight = #{record.cargoWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.orderCrateData != null" >
+        order_crate_data = #{record.orderCrateData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.senderRemarks != null" >
+        sender_remarks = #{record.senderRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalPrice != null" >
+        total_price = #{record.totalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.seState != null" >
+        se_state = #{record.seState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_send
+    set se_id = #{record.seId,jdbcType=VARCHAR},
+      sender_name = #{record.senderName,jdbcType=VARCHAR},
+      sender_id_number = #{record.senderIdNumber,jdbcType=VARCHAR},
+      sender_phone = #{record.senderPhone,jdbcType=VARCHAR},
+      sender_address = #{record.senderAddress,jdbcType=VARCHAR},
+      sender_adderss_detail = #{record.senderAdderssDetail,jdbcType=VARCHAR},
+      receiver_name = #{record.receiverName,jdbcType=VARCHAR},
+      receiver_phone = #{record.receiverPhone,jdbcType=VARCHAR},
+      receiver_address = #{record.receiverAddress,jdbcType=VARCHAR},
+      receiver_adderss_detail = #{record.receiverAdderssDetail,jdbcType=VARCHAR},
+      cargo_weight = #{record.cargoWeight,jdbcType=DOUBLE},
+      order_crate_data = #{record.orderCrateData,jdbcType=TIMESTAMP},
+      sender_remarks = #{record.senderRemarks,jdbcType=VARCHAR},
+      total_price = #{record.totalPrice,jdbcType=DOUBLE},
+      se_state = #{record.seState,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boanwl.manager.pojo.po.TbSend" >
+    update tb_send
+    <set >
+      <if test="senderName != null" >
+        sender_name = #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="senderIdNumber != null" >
+        sender_id_number = #{senderIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="senderPhone != null" >
+        sender_phone = #{senderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="senderAddress != null" >
+        sender_address = #{senderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="senderAdderssDetail != null" >
+        sender_adderss_detail = #{senderAdderssDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverName != null" >
+        receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAdderssDetail != null" >
+        receiver_adderss_detail = #{receiverAdderssDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="cargoWeight != null" >
+        cargo_weight = #{cargoWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="orderCrateData != null" >
+        order_crate_data = #{orderCrateData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="senderRemarks != null" >
+        sender_remarks = #{senderRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="seState != null" >
+        se_state = #{seState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where se_id = #{seId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boanwl.manager.pojo.po.TbSend" >
+    update tb_send
+    set sender_name = #{senderName,jdbcType=VARCHAR},
+      sender_id_number = #{senderIdNumber,jdbcType=VARCHAR},
+      sender_phone = #{senderPhone,jdbcType=VARCHAR},
+      sender_address = #{senderAddress,jdbcType=VARCHAR},
+      sender_adderss_detail = #{senderAdderssDetail,jdbcType=VARCHAR},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      receiver_adderss_detail = #{receiverAdderssDetail,jdbcType=VARCHAR},
+      cargo_weight = #{cargoWeight,jdbcType=DOUBLE},
+      order_crate_data = #{orderCrateData,jdbcType=TIMESTAMP},
+      sender_remarks = #{senderRemarks,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=DOUBLE},
+      se_state = #{seState,jdbcType=VARCHAR}
+    where se_id = #{seId,jdbcType=VARCHAR}
+  </update>
+</mapper>
