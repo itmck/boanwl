@@ -37,8 +37,7 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--注入会话工厂-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <!--注入DAO层所在包的基础路径-->
-        <property name="basePackage" value="com.qf.manager.dao"/>
+        <property name="basePackage" value="com.boanwl.manager.dao"/>
     </bean>
 
     <!--扫描DAO层的注解类,以下注解是为了扫描这个注解：@Repository-->
