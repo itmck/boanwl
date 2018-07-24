@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boanwl.manager.dao.SendMapper" >
+    <sql id="Base_Column_List" >
+        se_id, sender_name, sender_id_number, sender_phone, sender_address, sender_adderss_detail,
+        receiver_name, receiver_phone, receiver_address, receiver_adderss_detail, cargo_weight,
+        order_crate_data, sender_remarks, total_price, se_state
+    </sql>
+    <sql id="queryBySome">
+        <where>
+            se_state = '0'
+            <if test="sid != null and sid !=''">
+                se_id = #{sid}
+            </if>
+            <if test="senderName != null and senderName !=''">
+                senderName like "%"#{senderName}"%"
+            </if>
+        </where>
+    </sql>
+    <select id="countSends" parameterType="com.boanwl.manager.pojo.dto.SendQueryDTO" resultType="long">
+        SELECT count(1) FROM tb_send <include refid="queryBySome" />
+
+    </select>
+    <select id="listSends" parameterType="com.boanwl.manager.pojo.dto.SendQueryDTO" resultType="com.boanwl.manager.pojo.po.TbSend">
+        SELECT <include refid="Base_Column_List" /> from tb_send
+        <include refid="queryBySome" />
+        ORDER BY order_crate_data DESC
+        limit #{offset},#{limit}
+    </select>
+</mapper>
