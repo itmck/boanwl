@@ -86,7 +86,7 @@ public class SendServiceImpl implements SendService {
 
             TbSend tbSend = tbSendMapper.selectByPrimaryKey(sid);
             tbSend.setSeState("1");
-            tbSendMapper.updateByPrimaryKey(tbSend);
+            tbSendMapper.updateByPrimaryKeySelective(tbSend);
 
         } catch (Exception e) {
 
