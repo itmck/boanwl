@@ -21,4 +21,8 @@ public interface TransService {
     long saveOneMsg(TbSend tbSend);
 
     void saveTrans(TbTrans trans);
+
+    TbTrans getTrans(String id);
+
+    long modifyTrans(String id, TbTrans trans);
 }

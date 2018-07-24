@@ -94,6 +94,7 @@ public class TransServiceImpl implements TransService{
      * */
     @Override
     public void saveTrans(TbTrans trans) {
+        try {
         TbTrans tbTrans = new TbTrans();
         tbTrans.setDateCreated(new Date());
         tbTrans.setId(UUID.randomUUID().toString().replaceAll("-", ""));
@@ -102,7 +103,36 @@ public class TransServiceImpl implements TransService{
         tbTrans.setName(trans.getName());
         tbTrans.setStatus(trans.getStatus());
         tbTransMapper.insert(trans);
+        } catch (Exception e) {
 
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 修改信息之前的根据id查询的信息用于回显
+     * */
+    @Override
+    public TbTrans getTrans(String id) {
+
+        TbTrans trans = transMapper.getTrans(id);
+        return trans;
+    }
+    /**
+     * 修改流水单信息
+     * */
+    @Override
+    public long modifyTrans(String id, TbTrans trans) {
+        TbTrans tbTrans = new TbTrans();
+        tbTrans.setId(id);
+        tbTrans.setDateCreated(trans.getDateCreated());
+        tbTrans.setMsg(trans.getMsg());
+        tbTrans.setStatus(trans.getStatus());
+        tbTrans.setName(trans.getName());
+        tbTrans.setOrderNum(trans.getOrderNum());
+        trans.setCity(trans.getCity());
+       long result= transMapper.modifyTrans(tbTrans);
+        return 0;
     }
 
 }

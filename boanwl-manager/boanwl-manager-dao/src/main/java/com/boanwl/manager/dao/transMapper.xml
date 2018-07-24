@@ -26,7 +26,12 @@
         select <include refid="transsql"/> from tb_trans t where t.order_num  =#{orderNum}
         limit #{pageParam.offset},#{pageParam.limit}
     </select>
-
-
-
+    <!--查询单条信息用于修改信息时回显信息-->
+    <select id="getTrans"  resultType="com.boanwl.manager.pojo.po.TbTrans">
+        select <include refid="transsql"/> from tb_trans  where id =#{id}
+    </select>
+    <!--修改信息根据id-->
+    <update id="modifyTrans" parameterType="java.lang.String" >
+        UPDATE tb_trans SET id=#{tbTrans.id},order_num=#{tbTrans.orderNum},
+    </update>
 </mapper>

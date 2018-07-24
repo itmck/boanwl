@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.Map;
 
 /**
@@ -61,10 +60,20 @@ public class TransController {
     /**
      * 添加一条流水记录不是初始状态的记录
      * */
-    @RequestMapping("/saveMsg")
+    @RequestMapping("/saveTrans")
     @ResponseBody
     public Map<String,Object> saveTrans(TbTrans trans){
         transService.saveTrans(trans);
+        return null;
+    }
+    /**
+     * 修改一条流水记录之前查询出当前记录的信息
+     * */
+    @RequestMapping("/getTrans")
+    @ResponseBody
+    public Map<String,Object> getTrans(String id, HttpSession session){
+        TbTrans trans=transService.getTrans(id);
+        session.setAttribute("trans",trans);
         return null;
     }
     /**
@@ -72,9 +81,9 @@ public class TransController {
      * */
     @RequestMapping("/modifyTrans")
     @ResponseBody
-    public Map<String,Object> modifyTrans(){
-
-        return null;
+    public String modifyTrans(String id,TbTrans trans){
+        long result=transService.modifyTrans(id,trans);
+        return "回到显示所有记录的页面";
     }
 
 
