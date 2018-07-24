@@ -121,4 +121,15 @@ public class SendAction {
         }
         return tbSendItemDTO;
     }
+    @RequestMapping("/{sid}")
+    @ResponseBody
+    public TbSend getSend(@PathVariable  String sid) {
+
+        try{
+            return sendService.getSend(sid);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

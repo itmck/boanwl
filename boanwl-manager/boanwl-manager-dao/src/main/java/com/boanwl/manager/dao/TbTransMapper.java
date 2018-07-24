@@ -20,4 +20,6 @@ public interface TbTransMapper {
     int updateByExampleSelective(@Param("record") TbTrans record, @Param("example") TbTransExample example);
 
     int updateByExample(@Param("record") TbTrans record, @Param("example") TbTransExample example);
+
+
 }
