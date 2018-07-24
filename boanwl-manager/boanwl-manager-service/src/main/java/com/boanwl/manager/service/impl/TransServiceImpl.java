@@ -62,7 +62,7 @@ public class TransServiceImpl implements TransService{
             logger.error(e.getMessage(), e);
             e.printStackTrace();
         }
-       
+
         return tbTransItemDTO;
     }
 }
