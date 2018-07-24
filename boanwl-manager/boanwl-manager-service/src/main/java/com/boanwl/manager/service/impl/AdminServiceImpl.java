@@ -1,7 +1,6 @@
 package com.boanwl.manager.service.impl;
 
 import com.boan.comcom.utils.MD5Utils;
-import com.boan.comcom.utils.UUIDutil;
 import com.boanwl.common.dto.ItemDTO;
 import com.boanwl.manager.dao.AdminMapper;
 import com.boanwl.manager.dao.TbAdminMapper;
@@ -90,8 +89,9 @@ public class AdminServiceImpl implements AdminService {
         item.setCode(0);
         item.setMsg("成功!");
         try {
-
-            admin.setId(UUIDutil.getUUID());
+            int i = tbAdminMapper.countByExample(null);
+            Integer id = i+1;
+            admin.setId(id.toString());
             admin.setPwd(MD5Utils.md5(admin.getPwd()));
             admin.setStatus(1);
             int result = tbAdminMapper.insert(admin);
