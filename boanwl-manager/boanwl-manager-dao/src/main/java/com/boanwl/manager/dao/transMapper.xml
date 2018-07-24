@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boanwl.manager.dao.transMapper" >
+    <!--<sql id="" >
+        se_id, sender_name, sender_id_number, sender_phone, sender_address, sender_adderss_detail,
+        receiver_name, receiver_phone, receiver_address, receiver_adderss_detail, cargo_weight,
+        order_crate_data, sender_remarks, total_price, se_state
+    </sql>-->
+    <sql id="transsql">
+        t.id, t.order_num as orderNum, t.name, t.city, t.date_created as dateCreated, t.date_updated as dateUpdated, t.status, t.msg
+    </sql>
+
+    <!--是展示所有流水单-->
+    <select id="showcount"  resultType="long">
+        SELECT count(1) FROM tb_trans t
+    </select>
+    <select id="showOrder" resultType="com.boanwl.manager.pojo.po.TbTrans">
+        select <include refid="transsql"/> from tb_trans t
+    </select>
+
+    <!--有条件查询展示流水信息-->
+    <select id="counttrans"  resultType="long">
+        SELECT count(1) FROM tb_trans  t where t.order_num =#{orderNum}
+    </select>
+    <select id="selectOrder"  resultType="com.boanwl.manager.pojo.po.TbTrans">
+        select <include refid="transsql"/> from tb_trans t where t.order_num  =#{orderNum}
+        limit #{pageParam.offset},#{pageParam.limit}
+    </select>
+    <!--查询单条信息用于修改信息时回显信息-->
+    <select id="getTrans"  resultType="com.boanwl.manager.pojo.po.TbTrans">
+        select <include refid="transsql"/> from tb_trans  where id =#{id}
+    </select>
+    <!--修改信息根据id-->
+    <update id="modifyTrans" parameterType="java.lang.String" >
+        UPDATE tb_trans SET id=#{tbTrans.id},order_num=#{tbTrans.orderNum}
+        ,name=#{tbTrans.name},city=#{tbTrans.city}
+        ,date_created=#{tbTrans.dateCreated},status=#{status},msg=#{msg}
+        where id=#{id}
+    </update>
+</mapper>
