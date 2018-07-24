@@ -9,17 +9,7 @@
     <sql id="transsql">
         t.id, t.order_num as orderNum, t.name, t.city, t.date_created as dateCreated, t.date_updated as dateUpdated, t.status, t.msg
     </sql>
-  <!--  <sql id="">
-        <where>
-            se_state = '0'
-            <if test="sid != null and sid !=''">
-                se_id = #{sid}
-            </if>
-            <if test="senderName != null and senderName !=''">
-                senderName like "%"#{senderName}"%"
-            </if>
-        </where>
-    </sql>-->
+
     <!--是展示所有流水单-->
     <select id="showcount"  resultType="long">
         SELECT count(1) FROM tb_trans t
@@ -30,28 +20,13 @@
 
     <!--有条件查询展示流水信息-->
     <select id="counttrans"  resultType="long">
-        SELECT count(1) FROM tb_trans  t where order_num as orderNum =#{orderNum}
+        SELECT count(1) FROM tb_trans  t where t.order_num =#{orderNum}
     </select>
     <select id="selectOrder"  resultType="com.boanwl.manager.pojo.po.TbTrans">
-        select <include refid="transsql"/> from tb_trans t where order_num as orderNum =#{orderNum} ORDER BY order_crate_data DESC
-        limit #{offset},#{limit}
+        select <include refid="transsql"/> from tb_trans t where t.order_num  =#{orderNum}
+        limit #{pageParam.offset},#{pageParam.limit}
     </select>
 
-   <!-- <sql id="queryBySome">
-        <where>
-            se_state = '0'
-            <if test="sid != null and sid !=''">
-                se_id = #{sid}
-            </if>
-            <if test="senderName != null and senderName !=''">
-                senderName like "%"#{senderName}"%"
-            </if>
-        </where>
-    </sql>-->
-   <!-- <select id="" parameterType="" resultType="">
-        SELECT <include refid="" /> from tb_send
-        <include refid="queryBySome" />
-        ORDER BY order_crate_data DESC
-        limit #{offset},#{limit}
-    </select>-->
+
+
 </mapper>

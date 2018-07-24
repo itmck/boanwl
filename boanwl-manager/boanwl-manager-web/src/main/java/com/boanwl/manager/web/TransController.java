@@ -25,7 +25,6 @@ public class TransController {
     @ResponseBody
     public ItemDTO<TbTrans> selectOrder(String orderNum , PageParam pageParam){
         ItemDTO <TbTrans> transList= transService.selectOrder(orderNum,pageParam);
-        System.out.println(transList+"}}}}}}}}}}");
         return transList;
     }
     /**
@@ -34,7 +33,6 @@ public class TransController {
     @ResponseBody
     public ItemDTO<TbTrans> showOrder(){
         ItemDTO <TbTrans> transList= transService.showOrder();
-         System.out.println(transList+"<<<<<<<<<<");
         return transList;
     }
     /**

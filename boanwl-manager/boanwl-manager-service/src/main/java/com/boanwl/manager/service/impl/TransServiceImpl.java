@@ -25,14 +25,14 @@ public class TransServiceImpl implements TransService{
     private transMapper transMapper;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
-     * 查询流水单
+     * 条件查询流水单ok
      * */
     @Override
     public ItemDTO<TbTrans> selectOrder(String orderNum, PageParam pageParam) {
         ItemDTO<TbTrans> tbTransItemDTO = new ItemDTO<>();
         try {
-
             tbTransItemDTO.setCode(0);
+            tbTransItemDTO.setMsg("select success");
             tbTransItemDTO.setData(transMapper.selectOrder(orderNum,pageParam));
             tbTransItemDTO.setCount(transMapper.counttrans(orderNum));
 
