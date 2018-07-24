@@ -48,7 +48,7 @@
                 <table class="layui-hide" id="articleList" lay-filter="demo"></table>
                 <script type="text/html" id="operateTpl">
                     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">回复</a>
-                    <%--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>--%>
+                    <%--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>11--%>
                 </script>
             </div>
         </div>
