@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -89,6 +90,7 @@ public class AdminServiceImpl implements AdminService {
         item.setCode(0);
         item.setMsg("成功!");
         try {
+
             admin.setId(UUIDutil.getUUID());
             admin.setPwd(MD5Utils.md5(admin.getPwd()));
             admin.setStatus(1);
@@ -113,6 +115,26 @@ public class AdminServiceImpl implements AdminService {
 
             admin.setPwd(MD5Utils.md5(admin.getPwd()));
             int result = tbAdminMapper.updateByPrimaryKeySelective(admin);
+        } catch (Exception e) {
+            item.setCode(1);
+            item.setMsg("失败!");
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+
+        return item;
+    }
+
+    @Override
+    public ItemDTO<TbAdmin> selectById(String id) {
+        ItemDTO<TbAdmin> item = new ItemDTO<>();
+        item.setCode(0);
+        item.setMsg("成功!");
+        try {
+            TbAdmin admin = tbAdminMapper.selectByPrimaryKey(id);
+            List<TbAdmin> admins = new ArrayList<>();
+            admins.add(admin);
+            item.setData(admins);
         } catch (Exception e) {
             item.setCode(1);
             item.setMsg("失败!");
