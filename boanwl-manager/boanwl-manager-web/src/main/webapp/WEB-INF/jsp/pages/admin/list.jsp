@@ -66,19 +66,23 @@
             //第一个实例
             table.render({
                 elem: '#articleList'
-                , url: '../../getList2' //数据接口
+                , url: '../../admin/list' //数据接口
                 , page: false //开启分页
                 , cols: [[
                     //field title 列属性
                     {type: 'checkbox'},
-                    {field: 'orderNo', title: '订单编号', sort: true},//
-                    {field: 'theme', title: '咨询主题'},
-                    {field: 'uname', title: '用户姓名'},//
-                    {field: 'utel', title: '用户电话'},
-                    {field: 'address', title: '收件地址'},
+                    {field: 'id', title: '工号', sort: true},//
+                    {field: 'adminname', title: '花名'},
+                    {field: 'realname', title: '用户姓名'},//
+                    {field: 'sex', title: '性别'},
+                    {field: 'remark', title: '座右铭'},
                     {field: 'requestMsg', title: '留言信息'},
+                    {field: 'role', title: '角色'},
+                    {field: 'tel', title: '电话'},
+                    {field: 'birthday', title: '生日'},
+                    {field: 'idcard', title: '身份证号码'}
                     // {field: 'statusName', title: '代办状态'},
-                    {fixed: 'right', title: '操作', width: 100, toolbar: '#operateTpl'}
+                    /*{fixed: 'right', title: '操作', width: 100, toolbar: '#operateTpl'}*/
                 ]],
             });
 
