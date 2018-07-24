@@ -3,12 +3,24 @@
 <mapper namespace="com.boanwl.manager.dao.AdminMapper" >
 
   <select id="countAdmin" resultType="_long">
-    select count(1) from tb_admin
+    select count(1) from tb_admin a where a.status!=3
   </select>
   <select id="listAdmins" parameterType="com.boanwl.manager.pojo.dto.PageParam" resultType="com.boanwl.manager.pojo.po.TbAdmin">
     select
-    id, adminname, role, realname, tel, remark
-    from tb_admin
+    id, adminname,pwd realname,sex ,remark, a.status,role,tel, birthday,idcard
+    from tb_admin a
+    where a.status!=3
     limit #{offset},#{limit}
   </select>
+  <select id="countPageAdmin" parameterType="java.lang.String" resultType="_long">
+    select count(1) from tb_admin where a.status!=3 and  adminname like "%"#{adminname}"%"
+  </select>
+  <select id="listPageAdmins"  resultType="com.boanwl.manager.pojo.po.TbAdmin">
+    select
+    id, adminname,pwd realname,sex ,remark, a.status,role,tel, birthday,idcard
+    from tb_admin a
+    where adminname like '%${searchName}%' and a.status!=3
+    limit #{param.offset},#{param.limit}
+  </select>
+
 </mapper>

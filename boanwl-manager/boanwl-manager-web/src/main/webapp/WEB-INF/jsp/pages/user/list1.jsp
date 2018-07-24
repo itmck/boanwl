@@ -38,56 +38,100 @@
             <div class="weadmin-block demoTable">
                 <button class="layui-btn layui-btn-danger" data-type="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除
                 </button>
-                <button class="layui-btn" onclick="WeAdminShow('添加商品','./add2',600,500)"><i
+                <button class="layui-btn" onclick="WeAdminShow('添加商品','./login',600,500)"><i
                         class="layui-icon">&#xe61f;</i>添加
                 </button>
             </div>
             <!-- 操作日志 -->
             <div class="layui-form news_list">
                 <%--这个是动态的表格--%>
-                <table class="layui-hide" id="articleList"></table>
+                <table class="layui-hide" id="articleList" lay-filter="demo"></table>
                 <script type="text/html" id="operateTpl">
-                    <a title="回复" onclick="WeAdminEdit('回复','./edit', 2, 600, 400)" href="javascript:;"
-                       data-url="${pageContext.request.contextPath}/pages/admin/list">
-                        <i class="layui-icon" style="font-size: 20px">&#xe609;</i>
-                    </a>
-                    <%--<a class="layui-btn layui-btn-mini news_edit"><i class="iconfont icon-edit"></i>回复</a>--%>
-                    <a title="删除" href="javascript:;">
-                        <i class="layui-icon" style="font-size: 20px">&#xe640;</i>
-                    </a>
+                    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">回复</a>
+                    <%--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>11--%>
                 </script>
             </div>
-
         </div>
     </div>
-
-
 </section>
 
 
 <script type="text/javascript">
 
-    layui.use('table', function () {
+
+    layui.use(['table', 'layer'], function () {
             var table = layui.table;
+            layer = layui.layer;
 
             //第一个实例
             table.render({
                 elem: '#articleList'
-                , url: '../../getList' //数据接口
+                , url: '../../getList2' //数据接口
                 , page: false //开启分页
                 , cols: [[
                     //field title 列属性
                     {type: 'checkbox'},
-                    {field: 'id', title: 'ID', sort: true},//
-                    {field: 'adminname', title: '名字'},
-                    {field: 'realname', title: '真实姓名'},//
-                    {field: 'tel', title: '电话'},
-                    // {field: 'address', title: '收件地址'},
-                    // {field: 'requestMsg', title: '留言信息'},
-                    // {field: 'status', title: '代办状态'},
-                    {fixed: 'right', width: 100, align: 'center', toolbar: '#operateTpl'}
+                    {field: 'orderNo', title: '订单编号', sort: true},//
+                    {field: 'theme', title: '咨询主题'},
+                    {field: 'uname', title: '用户姓名'},//
+                    {field: 'utel', title: '用户电话'},
+                    {field: 'address', title: '收件地址'},
+                    {field: 'requestMsg', title: '留言信息'},
+                    // {field: 'statusName', title: '代办状态'},
+                    {fixed: 'right', title: '操作', width: 100, toolbar: '#operateTpl'}
                 ]],
             });
+
+
+            //监听工具条事件
+            table.on('tool(demo)', function (obj) {
+
+                var data = obj.data;
+                if (obj.event === 'detail') {
+
+                    var id = data.id;
+                    // //发送一个ajax请求
+                    $.get(
+                        './../../getList2',//url
+                        {'id': id},
+                        function (data) {
+
+
+                            layer.open({
+                                type: 2,
+                                title: '留言详情:',
+                                shadeClose: true,
+                                shade: 0.5,
+                                area: ['500px', '90%'],
+                                content: 'edit' //iframe的url
+
+                            });
+
+                        }
+                    )
+
+
+                    layer.msg("您选择的id:" + id);
+                    layer.msg('ID：' + data.id + ' 的查看操作');
+                }
+
+            });
+
+
+            // window.WeAdminShow = function() {
+            //
+            //     //页面层
+            //
+            //     layer.open({
+            //         type: 2,
+            //         title: '留言详情:',
+            //         shadeClose: true,
+            //         shade: 0.5,
+            //         area: ['500px', '90%'],
+            //         content: 'edit/' //iframe的url
+            //     });
+            //
+            // }
 
 
             //搜索操作 先获取搜索按钮事件
