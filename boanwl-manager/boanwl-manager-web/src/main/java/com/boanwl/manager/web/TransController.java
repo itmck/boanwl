@@ -83,11 +83,6 @@ public class TransController {
     @ResponseBody
     public String modifyTrans(String id,TbTrans trans){
         long result=transService.modifyTrans(id,trans);
-
-
-
-
-
         return "回到显示所有记录的页面";
     }
 
