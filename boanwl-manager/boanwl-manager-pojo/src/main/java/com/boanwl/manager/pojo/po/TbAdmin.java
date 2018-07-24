@@ -1,19 +1,29 @@
 package com.boanwl.manager.pojo.po;
 
+import java.util.Date;
+
 public class TbAdmin {
     private String id;
 
     private String adminname;
 
-    private Integer role;
+    private String pwd;
 
     private String realname;
 
-    private String tel;
+    private String sex;
 
     private String remark;
 
     private Integer status;
+
+    private Integer role;
+
+    private Integer tel;
+
+    private Date birthday;
+
+    private String idcard;
 
     public String getId() {
         return id;
@@ -31,12 +41,12 @@ public class TbAdmin {
         this.adminname = adminname == null ? null : adminname.trim();
     }
 
-    public Integer getRole() {
-        return role;
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setRole(Integer role) {
-        this.role = role;
+    public void setPwd(String pwd) {
+        this.pwd = pwd == null ? null : pwd.trim();
     }
 
     public String getRealname() {
@@ -47,12 +57,12 @@ public class TbAdmin {
         this.realname = realname == null ? null : realname.trim();
     }
 
-    public String getTel() {
-        return tel;
+    public String getSex() {
+        return sex;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel == null ? null : tel.trim();
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
     }
 
     public String getRemark() {
@@ -69,5 +79,37 @@ public class TbAdmin {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    public Integer getTel() {
+        return tel;
+    }
+
+    public void setTel(Integer tel) {
+        this.tel = tel;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getIdcard() {
+        return idcard;
+    }
+
+    public void setIdcard(String idcard) {
+        this.idcard = idcard == null ? null : idcard.trim();
     }
 }

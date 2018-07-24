@@ -2,6 +2,7 @@ package com.boanwl.manager.dao;
 
 import com.boanwl.manager.pojo.dto.PageParam;
 import com.boanwl.manager.pojo.po.TbAdmin;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,8 @@ public interface AdminMapper {
     long countAdmin();
 
     List<TbAdmin> listAdmins(PageParam param);
+
+    long countPageAdmin(@Param("adminname") String searchName);
+
+    List<TbAdmin> listPageAdmins(@Param("param") PageParam param, @Param("searchName")String searchName);
 }
