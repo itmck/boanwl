@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boanwl.manager.dao.TbMsgCustomMapper">
+
+
+    <!--sql片段-->
+    <sql id="Base_Column_List">
+    i.order_no as orderNo, i.uid, i.theme, i.uname, i.utel, i.address, i.request_msg as requestMsg,
+    case i.status
+    WHEN  1 THEN '未办理'
+    WHEN  0 THEN '已办理'
+    ELSE '未知' END as statusName
+  </sql>
+
+    <!--查询总个数-->
+    <select id="getCounts" resultType="_long">
+        select count(1)
+        from tb_msg
+    </select>
+
+
+    <!--查询data-->
+    <select id="getTbMsg"  resultType="com.boanwl.manager.pojo.vo.TbMsgCustom">
+
+        select
+        <include refid="Base_Column_List"/>
+        FROM tb_msg i
+        LIMIT #{offset},#{limit}
+
+    </select>
+
+</mapper>

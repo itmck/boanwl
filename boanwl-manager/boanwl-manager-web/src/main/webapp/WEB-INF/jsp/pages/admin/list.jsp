@@ -25,7 +25,7 @@
 
 				<div class="layui-inline">
 					<div class="layui-input-inline">
-						<input value="" placeholder="请输入关键字" class="layui-input search_input" type="text">
+						<input id="searchName" value="" placeholder="请输入关键字" class="layui-input search_input" type="text">
 					</div>
 					<a class="layui-btn search_btn" id="search" data-type="search">查询</a>
 				</div>
@@ -66,19 +66,22 @@
             //第一个实例
             table.render({
                 elem: '#articleList'
-                , url: '../../getList2' //数据接口
-                , page: false //开启分页
+                , url: '../../admin/listPage' //数据接口
+                , page: true //开启分页
                 , cols: [[
                     //field title 列属性
                     {type: 'checkbox'},
-                    {field: 'orderNo', title: '订单编号', sort: true},//
-                    {field: 'theme', title: '咨询主题'},
-                    {field: 'uname', title: '用户姓名'},//
-                    {field: 'utel', title: '用户电话'},
-                    {field: 'address', title: '收件地址'},
-                    {field: 'requestMsg', title: '留言信息'},
+                    {field: 'id', title: '工号', sort: true},//
+                    {field: 'adminname', title: '花名'},
+                    {field: 'realname', title: '用户姓名'},//
+                    {field: 'sex', title: '性别'},
+                    {field: 'remark', title: '座右铭'},
+                    {field: 'role', title: '角色'},
+                    {field: 'tel', title: '电话'},
+                    {field: 'birthday', title: '生日'},
+                    {field: 'idcard', title: '身份证号码'}
                     // {field: 'statusName', title: '代办状态'},
-                    {fixed: 'right', title: '操作', width: 100, toolbar: '#operateTpl'}
+                    /*{fixed: 'right', title: '操作', width: 100, toolbar: '#operateTpl'}*/
                 ]],
             });
 
@@ -162,7 +165,7 @@
                     //val() 单选按钮 复选按钮 文本框
                     //text() 文本
                     //html() 标签
-                    var title = $('#title').val();
+                    var title = $('#searchName').val();
                     //判断内容是否为空
                     if ($.trim(title).length > 0) {
                         //文本框输入了内容,表格需要重新加载.另外发送一个item请求
@@ -171,7 +174,7 @@
                             page: {curr: 1},
                             //第一个title作为表单数据传出去的key
                             //第二个参数就是js定义的变量(就是我们获取的文本框值)
-                            where: {title: title}
+                            where: {searchName: title}
 
                         });
 
