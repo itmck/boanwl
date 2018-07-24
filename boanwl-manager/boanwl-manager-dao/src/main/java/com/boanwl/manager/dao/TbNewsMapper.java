@@ -11,7 +11,7 @@ public interface TbNewsMapper {
 
     int deleteByExample(TbNewsExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(TbNews record);
 
@@ -21,7 +21,7 @@ public interface TbNewsMapper {
 
     List<TbNews> selectByExample(TbNewsExample example);
 
-    TbNews selectByPrimaryKey(Integer id);
+    TbNews selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") TbNews record, @Param("example") TbNewsExample example);
 

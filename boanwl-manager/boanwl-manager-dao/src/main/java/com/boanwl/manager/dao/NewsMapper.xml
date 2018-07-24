@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boanwl.manager.dao.NewsMapper">
+    <sql id="query">
+        <where>
+            status = '0'
+            <if test="title != null and title !=''">
+                and title like "%"#{title}"%"
+            </if>
+        </where>
+    </sql>
+    <select id="countNews" resultType="_long">
+        select COUNT(1) from tb_news
+        <include refid="query"/>
+    </select>
+    <select id="listNews" resultType="com.boanwl.manager.pojo.dto.NewsQueryDTO">
+        SELECT * from tb_news
+        <include refid="query"/>
+        ORDER BY time desc
+        limit #{offset},#{limit}
+    </select>
+</mapper>
