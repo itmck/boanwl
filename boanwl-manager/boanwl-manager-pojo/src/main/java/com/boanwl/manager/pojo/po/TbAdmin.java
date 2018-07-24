@@ -1,5 +1,7 @@
 package com.boanwl.manager.pojo.po;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class TbAdmin {
@@ -20,7 +22,7 @@ public class TbAdmin {
     private Integer role;
 
     private Integer tel;
-
+    @JsonFormat(pattern = "yyyy/MM/dd")
     private Date birthday;
 
     private String idcard;

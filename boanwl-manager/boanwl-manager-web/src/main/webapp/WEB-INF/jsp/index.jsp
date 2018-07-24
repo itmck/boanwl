@@ -136,7 +136,7 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/user/list">
+                            <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/user/list1">
                                 <i class="iconfont icon-yonghu1" data-icon='icon-yonghu1'></i>
                                 <span>客户列表</span>
                             </a>
