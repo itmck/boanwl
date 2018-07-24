@@ -2,6 +2,7 @@ package com.boanwl.manager.web;
 
 import com.boanwl.common.dto.ItemDTO;
 import com.boanwl.manager.pojo.dto.PageParam;
+import com.boanwl.manager.pojo.po.TbSend;
 import com.boanwl.manager.pojo.po.TbTrans;
 import com.boanwl.manager.service.TransService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -36,12 +39,32 @@ public class TransController {
         return transList;
     }
     /**
-     * 添加一条流水记录
+     * 添加一条初始状态的记录，从寄件处获得订单号
+     * */
+    @RequestMapping("/saveOneMsg")
+    @ResponseBody
+    public String saveOneMsg(TbSend tbSend, HttpSession session){
+        long result=transService.saveOneMsg(tbSend);
+        String orderNum = tbSend.getSeId();
+       // session.setAttribute("orderNum",orderNum);
+        return "跳转到查询所有信息的页面";
+    }
+    /**
+     * 点击订单按钮获得订单号用于添加页面订单号回显，然后快递员添加流转信息
+     * */
+    @RequestMapping("/getOrderNum")
+    @ResponseBody
+    public String getOrderNum(String orderNum, HttpSession session){
+        session.setAttribute("orderNum",orderNum);
+        return "跳转到添加页面";
+    }
+    /**
+     * 添加一条流水记录不是初始状态的记录
      * */
     @RequestMapping("/saveMsg")
     @ResponseBody
-    public Map<String,Object> saveTrans(){
-
+    public Map<String,Object> saveTrans(TbTrans trans){
+        transService.saveTrans(trans);
         return null;
     }
     /**
@@ -53,14 +76,6 @@ public class TransController {
 
         return null;
     }
-    /**
-     * 删除一条流水记录
-     * */
-    @RequestMapping("/delTrans")
-    @ResponseBody
-    public Map<String,Object> delTrans(){
 
-        return null;
-    }
 
 }

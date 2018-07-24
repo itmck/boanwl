@@ -4,6 +4,7 @@ import com.boanwl.common.dto.ItemDTO;
 import com.boanwl.manager.dao.TbTransMapper;
 import com.boanwl.manager.dao.transMapper;
 import com.boanwl.manager.pojo.dto.PageParam;
+import com.boanwl.manager.pojo.po.TbSend;
 import com.boanwl.manager.pojo.po.TbTrans;
 import com.boanwl.manager.service.TransService;
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.UUID;
 
 
 /**
@@ -65,4 +68,41 @@ public class TransServiceImpl implements TransService{
 
         return tbTransItemDTO;
     }
+    /**
+     * 添加第一条流水单信息*/
+    @Override
+    public long saveOneMsg(TbSend tbSend) {
+        try {
+        TbTrans tbTrans = new TbTrans();
+        tbTrans.setDateCreated(new Date());
+        tbTrans.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+        tbTrans.setOrderNum(tbSend.getSeId());
+        tbTrans.setCity(tbSend.getSenderAddress());
+        tbTrans.setName("张三");
+        tbTrans.setStatus(0);
+        tbTrans.setMsg("快件已在"+tbSend.getSenderAddress()+"揽收");
+        tbTransMapper.insert(tbTrans);
+        } catch (Exception e) {
+
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    /**
+     * 添加不是第一条的流水单信息，快递员进行添加
+     * */
+    @Override
+    public void saveTrans(TbTrans trans) {
+        TbTrans tbTrans = new TbTrans();
+        tbTrans.setDateCreated(new Date());
+        tbTrans.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+        tbTrans.setOrderNum(trans.getOrderNum());
+        tbTrans.setCity(trans.getCity());
+        tbTrans.setName(trans.getName());
+        tbTrans.setStatus(trans.getStatus());
+        tbTransMapper.insert(trans);
+
+    }
+
 }
