@@ -239,7 +239,13 @@
                             </a>
                         </dd>
                         <dd>
-                            <a href="javascript:;">
+                            <%--  <dd>
+                            <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/admin/personInfo">
+                                <i class="iconfont icon-geren1" data-icon='icon-geren1'></i>
+                                <span>我的信息</span>
+                            </a>
+                        </dd>--%>
+                            <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/ordertrans/translist">
                                 <i class="iconfont icon-piliangicon" data-icon='icon-wenzhang2'></i>
                                 <span>运单记录</span>
                             </a>

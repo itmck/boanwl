@@ -34,7 +34,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">运单状态</label>
         <div class="layui-input-block">
-            <select name="status" lay-filter="aihao">
+            <select name="status" lay-filter="title">
                 <option value=""></option>
                 <option value="1" selected="">运输中</option>
                 <option value="2">派件中</option>

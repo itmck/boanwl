@@ -1,6 +1,7 @@
 package com.boanwl.manager.dao;
 
 import com.boanwl.manager.pojo.dto.PageParam;
+import com.boanwl.manager.pojo.dto.TransRespDto;
 import com.boanwl.manager.pojo.po.TbTrans;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @since jiangjun
  */
 public interface transMapper {
-    List<TbTrans> showOrder();
+    List<TransRespDto> showOrder();
 
     long showcount();
 

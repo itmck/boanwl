@@ -2,6 +2,7 @@ package com.boanwl.manager.web;
 
 import com.boanwl.common.dto.ItemDTO;
 import com.boanwl.manager.pojo.dto.PageParam;
+import com.boanwl.manager.pojo.dto.TransRespDto;
 import com.boanwl.manager.pojo.po.TbSend;
 import com.boanwl.manager.pojo.po.TbTrans;
 import com.boanwl.manager.service.TransService;
@@ -22,7 +23,7 @@ public class TransController {
     @Autowired
     private TransService transService;
     /**
-     * 条件查询订单流水记录*/
+     * 条件查询订单流水记录ok*/
     @RequestMapping("/selectOrder")
     @ResponseBody
     public ItemDTO<TbTrans> selectOrder(String orderNum , PageParam pageParam){
@@ -30,32 +31,29 @@ public class TransController {
         return transList;
     }
     /**
-     * 展示所有订单流水记录*/
+     * 展示所有订单流水记录ok*/
     @RequestMapping("/showOrder")
     @ResponseBody
-    public ItemDTO<TbTrans> showOrder(){
-        ItemDTO <TbTrans> transList= transService.showOrder();
+    public ItemDTO<TransRespDto> showOrder(){
+        ItemDTO <TransRespDto> transList= transService.showOrder();
         return transList;
     }
     /**
      * 添加一条初始状态的记录，从寄件处获得订单号
      * */
     @RequestMapping("/saveOneMsg")
-    @ResponseBody
     public String saveOneMsg(TbSend tbSend, HttpSession session){
         long result=transService.saveOneMsg(tbSend);
         String orderNum = tbSend.getSeId();
-       // session.setAttribute("orderNum",orderNum);
-        return "跳转到查询所有信息的页面";
+        return "redirect:/showOrder";
     }
     /**
      * 点击订单按钮获得订单号用于添加页面订单号回显，然后快递员添加流转信息
      * */
     @RequestMapping("/getOrderNum")
-    @ResponseBody
     public String getOrderNum(String orderNum, HttpSession session){
         session.setAttribute("orderNum",orderNum);
-        return "跳转到添加页面";
+        return "forward:pages/ordertrans/translist";
     }
     /**
      * 添加一条流水记录不是初始状态的记录
