@@ -32,6 +32,6 @@
     </select>
     <!--修改信息根据id-->
     <update id="modifyTrans" parameterType="java.lang.String" >
-        UPDATE tb_trans SET id=#{tbTrans.id},order_num=#{tbTrans.orderNum},
+        UPDATE tb_trans SET id=#{tbTrans.id},order_num=#{tbTrans.orderNum},name=#{tbTrans.name},city=#{tbTrans.city},date_created=#{tbTrans.}
     </update>
 </mapper>
