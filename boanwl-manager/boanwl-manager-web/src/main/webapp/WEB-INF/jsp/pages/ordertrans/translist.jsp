@@ -38,6 +38,7 @@
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1
             ,page:true
             ,cols: [[
+
                 {field:'orderNum', width:80, title: '运单号'}
                 ,{field:'city', width:80, title: '城市'}
                 ,{field:'statusName', width:80, title: '状态'}
