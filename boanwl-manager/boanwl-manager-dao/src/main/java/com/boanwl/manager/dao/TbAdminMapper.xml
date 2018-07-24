@@ -4,11 +4,15 @@
   <resultMap id="BaseResultMap" type="com.boanwl.manager.pojo.po.TbAdmin" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="adminname" property="adminname" jdbcType="VARCHAR" />
-    <result column="role" property="role" jdbcType="INTEGER" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
     <result column="realname" property="realname" jdbcType="VARCHAR" />
-    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="role" property="role" jdbcType="INTEGER" />
+    <result column="tel" property="tel" jdbcType="INTEGER" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, adminname, role, realname, tel, remark, status
+    id, adminname, pwd, realname, sex, remark, status, role, tel, birthday, idcard
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.boanwl.manager.pojo.po.TbAdminExample" >
     select
@@ -102,12 +106,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.boanwl.manager.pojo.po.TbAdmin" >
-    insert into tb_admin (id, adminname, role,
-      realname, tel, remark,
-      status)
-    values (#{id,jdbcType=VARCHAR}, #{adminname,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER},
-      #{realname,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
-      #{status,jdbcType=INTEGER})
+    insert into tb_admin (id, adminname, pwd,
+      realname, sex, remark,
+      status, role, tel,
+      birthday, idcard)
+    values (#{id,jdbcType=VARCHAR}, #{adminname,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR},
+      #{realname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER}, #{role,jdbcType=INTEGER}, #{tel,jdbcType=INTEGER},
+      #{birthday,jdbcType=DATE}, #{idcard,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.boanwl.manager.pojo.po.TbAdmin" >
     insert into tb_admin
@@ -118,20 +124,32 @@
       <if test="adminname != null" >
         adminname,
       </if>
-      <if test="role != null" >
-        role,
+      <if test="pwd != null" >
+        pwd,
       </if>
       <if test="realname != null" >
         realname,
       </if>
-      <if test="tel != null" >
-        tel,
+      <if test="sex != null" >
+        sex,
       </if>
       <if test="remark != null" >
         remark,
       </if>
       <if test="status != null" >
         status,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="idcard != null" >
+        idcard,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -141,20 +159,32 @@
       <if test="adminname != null" >
         #{adminname,jdbcType=VARCHAR},
       </if>
-      <if test="role != null" >
-        #{role,jdbcType=INTEGER},
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
       </if>
       <if test="realname != null" >
         #{realname,jdbcType=VARCHAR},
       </if>
-      <if test="tel != null" >
-        #{tel,jdbcType=VARCHAR},
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -173,20 +203,32 @@
       <if test="record.adminname != null" >
         adminname = #{record.adminname,jdbcType=VARCHAR},
       </if>
-      <if test="record.role != null" >
-        role = #{record.role,jdbcType=INTEGER},
+      <if test="record.pwd != null" >
+        pwd = #{record.pwd,jdbcType=VARCHAR},
       </if>
       <if test="record.realname != null" >
         realname = #{record.realname,jdbcType=VARCHAR},
       </if>
-      <if test="record.tel != null" >
-        tel = #{record.tel,jdbcType=VARCHAR},
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
       </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.role != null" >
+        role = #{record.role,jdbcType=INTEGER},
+      </if>
+      <if test="record.tel != null" >
+        tel = #{record.tel,jdbcType=INTEGER},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=DATE},
+      </if>
+      <if test="record.idcard != null" >
+        idcard = #{record.idcard,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -197,11 +239,15 @@
     update tb_admin
     set id = #{record.id,jdbcType=VARCHAR},
     adminname = #{record.adminname,jdbcType=VARCHAR},
-    role = #{record.role,jdbcType=INTEGER},
+    pwd = #{record.pwd,jdbcType=VARCHAR},
     realname = #{record.realname,jdbcType=VARCHAR},
-    tel = #{record.tel,jdbcType=VARCHAR},
+    sex = #{record.sex,jdbcType=VARCHAR},
     remark = #{record.remark,jdbcType=VARCHAR},
-    status = #{record.status,jdbcType=INTEGER}
+    status = #{record.status,jdbcType=INTEGER},
+    role = #{record.role,jdbcType=INTEGER},
+    tel = #{record.tel,jdbcType=INTEGER},
+    birthday = #{record.birthday,jdbcType=DATE},
+    idcard = #{record.idcard,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -212,14 +258,14 @@
       <if test="adminname != null" >
         adminname = #{adminname,jdbcType=VARCHAR},
       </if>
-      <if test="role != null" >
-        role = #{role,jdbcType=INTEGER},
+      <if test="pwd != null" >
+        pwd = #{pwd,jdbcType=VARCHAR},
       </if>
       <if test="realname != null" >
         realname = #{realname,jdbcType=VARCHAR},
       </if>
-      <if test="tel != null" >
-        tel = #{tel,jdbcType=VARCHAR},
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -227,17 +273,33 @@
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.boanwl.manager.pojo.po.TbAdmin" >
     update tb_admin
     set adminname = #{adminname,jdbcType=VARCHAR},
-      role = #{role,jdbcType=INTEGER},
+      pwd = #{pwd,jdbcType=VARCHAR},
       realname = #{realname,jdbcType=VARCHAR},
-      tel = #{tel,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER}
+      status = #{status,jdbcType=INTEGER},
+      role = #{role,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=DATE},
+      idcard = #{idcard,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
