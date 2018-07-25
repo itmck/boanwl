@@ -71,6 +71,7 @@ public class AdminServiceImpl implements AdminService {
         try {
             TbAdminExample example = new TbAdminExample();
             example.createCriteria().andIdIn(ids);
+            item.setData(tbAdminMapper.selectByExample(example));
             TbAdmin admin = new TbAdmin();
             admin.setStatus(3);
             int result = tbAdminMapper.updateByExampleSelective(admin,example);
