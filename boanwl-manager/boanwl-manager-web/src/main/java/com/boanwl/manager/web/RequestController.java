@@ -2,6 +2,7 @@ package com.boanwl.manager.web;
 
 import com.boanwl.common.dto.ItemDTO;
 import com.boanwl.manager.pojo.dto.PageParam;
+import com.boanwl.manager.pojo.dto.TbQueryDTO;
 import com.boanwl.manager.pojo.vo.TbMsgCustom;
 import com.boanwl.manager.service.TbMsgService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,12 @@ public class RequestController {
 
     @RequestMapping("/getList2")
     @ResponseBody
-    public ItemDTO<TbMsgCustom> getRequestList(PageParam pageParam){
+    public ItemDTO<TbMsgCustom> getRequestList(PageParam pageParam, TbQueryDTO tbQueryDTO){
 
 
         ItemDTO<TbMsgCustom> result = null;
         try {
-            result = tbMsgService.getRequestList(pageParam);
+            result = tbMsgService.getRequestList(pageParam,tbQueryDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }
