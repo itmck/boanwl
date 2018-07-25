@@ -25,7 +25,7 @@ public class TbMsgServiceImpl implements TbMsgService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
-    private TbMsgCustomMapper tbMsgCustomDao;
+    private TbMsgCustomMapper tbMsgCustomDao;   
 
 
     @Override
