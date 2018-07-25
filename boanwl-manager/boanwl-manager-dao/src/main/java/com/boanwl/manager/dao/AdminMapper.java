@@ -18,7 +18,7 @@ public interface AdminMapper {
 
     List<TbAdmin> listAdmins(PageParam param);
 
-    long countPageAdmin(@Param("adminname") String searchName);
+    long countPageAdmin(@Param("searchName") String searchName);
 
     List<TbAdmin> listPageAdmins(@Param("param") PageParam param, @Param("searchName")String searchName);
 }
