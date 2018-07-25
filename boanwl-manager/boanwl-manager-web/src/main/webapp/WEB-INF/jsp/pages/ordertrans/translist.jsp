@@ -48,14 +48,13 @@
            /* ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1*/
             ,page:true
             ,cols: [[
-
-                {field:'orderNum', width:80, title: '运单号'}
-                ,{field:'city', width:80, title: '城市'}
-                ,{field:'statusName', width:80, title: '状态'}
-                ,{field:'name', width:80, title: '快递员'}
-                ,{field:'dateCreated', width:137, title: '时间', sort: true}
-                ,{field:'msg', width:80, title: '快件操作记录'}
-                ,{title:'<b>操作选项</b>',fixed:'right',width: 180,align : 'center',toolbar : '#trans-toolbar'}
+                {field:'orderNum', title: '运单号'}
+                ,{field:'city', title: '城市'}
+                ,{field:'statusName', title: '状态'}
+                ,{field:'name',  title: '快递员'}
+                ,{field:'dateCreated',  title: '时间', sort: true}
+                ,{field:'msg', title: '快件操作记录'}
+                ,{title:'<b>操作选项</b>',fixed:'right',align : 'center',toolbar : '#trans-toolbar'}
             ]]
 
         });
