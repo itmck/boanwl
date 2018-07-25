@@ -5,7 +5,6 @@ import com.boanwl.manager.dao.TbTransMapper;
 import com.boanwl.manager.dao.transMapper;
 import com.boanwl.manager.pojo.dto.PageParam;
 import com.boanwl.manager.pojo.dto.TransRespDto;
-import com.boanwl.manager.pojo.enums.TransEnum;
 import com.boanwl.manager.pojo.po.TbSend;
 import com.boanwl.manager.pojo.po.TbTrans;
 import com.boanwl.manager.service.TransService;
@@ -14,11 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
-import java.util.function.DoubleToIntFunction;
 
 
 /**
@@ -36,8 +32,8 @@ public class TransServiceImpl implements TransService{
      * 条件查询流水单ok
      * */
     @Override
-    public ItemDTO<TbTrans> selectOrder(String orderNum, PageParam pageParam) {
-        ItemDTO<TbTrans> tbTransItemDTO = new ItemDTO<>();
+    public ItemDTO<TransRespDto> selectOrder(String orderNum, PageParam pageParam) {
+        ItemDTO<TransRespDto> tbTransItemDTO = new ItemDTO<>();
         try {
             tbTransItemDTO.setCode(0);
             tbTransItemDTO.setMsg("select success");

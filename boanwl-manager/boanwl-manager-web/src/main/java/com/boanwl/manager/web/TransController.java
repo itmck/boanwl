@@ -22,20 +22,26 @@ import java.util.Map;
 public class TransController {
     @Autowired
     private TransService transService;
-    /**
-     * 条件查询订单流水记录ok*/
+   /* *//**
+     * 条件查询订单流水记录ok*//*
     @RequestMapping("/selectOrder")
     @ResponseBody
     public ItemDTO<TbTrans> selectOrder(String orderNum , PageParam pageParam){
         ItemDTO <TbTrans> transList= transService.selectOrder(orderNum,pageParam);
         return transList;
-    }
+    }*/
     /**
      * 展示所有订单流水记录ok*/
     @RequestMapping("/showOrder")
     @ResponseBody
-    public ItemDTO<TransRespDto> showOrder(){
-        ItemDTO <TransRespDto> transList= transService.showOrder();
+    public ItemDTO<TransRespDto> showOrder(String orderNum , PageParam pageParam){
+        ItemDTO <TransRespDto> transList;
+        if(orderNum==null||orderNum.equals("")){
+            transList= transService.showOrder();
+        }else {
+           transList= transService.selectOrder(orderNum,pageParam);
+        }
+        //ItemDTO <TransRespDto> transList= transService.showOrder();
         return transList;
     }
     /**

@@ -142,6 +142,7 @@
 
                 var type = $(this).data('type');
                 //console.log(type);
+				//console.log( active[type] );
                 active[type] ? active[type].call(this) : '';
 
             });
