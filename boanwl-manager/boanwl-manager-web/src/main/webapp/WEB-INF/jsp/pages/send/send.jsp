@@ -119,9 +119,7 @@
                     //text() 文本
                     //html() 标签
                     var title = $('#searchName').val();
-                    //判断内容是否为空
-                    if ($.trim(title).length > 0) {
-                        //文本框输入了内容,表格需要重新加载.另外发送一个item请求
+
                         table.reload('articleList', {
 
                             page: {curr: 1},
@@ -130,13 +128,6 @@
                             where: {senderName: title}
 
                         });
-
-                    } else {
-
-                        layer.msg('亲,您未输入任何东西', {icom: 1});
-                    }
-
-
                 },
 
                 getCheckData: function () {

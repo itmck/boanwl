@@ -1,6 +1,7 @@
 package com.boanwl.manager.service.impl;
 
 import com.boan.comcom.utils.BugRobot;
+import com.boan.jedis.JedisClient;
 import com.boanwl.common.dto.ItemDTO;
 import com.boanwl.manager.dao.SendMapper;
 import com.boanwl.manager.dao.TbSendMapper;
@@ -8,6 +9,8 @@ import com.boanwl.manager.pojo.dto.SendQueryDTO;
 import com.boanwl.manager.pojo.po.TbSend;
 import com.boanwl.manager.pojo.po.TbSendExample;
 import com.boanwl.manager.service.SendService;
+import com.dhc.util.JsonUtils;
+import com.dhc.util.StrKit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,9 @@ import java.util.UUID;
  */
 @Service
 public class SendServiceImpl implements SendService {
+
+    @Autowired
+    private JedisClient jedisClient;
 
     private BugRobot bugRobot = new BugRobot();
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -125,8 +131,21 @@ public class SendServiceImpl implements SendService {
 
     @Override
     public TbSend getSend(String sid) {
+
         TbSend tbSend = null;
 
+        // 先到jdeis查
+        try {
+            String json = jedisClient.get(sid);
+            if (StrKit.notBlank(json)) {
+                return JsonUtils.jsonToPojo(json,TbSend.class);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+        //从数据库中查询
         try {
 
             tbSend = tbSendMapper.selectByPrimaryKey(sid);
@@ -136,7 +155,15 @@ public class SendServiceImpl implements SendService {
             e.printStackTrace();
             bugRobot.sendErrorToDD(e);
         }
-        return tbSend;
 
+        //存到jedis中
+        try {
+          jedisClient.set(sid,JsonUtils.objectToJson(tbSend));
+
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
+        return tbSend;
     }
 }

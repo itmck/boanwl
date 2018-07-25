@@ -48,14 +48,13 @@
            /* ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1*/
             ,page:true
             ,cols: [[
-
-                {field:'orderNum', width:80, title: '运单号'}
-                ,{field:'city', width:80, title: '城市'}
-                ,{field:'statusName', width:80, title: '状态'}
-                ,{field:'name', width:80, title: '快递员'}
-                ,{field:'dateCreated', width:137, title: '时间', sort: true}
-                ,{field:'msg', width:80, title: '快件操作记录'}
-                ,{title:'<b>操作选项</b>',fixed:'right',width: 180,align : 'center',toolbar : '#trans-toolbar'}
+                {field:'orderNum', title: '运单号'}
+                ,{field:'city', title: '城市'}
+                ,{field:'statusName', title: '状态'}
+                ,{field:'name',  title: '快递员'}
+                ,{field:'dateCreated',  title: '时间', sort: true}
+                ,{field:'msg', title: '快件操作记录'}
+                ,{title:'<b>操作选项</b>',fixed:'right',align : 'center',toolbar : '#trans-toolbar'}
             ]]
 
         });
@@ -93,9 +92,10 @@
                 var title = $('#orderNum').val();
                 //判断内容是否为空
                // alert(title);
-                if ($.trim(title).length > 0) {
+               // if ($.trim(title).length > 0) {
                     //文本框输入了内容,表格需要重新加载.另外发送一个item请求
                     table.reload('test', {
+
 
                         page: {curr: 1},
                         //第一个title作为表单数据传出去的key
@@ -105,10 +105,21 @@
 
                     });
 
-                } else {
+               // } else {
 
-                    layer.msg('亲,您未输入任何东西', {icom: 1});
+                   /* layer.msg('亲,您未输入任何东西', {icom: 1});
+                     //表刷新方法
+                    var reloadTable = function (item) {
+                  table.reload("test", { //此处是上文提到的 初始化标识id
+                     where: {
+                    //key: { //该写法上文已经提到
+                        type: item.type, id: item.id
+                    //}
                 }
+            });
+        };
+
+                }*/
 
 
             }
