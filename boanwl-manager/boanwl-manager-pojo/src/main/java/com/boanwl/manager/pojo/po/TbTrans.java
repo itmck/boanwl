@@ -1,5 +1,7 @@
 package com.boanwl.manager.pojo.po;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class TbTrans {
@@ -11,6 +13,7 @@ public class TbTrans {
 
     private String city;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date dateCreated;
 
     private Date dateUpdated;

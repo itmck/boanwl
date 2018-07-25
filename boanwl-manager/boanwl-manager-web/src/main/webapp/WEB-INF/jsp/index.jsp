@@ -29,7 +29,7 @@
         <div class="layui-main">
             <!-- logo区域 -->
             <div class="admin-logo-box">
-                <a class="logo" href="http://www.kuxuebao.net" title="logo">博恩后台管理</a>
+                <a class="logo" href="http://www.kuxuebao.net" title="logo">伯安后台管理</a>
                 <div class="larry-side-menu">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </div>
@@ -51,7 +51,7 @@
             <!-- 右侧导航 -->
             <ul class="layui-nav larry-header-item">
                 <li class="layui-nav-item">
-                    账户名：广州丹奇日化
+                    账户名：不会飞的皮卡丘
                 </li>
                 <li class="layui-nav-item first">
                     <a href="javascript:;">
@@ -233,13 +233,19 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;">
+                            <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/send/send">
                                 <i class="iconfont icon-wenzhang2" data-icon='icon-wenzhang2'></i>
                                 <span>运单列表</span>
                             </a>
                         </dd>
                         <dd>
-                            <a href="javascript:;">
+                            <%--  <dd>
+                            <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/admin/personInfo">
+                                <i class="iconfont icon-geren1" data-icon='icon-geren1'></i>
+                                <span>我的信息</span>
+                            </a>
+                        </dd>--%>
+                            <a href="javascript:;" data-url="${pageContext.request.contextPath}/pages/ordertrans/translist">
                                 <i class="iconfont icon-piliangicon" data-icon='icon-wenzhang2'></i>
                                 <span>运单记录</span>
                             </a>

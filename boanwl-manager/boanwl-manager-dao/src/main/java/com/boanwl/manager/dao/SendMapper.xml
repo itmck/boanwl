@@ -10,10 +10,11 @@
         <where>
             se_state = '0'
             <if test="sid != null and sid !=''">
-                se_id = #{sid}
+                and se_id  like "%"#{sid}"%"
             </if>
             <if test="senderName != null and senderName !=''">
-                senderName like "%"#{senderName}"%"
+                and sender_name like "%"#{senderName}"%"
+
             </if>
         </where>
     </sql>

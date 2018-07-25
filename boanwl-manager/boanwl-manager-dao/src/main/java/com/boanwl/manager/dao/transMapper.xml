@@ -7,14 +7,20 @@
         order_crate_data, sender_remarks, total_price, se_state
     </sql>-->
     <sql id="transsql">
-        t.id, t.order_num as orderNum, t.name, t.city, t.date_created as dateCreated, t.date_updated as dateUpdated, t.status, t.msg
+        t.id, t.order_num as orderNum, t.name, t.city, t.date_created as dateCreated, t.date_updated as dateUpdated, t.status, t.msg,
+        CASE t.status
+        WHEN 0 THEN "已揽收"
+        WHEN 1 THEN "在途运输"
+        WHEN 2 THEN "派送中"
+        WHEN 3 THEN "已签收"
+        ELSE "未知" END as statusName
     </sql>
 
     <!--是展示所有流水单-->
     <select id="showcount"  resultType="long">
         SELECT count(1) FROM tb_trans t
     </select>
-    <select id="showOrder" resultType="com.boanwl.manager.pojo.po.TbTrans">
+    <select id="showOrder" resultType="com.boanwl.manager.pojo.dto.TransRespDto">
         select <include refid="transsql"/> from tb_trans t
     </select>
 
