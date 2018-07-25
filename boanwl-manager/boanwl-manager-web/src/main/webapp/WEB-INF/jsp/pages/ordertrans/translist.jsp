@@ -93,7 +93,7 @@
                 var title = $('#orderNum').val();
                 //判断内容是否为空
                // alert(title);
-                if ($.trim(title).length > 0) {
+               // if ($.trim(title).length > 0) {
                     //文本框输入了内容,表格需要重新加载.另外发送一个item请求
                     table.reload('test', {
 
@@ -105,10 +105,21 @@
 
                     });
 
-                } else {
+               // } else {
 
-                    layer.msg('亲,您未输入任何东西', {icom: 1});
+                   /* layer.msg('亲,您未输入任何东西', {icom: 1});
+                     //表刷新方法
+                    var reloadTable = function (item) {
+                  table.reload("test", { //此处是上文提到的 初始化标识id
+                     where: {
+                    //key: { //该写法上文已经提到
+                        type: item.type, id: item.id
+                    //}
                 }
+            });
+        };
+
+                }*/
 
 
             }
