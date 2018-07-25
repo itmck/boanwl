@@ -13,13 +13,19 @@
     limit #{offset},#{limit}
   </select>
   <select id="countPageAdmin" parameterType="java.lang.String" resultType="_long">
-    select count(1) from tb_admin where a.status!=3 and  adminname like "%"#{adminname}"%"
+    select count(1) from tb_admin a where a.status!=3
+    <if test="searchName!=null and searchName!=''">
+     and  adminname like '${searchName}'
+    </if>
   </select>
   <select id="listPageAdmins"  resultType="com.boanwl.manager.pojo.po.TbAdmin">
     select
     id, adminname,pwd realname,sex ,remark, a.status,role,tel, birthday,idcard
     from tb_admin a
-    where adminname like '%${searchName}%' and a.status!=3
+    where  a.status!=3
+    <if test="searchName!=null and searchName!=''">
+      and adminname like '%${searchName}%'
+    </if>
     limit #{param.offset},#{param.limit}
   </select>
 

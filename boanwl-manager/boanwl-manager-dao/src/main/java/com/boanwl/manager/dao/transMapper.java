@@ -18,7 +18,7 @@ public interface transMapper {
 
     long counttrans(@Param("orderNum")String orderNum);
 
-    List<TbTrans> selectOrder(@Param("orderNum") String orderNum, @Param("pageParam") PageParam pageParam);
+    List<TransRespDto> selectOrder(@Param("orderNum") String orderNum, @Param("pageParam") PageParam pageParam);
 
     TbTrans getTrans(String id);
 

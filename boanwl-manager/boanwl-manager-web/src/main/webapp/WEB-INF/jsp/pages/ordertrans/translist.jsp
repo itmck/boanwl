@@ -17,10 +17,10 @@
    <%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/common/layui/css/layui.css"
           media="all">--%>
      <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/layui/css/layui.css" media="all">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+   <%-- <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>--%>
     <script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
-    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+   <%-- <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>--%>
+   <%-- <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>--%>
 
 </head>
 <body>
@@ -30,21 +30,22 @@
         <input name="orderNum" id="orderNum" placeholder="请输入运单号" class="layui-input search_input" type="text">
     </div>
     <div class="layui-input-inline " style="width: 90px">
-        <button class="layui-btn" id="search" data-type="reload">
+        <button class="layui-btn" id="search" data-type="getData">
             <i class="layui-icon" style="font-size: 20px; "></i> 搜索
         </button>
     </div>
 </div>
+
 <table class="layui-hide" id="test"></table>
-<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>--%>
 
 <script>
-    layui.use('table', function(){
-        var table = layui.table;
+    layui.use(['table', 'jquery'],function(){
+        var table = layui.table,$=layui.jquery;
         table.render({
             elem: '#test'
             ,url:'../../showOrder'   //路径
-//            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1
+           /* ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1*/
             ,page:true
             ,cols: [[
 
@@ -59,7 +60,7 @@
 
         });
 
-        //搜索加载--数据表格重载
+       /* //搜索加载--数据表格重载
         var $ = layui.$, active = {
             reload: function () {
                 //执行重载
@@ -72,14 +73,46 @@
                     }
                 });
             }
-        };
+        };*/
 
         $('#search').on('click', function () {
+
             var type = $(this).data('type');
+
             active[type] ? active[type].call(this) : '';
         });
-        element.init();
+       // element.init();
+        var active = {
+            getData: function () {
 
+
+                //通过id选择器获取搜索框中的内容
+                //val() 单选按钮 复选按钮 文本框
+                //text() 文本
+                //html() 标签
+                var title = $('#orderNum').val();
+                //判断内容是否为空
+               // alert(title);
+                if ($.trim(title).length > 0) {
+                    //文本框输入了内容,表格需要重新加载.另外发送一个item请求
+                    table.reload('test', {
+
+                        page: {curr: 1},
+                        //第一个title作为表单数据传出去的key
+                        //第二个参数就是js定义的变量(就是我们获取的文本框值)
+                        where: {orderNum: title}
+
+
+                    });
+
+                } else {
+
+                    layer.msg('亲,您未输入任何东西', {icom: 1});
+                }
+
+
+            }
+        };
 
     });
 
