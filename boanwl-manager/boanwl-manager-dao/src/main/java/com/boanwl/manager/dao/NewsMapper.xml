@@ -13,7 +13,7 @@
         select COUNT(1) from tb_news
         <include refid="query"/>
     </select>
-    <select id="listNews" resultType="com.boanwl.manager.pojo.dto.NewsQueryDTO">
+    <select id="listNews" resultType="com.boanwl.manager.pojo.po.TbNews">
         SELECT * from tb_news
         <include refid="query"/>
         ORDER BY time desc
