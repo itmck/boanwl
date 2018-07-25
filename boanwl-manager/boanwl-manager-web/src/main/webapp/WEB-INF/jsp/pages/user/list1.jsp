@@ -77,7 +77,7 @@
                     {field: 'utel', title: '用户电话'},
                     {field: 'address', title: '收件地址'},
                     {field: 'requestMsg', title: '留言信息'},
-                    {field: 'statusName', title: '代办状态'},
+                   // {field: 'statusName', title: '代办状态'},
                     {fixed: 'right', title: '操作', width: 100, toolbar: '#operateTpl'}
                 ]],
             });

@@ -2,6 +2,7 @@ package com.boanwl.manager.service;
 
 import com.boanwl.common.dto.ItemDTO;
 import com.boanwl.manager.pojo.dto.PageParam;
+import com.boanwl.manager.pojo.dto.TbQueryDTO;
 import com.boanwl.manager.pojo.vo.TbMsgCustom;
 
 /**
@@ -9,5 +10,5 @@ import com.boanwl.manager.pojo.vo.TbMsgCustom;
  * @ version 1.0
  */
 public interface TbMsgService {
-    ItemDTO<TbMsgCustom> getRequestList(PageParam pageParam);
+    ItemDTO<TbMsgCustom> getRequestList(PageParam pageParam, TbQueryDTO tbQueryDTO);
 }
