@@ -19,6 +19,7 @@ public class NewsServiceImplTest {
     @Autowired
     private NewsServiceImpl newsService;
 
+
     @Test
     public void saveNews() throws Exception {
 
