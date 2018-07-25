@@ -25,7 +25,7 @@
 
                 <div class="layui-inline">
                     <div class="layui-input-inline">
-                        <input value="" placeholder="请输入关键字" class="layui-input search_input" type="text">
+                        <input value="" id="title" placeholder="请输入关键字" class="layui-input search_input" type="text" >
                     </div>
                     <a class="layui-btn search_btn" id="search" data-type="search">查询</a>
                 </div>
@@ -36,11 +36,11 @@
                 </div>
             </blockquote>
             <div class="weadmin-block demoTable">
-                <button class="layui-btn layui-btn-danger" data-type="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除
+                <button class="layui-btn layui-btn-danger" data-type="getCheckData"><i class="layui-icon">&#xe649;</i>批量办理
                 </button>
-                <button class="layui-btn" onclick="WeAdminShow('添加商品','./login',600,500)"><i
+                <%--<button class="layui-btn" onclick="WeAdminShow('添加商品','./login',600,500)"><i
                         class="layui-icon">&#xe61f;</i>添加
-                </button>
+                </button>--%>
             </div>
             <!-- 操作日志 -->
             <div class="layui-form news_list">
@@ -67,7 +67,7 @@
             table.render({
                 elem: '#articleList'
                 , url: '../../getList2' //数据接口
-                , page: false //开启分页
+                , page: true //开启分页
                 , cols: [[
                     //field title 列属性
                     {type: 'checkbox'},
@@ -77,7 +77,7 @@
                     {field: 'utel', title: '用户电话'},
                     {field: 'address', title: '收件地址'},
                     {field: 'requestMsg', title: '留言信息'},
-                    // {field: 'statusName', title: '代办状态'},
+                    {field: 'statusName', title: '代办状态'},
                     {fixed: 'right', title: '操作', width: 100, toolbar: '#operateTpl'}
                 ]],
             });
@@ -86,52 +86,45 @@
             //监听工具条事件
             table.on('tool(demo)', function (obj) {
 
+                //获取当前行数据
                 var data = obj.data;
+                //获取到当前行id
+                var id = data.orderNo;
+                //根据监听按钮来作出相应的处理
                 if (obj.event === 'detail') {
 
-                    var id = data.id;
-                    // //发送一个ajax请求
-                    $.get(
-                        './../../getList2',//url
-                        {'id': id},
-                        function (data) {
+                    //当点击回复的时候弹出一个对话层
+                    //iframe层
+
+                    layer.prompt(
+                        {title: '请输回复内容!!!!!', formType: 2},
+                        function (pass, index) {
 
 
-                            layer.open({
-                                type: 2,
-                                title: '留言详情:',
-                                shadeClose: true,
-                                shade: 0.5,
-                                area: ['500px', '90%'],
-                                content: 'edit' //iframe的url
+                           // layer.msg(pass);
+                          //  layer.close(index);
 
-                            });
+                            //发送ajax异步请求
+                            $.post(
+                                '../../item/batch', //兄弟们在此写上你们的接口地址
+                                {'ids': id},
+                                function (data) {
 
-                        }
-                    )
+                                    //至少删除一条记录
+                                    if (data > 0) {
+                                        //停留在原来界面并刷新
+                                        $('.layui-laypage-btn').click();
+                                        layer.msg("恭喜您,回复成功", {icon: 1});
+                                        layer.close(index);
+                                    }
+                                }
+                            )
 
+                        });
 
-                    layer.msg("您选择的id:" + id);
-                    layer.msg('ID：' + data.id + ' 的查看操作');
                 }
 
             });
-
-
-            // window.WeAdminShow = function() {
-            //
-            //     //页面层
-            //
-            //     layer.open({
-            //         type: 2,
-            //         title: '留言详情:',
-            //         shadeClose: true,
-            //         shade: 0.5,
-            //         area: ['500px', '90%'],
-            //         content: 'edit/' //iframe的url
-            //     });
-            //
-            // }
 
 
             //搜索操作 先获取搜索按钮事件
@@ -155,9 +148,9 @@
 
             var active = {
 
+                //搜索
                 search: function () {
 
-                    // alert(5);
                     //通过id选择器获取搜索框中的内容
                     //val() 单选按钮 复选按钮 文本框
                     //text() 文本
@@ -177,12 +170,17 @@
 
                     } else {
 
-                        layer.msg('亲,您未输入任何东西', {icom: 1});
+                        //layer.msg('亲,您未输入任何东西', {icon: 1});
+                        layer.tips('你TM不会输入的内容都没有,查毛啊?????', '#search', {
+                            tips: [2, '#ff6600'],
+                            time: 4000
+                        });
                     }
 
 
                 },
 
+                //删除
                 getCheckData: function () {
 
                     //判断是否有选中行
