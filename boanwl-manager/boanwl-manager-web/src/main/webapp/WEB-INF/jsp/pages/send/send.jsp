@@ -61,12 +61,21 @@
 </section>
 
 
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
 <script type="text/javascript">
 
 
+
+
     layui.use(['table', 'layer'], function () {
-            var table = layui.table;
-            layer = layui.layer;
+        var table = layui.table;
+        form = layui.form,
+        $ = layui.jquery,
+        layer = layui.layer;
 
             //第一个实例
             table.render({
@@ -85,22 +94,68 @@
                     {field: 'receiverPhone', title: '收件人号码'},
                     {field: 'receiverAddress', title: '收件地址'},
                     {field: 'totalPrice', title: '价钱'},
-                    {title: '<b>操作选项</b>', fixed: 'right', width: 180, align: 'center', toolbar: '#trans-toolbar'}
+                    {fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}
 
-//                    {field: 'idcard', title: '身份证号码'}
-                    // {field: 'statusName', title: '代办状态'},
-                    /*{fixed: 'right', title: '操作', width: 100, toolbar: '#operateTpl'}*/
                 ]],
             });
 
+        //监听工具条
+        table.on('tool(demo)', function(obj){
+            var data = obj.data;
+           if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    $.ajax({
+                        url:"../../send//update/" + data.seId,
+                        method:"put",
+                        dateType:"json",
+                        success:function(data) {
+                            if (data.update_code =="0") {
+                                $('.layui-laypage-btn').click();
+                                layer.msg("恭喜您,删除成功", {icon: 1});
 
-            //搜索操作 先获取搜索按钮事件
+                            }
+                        }
+
+                    })
+                    layer.close(index);
+                });
+            } else if(obj.event === 'edit'){
+               var item = obj.data;
+              var index =  layer.open({
+                        type: 2,
+                        title: "订单号:" + "  " + item.seId,
+                        maxmin: true,
+                        area: ['500px', '400px'],
+                        content: 'sendmodify',
+
+                        success: function(layero, index){
+                            var body = layui.layer.getChildFrame('body', index);
+
+                                body.find(".receiverName").val(item.receiverName);     //登录名
+                                body.find(".receiverPhone").val(item.receiverPhone);
+                                body.find(".receiverAddress").val(item.receiverAddress);
+                                body.find(".receiverAdderssDetail").val(item.receiverAdderssDetail);
+                                body.find(".seId").val(item.seId);
+                                form.render();
+
+
+                      },
+
+                        end: function () {
+
+                            layer.tips('啊,我要走了', '#about', {tips: 1})
+
+                        }
+                    })
+            }
+        });
+
+
+        //搜索操作 先获取搜索按钮事件
             $('#search').on('click', function () {
-
                 var type = $(this).data('type');
                 //console.log(type);
                 active[type] ? active[type].call(this) : '';
-
             });
 
             //批量删除的点击事件
@@ -116,9 +171,6 @@
             var active = {
 
                 search: function () {
-
-                    //通过id选择器获取搜索框中的内容
-                    //val() 单选按钮 复选按钮 文本框
                     //text() 文本
                     //html() 标签
                     var title = $('#searchName').val();
@@ -142,22 +194,22 @@
                     if (data.length > 0) {
 
                         console.log(data);
-                        // 确认框,至少选中一行数据
-                        // 创建一个数组存放选中行的id
                         var ids = [];
                         for (var i = 0; i < data.length; i++) {
-                            //遍历选中行,将其id存入数组中
+
                             ids.push(data[i].seId);
                         }
-                        //将数组中的id异步提交给后台
+
                         $.ajax({
                             url: "../../send/updateIds",
                             method: "put",
                             data: {"sids[]": ids},
                             success: function (data) {
-                                if (data.update_code == "0") ;
-                                $('.layui-laypage-btn').click();
-                                layer.msg("恭喜您,删除成功", {icon: 1});
+                                if (data.update_code == "0") {
+                                    $('.layui-laypage-btn').click();
+                                    layer.msg("恭喜您,删除成功", {icon: 1});
+                                }
+
                             },
                             dateType: "json"
                         })
@@ -166,20 +218,14 @@
                         layer.msg('请至少选中一行数据!!!!', {icon: 2});
 
                     }
-
-
                 }
-
-
             }
         }
     );
 
 
 </script>
-<script type="text/html" id="trans-toolbar">
-    <button class="layui-btn layui-btn-xs" lay-event="add">删除</button>
-    <button class="layui-btn layui-btn-xs" lay-event="edit">编辑</button>
-</script>
+
+
 </body>
 </html>
