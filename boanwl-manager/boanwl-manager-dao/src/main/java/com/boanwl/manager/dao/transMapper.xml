@@ -28,7 +28,7 @@
     <select id="counttrans"  resultType="long">
         SELECT count(1) FROM tb_trans  t where t.order_num =#{orderNum}
     </select>
-    <select id="selectOrder"  resultType="com.boanwl.manager.pojo.po.TbTrans">
+    <select id="selectOrder"  resultType="com.boanwl.manager.pojo.dto.TransRespDto">
         select <include refid="transsql"/> from tb_trans t where t.order_num  =#{orderNum}
         limit #{pageParam.offset},#{pageParam.limit}
     </select>

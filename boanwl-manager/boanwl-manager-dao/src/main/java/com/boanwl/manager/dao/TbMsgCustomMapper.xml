@@ -5,26 +5,37 @@
 
     <!--sql片段-->
     <sql id="Base_Column_List">
-    i.order_no as orderNo, i.uid, i.theme, i.uname, i.utel, i.address, i.request_msg as requestMsg,
-    case i.status
-    WHEN  1 THEN '未办理'
-    WHEN  0 THEN '已办理'
-    ELSE '未知' END as statusName
-  </sql>
+        order_no as orderNo, uid, theme, uname, utel, address, request_msg as requestMsg,
+        case status
+        WHEN 1 THEN '未办理'
+        WHEN 0 THEN '已办理'
+        ELSE '未知' END as statusName
+    </sql>
+
+    <sql id="where_Column">
+        <where>
+            i.status !=0
+            <if test="tbQueryDTO!=null and tbQueryDTO.title!=null and tbQueryDTO.title!=''">
+                and order_no like '%${tbQueryDTO.title}%'
+            </if>
+        </where>
+    </sql>
 
     <!--查询总个数-->
-    <select id="getCounts" resultType="_long">
+    <select id="getCounts" parameterType="com.boanwl.manager.pojo.dto.TbQueryDTO" resultType="_long">
         select count(1)
         from tb_msg
+        <include refid="where_Column"/>
     </select>
 
 
     <!--查询data-->
-    <select id="getTbMsg"  resultType="com.boanwl.manager.pojo.vo.TbMsgCustom">
+    <select id="getTbMsg" resultType="com.boanwl.manager.pojo.vo.TbMsgCustom">
 
         select
         <include refid="Base_Column_List"/>
-        FROM tb_msg i
+        FROM tb_msg
+        <include refid="where_Column"/>
         LIMIT #{offset},#{limit}
 
     </select>
