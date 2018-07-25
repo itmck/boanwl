@@ -210,9 +210,10 @@
                             function (data) {
 
                                 //至少删除一条记录
-                                if (data > 0) {
+                                if (data) {
                                     //停留在原来界面并刷新
                                     $('.layui-laypage-btn').click();
+
                                     layer.msg("恭喜您,删除成功", {icon: 1});
                                 }
                             }

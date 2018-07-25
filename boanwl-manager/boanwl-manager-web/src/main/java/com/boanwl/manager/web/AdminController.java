@@ -54,7 +54,7 @@ public class AdminController {
      * @param ids
      * @return
      */
-    @RequestMapping("/admin/delete")
+    @RequestMapping("/admin/batch")
     @ResponseBody
     public ItemDTO<TbAdmin> delete(@RequestParam("ids[]") List<String> ids){
         ItemDTO<TbAdmin> item = adminService.deletelist(ids);
