@@ -14,7 +14,7 @@ import com.boanwl.manager.pojo.po.TbTrans;
 public interface TransService {
 
 
-    ItemDTO<TbTrans> selectOrder(String orderNum, PageParam pageParam);
+    ItemDTO<TransRespDto> selectOrder(String orderNum, PageParam pageParam);
 
     ItemDTO<TransRespDto> showOrder();
 
