@@ -35,8 +35,8 @@
         <label class="layui-form-label">运单状态</label>
         <div class="layui-input-block">
             <select name="status" lay-filter="title">
-                <option value=""></option>
-                <option value="1" selected="">运输中</option>
+                <option value="">请选择当前状态</option>
+                <option value="1">运输中</option>
                 <option value="2">派件中</option>
                 <option value="3">已签收</option>
             </select>
