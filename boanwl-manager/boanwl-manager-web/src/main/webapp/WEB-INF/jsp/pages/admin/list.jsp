@@ -204,7 +204,7 @@
                         }
                         //将数组中的id异步提交给后台
                         $.post(
-                            '../../item/batch', //兄弟们在此写上你们的接口地址
+                            '../../admin/batch', //兄弟们在此写上你们的接口地址
                             {'ids[]': ids},
                             function (data) {
 
