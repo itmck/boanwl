@@ -50,7 +50,7 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">生日</label>
 					<div class="layui-input-block">
-						<input type="date" name="username" id="birthday"  autocomplete="off" class="layui-input" placeholder="输入生日">
+						<input type="text" name="username" id="birthday"  autocomplete="off" class="layui-input" placeholder="输入生日">
 					</div>
 				</div>
 				<div class="layui-form-item">
@@ -92,7 +92,7 @@
 				
 				<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+						<button id="editbtn" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
 						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 					</div>
 				</div>
@@ -108,7 +108,7 @@
 
         $(document).ready(function(){
              $.get(
-                 '../../admin/getAdmin/' ,//上传接口
+                 '../../admin/getAdmin' ,//请求个人信息接口
 				 {"id":"000001"},
                   function(data){
                  //上传成功后的回调
@@ -120,7 +120,8 @@
                  $("#tel").val(data.data[0].tel);
                  $("#birthday").val(data.data[0].birthday);
                  $("#idcard").val(data.data[0].idcard);
-                 alert(data.data[0].sex);
+
+                 $("#remark").text(data.data[0].remark);
                  if(data.data[0].sex){
                     $(".layui-input-block div")[1].className("layui-unselect layui-form-radio");
                      $(".layui-input-block i")[1].className("layui-anim layui-icon")
@@ -134,20 +135,28 @@
 
 
                  }
-                 $("#remark").text(data.data[0].remark);
+
 
              },
 				 'json'
 			 );
 		 });
-         layui.upload({ 
+        $("#editbtn").click(function(){$.get(
+            '../../admin/updateAdmin' ,//上传接口
+            {"id":backData.id,"realname":$("#realname").val(),"sex":backData.sex,"remark":$("#remark").val(),"tel":$("#tel").val(),"birthday":$("#birthday").val(),"idcard":$("#idcard").val()},
+             function(data){
+
+            } ,
+            'json'
+        )});
+         /*layui.upload({
              url: '../../admin/updateAdmin' ,//上传接口
 			 data:{"id":backData.id,"realname":$("#realname").val(),"sex":backData.sex,"remark":$("#remark").val(),"tel":$("#tel").val(),"birthday":$("#birthday").val(),"idcard":$("#idcard").val()},
              success: function(data){
 
             } ,
 			 dataType:'json'
-         });
+         });*/
 
 	});
 </script>

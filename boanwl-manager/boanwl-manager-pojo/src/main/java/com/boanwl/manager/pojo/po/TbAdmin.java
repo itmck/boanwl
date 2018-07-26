@@ -21,7 +21,8 @@ public class TbAdmin {
 
     private Integer role;
 
-    private Integer tel;
+    private String tel;
+
     @JsonFormat(pattern = "yyyy/MM/dd")
     private Date birthday;
 
@@ -91,12 +92,12 @@ public class TbAdmin {
         this.role = role;
     }
 
-    public Integer getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(Integer tel) {
-        this.tel = tel;
+    public void setTel(String tel) {
+        this.tel = tel == null ? null : tel.trim();
     }
 
     public Date getBirthday() {

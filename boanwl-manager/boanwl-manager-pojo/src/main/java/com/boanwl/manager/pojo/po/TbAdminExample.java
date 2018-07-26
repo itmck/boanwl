@@ -682,52 +682,62 @@ public class TbAdminExample {
             return (Criteria) this;
         }
 
-        public Criteria andTelEqualTo(Integer value) {
+        public Criteria andTelEqualTo(String value) {
             addCriterion("tel =", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andTelNotEqualTo(Integer value) {
+        public Criteria andTelNotEqualTo(String value) {
             addCriterion("tel <>", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andTelGreaterThan(Integer value) {
+        public Criteria andTelGreaterThan(String value) {
             addCriterion("tel >", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andTelGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTelGreaterThanOrEqualTo(String value) {
             addCriterion("tel >=", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andTelLessThan(Integer value) {
+        public Criteria andTelLessThan(String value) {
             addCriterion("tel <", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andTelLessThanOrEqualTo(Integer value) {
+        public Criteria andTelLessThanOrEqualTo(String value) {
             addCriterion("tel <=", value, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andTelIn(List<Integer> values) {
+        public Criteria andTelLike(String value) {
+            addCriterion("tel like", value, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelNotLike(String value) {
+            addCriterion("tel not like", value, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelIn(List<String> values) {
             addCriterion("tel in", values, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andTelNotIn(List<Integer> values) {
+        public Criteria andTelNotIn(List<String> values) {
             addCriterion("tel not in", values, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andTelBetween(Integer value1, Integer value2) {
+        public Criteria andTelBetween(String value1, String value2) {
             addCriterion("tel between", value1, value2, "tel");
             return (Criteria) this;
         }
 
-        public Criteria andTelNotBetween(Integer value1, Integer value2) {
+        public Criteria andTelNotBetween(String value1, String value2) {
             addCriterion("tel not between", value1, value2, "tel");
             return (Criteria) this;
         }
