@@ -27,6 +27,7 @@ public class TransServiceImpl implements TransService{
     private TbTransMapper tbTransMapper;
     @Autowired
     private transMapper transMapper;
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
      * 条件查询流水单ok
@@ -103,7 +104,8 @@ public class TransServiceImpl implements TransService{
         tbTrans.setCity(trans.getCity());
         tbTrans.setName(trans.getName());
         tbTrans.setStatus(trans.getStatus());
-        tbTransMapper.insert(trans);
+        tbTrans.setMsg(trans.getMsg());
+        tbTransMapper.insert(tbTrans);
         } catch (Exception e) {
 
             logger.error(e.getMessage(), e);

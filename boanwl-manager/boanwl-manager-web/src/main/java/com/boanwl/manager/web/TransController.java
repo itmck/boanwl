@@ -8,9 +8,7 @@ import com.boanwl.manager.pojo.po.TbTrans;
 import com.boanwl.manager.service.TransService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -70,9 +68,10 @@ public class TransController {
     /**
      * 添加一条流水记录不是初始状态的记录
      * */
-    @RequestMapping("/saveTrans")
+    @PutMapping("/saveTrans")
     @ResponseBody
-    public Map<String,Object> saveTrans(TbTrans trans){
+    public String saveTrans(TbTrans trans){
+        System.out.println(trans);
         transService.saveTrans(trans);
         return null;
     }

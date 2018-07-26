@@ -166,7 +166,6 @@
                     },
                     function(data){
                         window.location.href="${pageContext.request.contextPath}/pages/ordertrans/transadd";
-                        alert("Data Loaded: " + data);
                     },
                     "json")
 
