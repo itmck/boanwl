@@ -35,45 +35,38 @@ public class PhoneCodeUtils {
      * @param phoneNumber 输入手机验证码
      * @return 返回发送的手机验证码
      */
-    public static String sendLoginCode(String phoneNumber, boolean flg) {
+    public static String sendLoginCode(String phoneNumber, boolean flg) throws Exception {
         String code = getCode();
         if (flg) {
             Map<String, String> querys = new HashMap<String, String>();
             querys.put("content", registerMsg1 + code + registerMsg2);
             querys.put("mobile", phoneNumber);
-            try {
-                HttpResponse response = HttpUtils.doGet(host, path, method, headers, querys);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return  code;
+            HttpResponse response = HttpUtils.doGet(host, path, method, headers, querys);
+            return code;
         }
         return code;
     }
 
     /**
      * 找回密码
+     *
      * @param phoneNumber
-     * @param flg 测试写false
+     * @param flg         测试写false
      * @return
      */
-    public static String sendRepwdCode(String phoneNumber, boolean flg) {
+    public static String sendRepwdCode(String phoneNumber, boolean flg) throws Exception {
 
         String code = getCode();
         if (flg) {
             Map<String, String> querys = new HashMap<String, String>();
             querys.put("content", rePwdMsg1 + code + rePwdMsg2);
             querys.put("mobile", phoneNumber);
-            try {
-                HttpResponse response = HttpUtils.doGet(host, path, method, headers, querys);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            HttpResponse response = HttpUtils.doGet(host, path, method, headers, querys);
         }
         return code;
     }
 
-    private  static String getCode() {
+    private static String getCode() {
         String code = "";
         for (int i = 0; i < 6; i++) {
             code += (int) (Math.random() * 10);
