@@ -27,7 +27,7 @@
                     <div class="layui-input-inline">
                         <input value="" id="title" placeholder="请输入关键字" class="layui-input search_input" type="text">
                     </div>
-                    <a class="layui-btn search_btn" id="search" data-type="search">订单号搜索</a>
+                    <a class="layui-btn search_btn" id="search" data-type="search">单号搜索</a>
                 </div>
                 <div class="layui-inline">
                 </div>
