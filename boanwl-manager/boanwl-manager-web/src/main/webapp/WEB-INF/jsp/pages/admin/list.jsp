@@ -221,8 +221,11 @@
 
 
                     } else {
-
-                        layer.msg('请至少选中一行数据!!!!', {icon: 2});
+                        layer.tips('请一定要输入点什么,阿里嘎多', '#search', {
+                            tips: [2, '#ff050a'],
+                            time: 4000
+                        });
+                        /*layer.msg('请至少选中一行数据!!!!', {icon: 2});*/
 
                     }
 

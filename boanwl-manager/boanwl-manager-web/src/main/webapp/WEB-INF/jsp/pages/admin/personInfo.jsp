@@ -26,35 +26,47 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">用户名</label>
 					<div class="layui-input-block">  
-						<input type="text" name="title"  autocomplete="off"  class="layui-input layui-disabled" value="admin" disabled="disabled" >
+						<input type="text" name="title"  autocomplete="off"  class="layui-input layui-disabled" id="adminname" value="" disabled="disabled" >
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">所属角色</label>
 					<div class="layui-input-block">
-						<input type="text" name="username"  autocomplete="off" class="layui-input layui-disabled" value="超级管理员" disabled="disabled">
+						<input type="text" name="username"  autocomplete="off" class="layui-input layui-disabled" id="role" value="" disabled="disabled">
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">真实姓名</label>
 					<div class="layui-input-block">
-						<input type="text" name="username"  autocomplete="off" class="layui-input" value="Larry">
+						<input type="text" name="username" id="realname"  autocomplete="off" class="layui-input" value="">
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">手机号码</label>
 					<div class="layui-input-block">
-						<input type="text" name="username"  autocomplete="off" class="layui-input" placeholder="输入手机号码">
+						<input type="text" name="username" id="tel"  autocomplete="off" class="layui-input" placeholder="输入手机号码">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">生日</label>
+					<div class="layui-input-block">
+						<input type="date" name="username" id="birthday"  autocomplete="off" class="layui-input" placeholder="输入生日">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">身份证号</label>
+					<div class="layui-input-block">
+						<input type="text" name="username" id="idcard"  autocomplete="off" class="layui-input" placeholder="输入身份证号">
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label">性别</label>
-					<div class="layui-input-block">
-						<input type="radio" name="sex" value="男" title="男" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><span>男</span></div>
-						<input type="radio" name="sex" value="女" title="女"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>女</span></div>
+					<div  class="layui-input-block">
+						<input type="radio" checked="checked" id="mail" name="sex" value="男" title="男" ><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><span>男</span></div>
+						<input type="radio" id="femail" name="sex" value="女" title="女"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>女</span></div>
 					</div>
 				</div>
-				<div class="layui-form-item">
+				<%--<div class="layui-form-item">
 					<label class="layui-form-label">修改头像</label>
 					<div class="layui-input-block">
 						<input type="file" name="file" class="layui-upload-file">
@@ -69,12 +81,12 @@
 							<option value="1">英文</option>
 						</select>
 					</div>
-				</div>
+				</div>--%>
 
 				<div class="layui-form-item layui-form-text">
 					<label class="layui-form-label">座右铭</label>
 					<div class="layui-input-block">
-						<textarea placeholder="既然选择了远方，便只顾风雨兼程；路漫漫其修远兮，吾将上下而求索" value="" class="layui-textarea"></textarea>
+						<textarea id="remark" placeholder="既然选择了远方，便只顾风雨兼程；路漫漫其修远兮，吾将上下而求索" value="" class="layui-textarea"></textarea>
 					</div>
 				</div>
 				
@@ -90,14 +102,51 @@
 </section>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/common/layui/layui.js"></script>
 <script type="text/javascript">
-	layui.use(['form','upload'],function(){
-         var form = layui.form();
+	layui.use(['form','upload','jquery'],function(){
+         var form = layui.form()
+		 $=layui.jquery;
+
+        $(document).ready(function(){
+             $.get(
+                 '../../admin/getAdmin/' ,//上传接口
+				 {"id":"000001"},
+                  function(data){
+                 //上传成功后的回调
+					  backData=data.data[0];
+                 $("#adminname").val(data.data[0].adminname);
+                 var role=data.data[0].role == 0? "超级管理员":"管理员";
+                 $("#role").val(role);
+                 $("#realname").val(data.data[0].realname);
+                 $("#tel").val(data.data[0].tel);
+                 $("#birthday").val(data.data[0].birthday);
+                 $("#idcard").val(data.data[0].idcard);
+                 alert(data.data[0].sex);
+                 if(data.data[0].sex){
+                    $(".layui-input-block div")[1].className("layui-unselect layui-form-radio");
+                     $(".layui-input-block i")[1].className("layui-anim layui-icon")
+                    $(".layui-input-block div")[0].className("layui-unselect layui-form-radio layui-form-radioed");
+                     $(".layui-input-block i")[0].className("layui-anim layui-icon layui-anim-scaleSpring")
+                 }else{
+                     $(".layui-input-block div")[0].className("layui-unselect layui-form-radio");
+                     $(".layui-input-block i")[0].className("layui-anim layui-icon");
+                     $(".layui-input-block div")[1].className("layui-unselect layui-form-radio layui-form-radioed");
+                     $(".layui-input-block i")[1].className("layui-anim layui-icon layui-anim-scaleSpring");
+
+
+                 }
+                 $("#remark").text(data.data[0].remark);
+
+             },
+				 'json'
+			 );
+		 });
          layui.upload({ 
-             url: '' ,//上传接口 
-             success: function(res){
-              //上传成功后的回调 
-              console.log(res) 
-            } 
+             url: '../../admin/updateAdmin' ,//上传接口
+			 data:{"id":backData.id,"realname":$("#realname").val(),"sex":backData.sex,"remark":$("#remark").val(),"tel":$("#tel").val(),"birthday":$("#birthday").val(),"idcard":$("#idcard").val()},
+             success: function(data){
+
+            } ,
+			 dataType:'json'
          });
 
 	});

@@ -146,4 +146,23 @@ public class AdminServiceImpl implements AdminService {
         return item;
     }
 
+    @Override
+    public ItemDTO<TbAdmin> updateAdmin(TbAdmin admin) {
+        ItemDTO<TbAdmin> item = new ItemDTO<>();
+        item.setCode(0);
+        item.setMsg("成功!");
+        try {
+            int i = tbAdminMapper.updateByPrimaryKeySelective(admin);
+            List<TbAdmin> admins = new ArrayList<>();
+            admins.add(admin);
+            item.setData(admins);
+        } catch (Exception e) {
+            item.setCode(1);
+            item.setMsg("失败!");
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return item;
+    }
+
 }

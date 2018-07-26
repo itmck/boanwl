@@ -24,4 +24,6 @@ public interface AdminService {
     ItemDTO<TbAdmin> updatepwd(TbAdmin admin);
 
     ItemDTO<TbAdmin> selectById(String id);
+
+    ItemDTO<TbAdmin> updateAdmin(TbAdmin admin);
 }
