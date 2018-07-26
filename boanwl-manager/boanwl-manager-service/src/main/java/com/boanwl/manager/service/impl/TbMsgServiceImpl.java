@@ -105,23 +105,44 @@ public class TbMsgServiceImpl implements TbMsgService {
     @Override
     public int mulResp(List<String> ids) {
 
+        TbResp tbResp = new TbResp();
+        String s = "感谢您的留言,我们会尽快处理";
+        tbResp.setRespMsg(s);
+        int i1 =0;
+        //遍历插入到数据库
+        for (int i = 0; i <ids.size() ; i++) {
+            tbResp.setOrderNo(ids.get(i));
+            tbResp.setRespId(UUIDutil.getUUID());
+            i1 = tbRespDao.insertSelective(tbResp);
+            if(i1>0){
+                i1=1;
+            }else{
+                break;
+            }
+        }
         //创建一个对象,将其状态值设为0
         TbMsg tbMsg = new TbMsg();
         TbMsgExample example = null;
-        int i = 0;
+        int i2 = 0;
         try {
             tbMsg.setStatus(0);
             example = new TbMsgExample();
             TbMsgExample.Criteria criteria = example.createCriteria();
             criteria.andOrderNoIn(ids);
-            i = tbMsgCustomDao.updateByExampleSelective(tbMsg, example);
+            i2 = tbMsgCustomDao.updateByExampleSelective(tbMsg, example);
 
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();
             e.printStackTrace();
         }
+        //定义一个标志
+        int flg = 0;
+        if(i1>0&&i2>0){
+            flg=1;
+            return flg;
+        }
 
-        return i;
+        return flg;
     }
 }

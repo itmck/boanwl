@@ -75,11 +75,7 @@ public class RequestController {
     @RequestMapping("/mulResp")
     public Object mulResp(@RequestParam("ids[]") List<String> ids) {
 
-        //测试
-//        for (long id : ids) {
-//            System.out.println(id);
         Map<String, Object> map = new HashMap<>();
-//        }
         int i = 0;
         try {
             i = tbMsgService.mulResp(ids);
