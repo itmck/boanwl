@@ -10,7 +10,7 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="role" property="role" jdbcType="INTEGER" />
-    <result column="tel" property="tel" jdbcType="INTEGER" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
     <result column="birthday" property="birthday" jdbcType="DATE" />
     <result column="idcard" property="idcard" jdbcType="VARCHAR" />
   </resultMap>
@@ -112,7 +112,7 @@
       birthday, idcard)
     values (#{id,jdbcType=VARCHAR}, #{adminname,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR},
       #{realname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
-      #{status,jdbcType=INTEGER}, #{role,jdbcType=INTEGER}, #{tel,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER}, #{role,jdbcType=INTEGER}, #{tel,jdbcType=VARCHAR},
       #{birthday,jdbcType=DATE}, #{idcard,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.boanwl.manager.pojo.po.TbAdmin" >
@@ -178,7 +178,7 @@
         #{role,jdbcType=INTEGER},
       </if>
       <if test="tel != null" >
-        #{tel,jdbcType=INTEGER},
+        #{tel,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null" >
         #{birthday,jdbcType=DATE},
@@ -222,7 +222,7 @@
         role = #{record.role,jdbcType=INTEGER},
       </if>
       <if test="record.tel != null" >
-        tel = #{record.tel,jdbcType=INTEGER},
+        tel = #{record.tel,jdbcType=VARCHAR},
       </if>
       <if test="record.birthday != null" >
         birthday = #{record.birthday,jdbcType=DATE},
@@ -245,7 +245,7 @@
     remark = #{record.remark,jdbcType=VARCHAR},
     status = #{record.status,jdbcType=INTEGER},
     role = #{record.role,jdbcType=INTEGER},
-    tel = #{record.tel,jdbcType=INTEGER},
+    tel = #{record.tel,jdbcType=VARCHAR},
     birthday = #{record.birthday,jdbcType=DATE},
     idcard = #{record.idcard,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -277,7 +277,7 @@
         role = #{role,jdbcType=INTEGER},
       </if>
       <if test="tel != null" >
-        tel = #{tel,jdbcType=INTEGER},
+        tel = #{tel,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null" >
         birthday = #{birthday,jdbcType=DATE},
@@ -297,7 +297,7 @@
       remark = #{remark,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       role = #{role,jdbcType=INTEGER},
-      tel = #{tel,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=VARCHAR},
       birthday = #{birthday,jdbcType=DATE},
       idcard = #{idcard,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
