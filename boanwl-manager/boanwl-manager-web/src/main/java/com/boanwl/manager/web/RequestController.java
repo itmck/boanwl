@@ -10,9 +10,11 @@ import com.boanwl.manager.service.TbMsgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -65,6 +67,35 @@ public class RequestController {
             //失败
             map.put("flg", 0);
         }
+        return map;
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/mulResp")
+    public Object mulResp(@RequestParam("ids[]") List<String> ids) {
+
+        //测试
+//        for (long id : ids) {
+//            System.out.println(id);
+        Map<String, Object> map = new HashMap<>();
+//        }
+        int i = 0;
+        try {
+            i = tbMsgService.mulResp(ids);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (i > 0) {
+            //回复成功
+            map.put("flg", 1);
+
+        } else {
+            //失败
+            map.put("flg", 0);
+        }
+
         return map;
     }
 

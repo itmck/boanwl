@@ -27,7 +27,7 @@
                     <div class="layui-input-inline">
                         <input value="" id="title" placeholder="请输入关键字" class="layui-input search_input" type="text">
                     </div>
-                    <a class="layui-btn search_btn" id="search" data-type="search">查询</a>
+                    <a class="layui-btn search_btn" id="search" data-type="search">订单号搜索</a>
                 </div>
                 <div class="layui-inline">
                 </div>
@@ -188,20 +188,25 @@
                         var ids = [];
                         for (var i = 0; i < data.length; i++) {
                             //遍历选中行,将其id存入数组中
-                            ids.push(data[i].id);
+                            ids.push(data[i].orderNo);
                         }
                         //将数组中的id异步提交给后台
                         $.post(
-                            '../../item/batch', //兄弟们在此写上你们的接口地址
+                            '${pageContext.request.contextPath}/mck/mulResp', //兄弟们在此写上你们的接口地址
                             {'ids[]': ids},
                             function (data) {
 
                                 //至少删除一条记录
-                                if (data > 0) {
+                                if (data.flg > 0) {
                                     //停留在原来界面并刷新
                                     $('.layui-laypage-btn').click();
                                     layer.tips('恭喜您回复成功?', '#del', {
                                         tips: [2, '#009900'],
+                                        time: 4000
+                                    });
+                                }else{
+                                    layer.tips('删除失败?', '#del', {
+                                        tips: [2, '#ff6600'],
                                         time: 4000
                                     });
                                 }

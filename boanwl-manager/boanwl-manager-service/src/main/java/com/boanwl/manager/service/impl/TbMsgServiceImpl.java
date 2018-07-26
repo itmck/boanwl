@@ -7,6 +7,7 @@ import com.boanwl.manager.dao.TbRespMapper;
 import com.boanwl.manager.pojo.dto.PageParam;
 import com.boanwl.manager.pojo.dto.TbQueryDTO;
 import com.boanwl.manager.pojo.po.TbMsg;
+import com.boanwl.manager.pojo.po.TbMsgExample;
 import com.boanwl.manager.pojo.po.TbResp;
 import com.boanwl.manager.pojo.vo.TbMsgCustom;
 import com.boanwl.manager.service.TbMsgService;
@@ -43,15 +44,15 @@ public class TbMsgServiceImpl implements TbMsgService {
         result.setMsg("select success!!!");
         try {
 
-            Map<String,Object> map =new HashMap<>();
-            map.put("pageParam",pageParam);
-            map.put("tbQueryDTO",tbQueryDTO);
+            Map<String, Object> map = new HashMap<>();
+            map.put("pageParam", pageParam);
+            map.put("tbQueryDTO", tbQueryDTO);
             //查询留言总个数count
             long count = tbMsgCustomDao.getCounts(map);
-          // long count = tbMsgCustomDao.countByExample(null);
+            // long count = tbMsgCustomDao.countByExample(null);
             result.setCount(count);
             //查询留言总数据data
-           List<TbMsgCustom> data= tbMsgCustomDao.getTbMsg(map);
+            List<TbMsgCustom> data = tbMsgCustomDao.getTbMsg(map);
             result.setData(data);
         } catch (Exception e) {
             //若出现异常
@@ -65,7 +66,6 @@ public class TbMsgServiceImpl implements TbMsgService {
 
 
     /**
-     *
      * 回复客户留言
      *
      * @param tbResp
@@ -78,19 +78,50 @@ public class TbMsgServiceImpl implements TbMsgService {
         //将回复信息添加到表中
         String respId = UUIDutil.getUUID();
         tbResp.setRespId(respId);
-        int i = tbRespDao.insertSelective(tbResp);
-        //更新留言表的代办状态值,将其置为0
-        String orderNo = tbResp.getOrderNo();
-        //获取对象
-        TbMsg tbMsg = tbMsgCustomDao.selectByPrimaryKey(orderNo);
-        tbMsg.setStatus(0);
-        //更新状态值
-        int i1 = tbMsgCustomDao.updateByPrimaryKeySelective(tbMsg);
-        if(i>0&&i1>0){
+        int i = 0;
+        int i1 = 0;
+        try {
+            i = tbRespDao.insertSelective(tbResp);
+            //更新留言表的代办状态值,将其置为0
+            String orderNo = tbResp.getOrderNo();
+            //获取对象
+            TbMsg tbMsg = tbMsgCustomDao.selectByPrimaryKey(orderNo);
+            tbMsg.setStatus(0);
+            //更新状态值
+            i1 = tbMsgCustomDao.updateByPrimaryKeySelective(tbMsg);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+            e.printStackTrace();
+        }
+        if (i > 0 && i1 > 0) {
             return 1;
-        }else{
+        } else {
             return 0;
         }
 
+    }
+
+    @Override
+    public int mulResp(List<String> ids) {
+
+        //创建一个对象,将其状态值设为0
+        TbMsg tbMsg = new TbMsg();
+        TbMsgExample example = null;
+        int i = 0;
+        try {
+            tbMsg.setStatus(0);
+            example = new TbMsgExample();
+            TbMsgExample.Criteria criteria = example.createCriteria();
+            criteria.andOrderNoIn(ids);
+            i = tbMsgCustomDao.updateByExampleSelective(tbMsg, example);
+
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+            e.printStackTrace();
+        }
+
+        return i;
     }
 }
