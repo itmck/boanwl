@@ -173,7 +173,7 @@
 
                 },
 
-                //删除
+                //批量回复
                 getCheckData: function () {
 
                     //判断是否有选中行
