@@ -36,7 +36,7 @@
     </div>
 </div>
 
-<table class="layui-hide" id="test"></table>
+<table class="layui-hide" id="test" lay-filter="test"></table>
 <%--<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>--%>
 
 <script>
@@ -48,12 +48,13 @@
            /* ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1*/
             ,page:true
             ,cols: [[
+                {field:'id', title: '编号'},
                 {field:'orderNum', title: '运单号'}
-                ,{field:'city', title: '城市'}
+                ,{field:'city', title: '城市',edit: 'text'}
                 ,{field:'statusName', title: '状态'}
                 ,{field:'name',  title: '快递员'}
                 ,{field:'dateCreated',  title: '时间', sort: true}
-                ,{field:'msg', title: '快件操作记录'}
+                ,{field:'msg', title: '快件操作记录',edit: 'text'}
                 ,{title:'<b>操作选项</b>',fixed:'right',align : 'center',toolbar : '#trans-toolbar'}
             ]]
 
@@ -122,17 +123,81 @@
                 }*/
 
 
+
+
+
+
             }
         };
+        //列表操作修改
+       /* table.on('edit(test)', function(obj){
+            var value = obj.value,
+//                value1 = obj.value,//得到修改后的值
+                data = obj.data, //得到所在行所有键值
+                field = obj.field; //得到字段
+            layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
+           /!* $.get("/modifyTrans",{
+                id : data.id,	//将需要修改的Id作为参数传入
+                msg:value,
+//                city : value //得到修改后的值
+            },function(data){
+                //tableIns.reload();
+            })*!/
+        });*/
+
+        //监听工具条修改
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'update'){
+                layer.msg('ID：'+ data.id + ' 城市'+data.city+"操作信息"+data.msg);
+
+                $.get("${pageContext.request.contextPath}/modifyTrans" ,
+                    {
+                    id:data.id,
+                    city:data.city,
+                    msg:data.msg
+                },
+                    "json")
+            }else if(obj.event === 'add'){
+                layer.msg('订单号'+data.orderNum);
+                $.get("${pageContext.request.contextPath}/getOrderNum" ,
+                    {
+                        orderNum:data.orderNum
+                    },
+                    function(data){
+                        window.location.href="${pageContext.request.contextPath}/pages/ordertrans/transadd";
+                        alert("Data Loaded: " + data);
+                    },
+                    "json")
+
+            }/* else if(obj.event === 'edit'){
+                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+            }*/
+
+
+          /* table.on('tool(test)', function(obj){
+                var data = obj.data;
+                if(obj.event === 'add'){
+                    layer.msg(' 订单号'+data.orderNum);
+
+                    $.get(/getOrderNum" ,
+                        {
+                            orderNum:data.orderNum
+
+                        },
+                        "json")
+                }*/
+            });
 
     });
 
 </script>
 
 <script type="text/html" id="trans-toolbar">
+    <button class="layui-btn layui-btn-xs" lay-event="update">保存修改</button>
     <button class="layui-btn layui-btn-xs" lay-event="add">添加</button>
-    <button class="layui-btn layui-btn-xs" lay-event="edit">编辑</button>
-    <%--<button class="layui-btn layui-btn-xs" lay-event="add">添加</button>--%>
+  <%--  <button class="layui-btn layui-btn-xs" lay-event="edit">编辑</button>--%>
+
 </script>
 </body>
 </html>

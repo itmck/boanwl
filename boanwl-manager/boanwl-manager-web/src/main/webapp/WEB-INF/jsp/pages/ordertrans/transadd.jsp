@@ -14,15 +14,16 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/common/layui/css/layui.css"
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/lib/layui/css/layui.css"
           media="all">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js" charset="utf-8"></script>
 </head>
 <body>
-<form class="layui-form" action="" method="post">
+<form class="layui-form" action="${pageContext.request.contextPath}/saveTrans" method="post">
     <div class="layui-form-item">
         <label class="layui-form-label">运单号</label>
         <div class="layui-input-block">
-            <input type="text" name="orderNum" lay-verify="title" autocomplete="off" placeholder="请输入运单号" class="layui-input">
+            <input type="text" name="orderNum" value="${orderNum}" lay-verify="title" autocomplete="off" placeholder="请输入运单号" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -31,6 +32,7 @@
             <input type="text" name="city" lay-verify="title" autocomplete="off" placeholder="请输入到达地" class="layui-input">
         </div>
     </div>
+
     <div class="layui-form-item">
         <label class="layui-form-label">运单状态</label>
         <div class="layui-input-block">

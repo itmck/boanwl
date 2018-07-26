@@ -9,6 +9,7 @@ import java.util.Date;
  * @since jiangjun
  */
 public class TransRespDto {
+    private String id;
     private String orderNum;
     private String city;
     private String name;
@@ -18,6 +19,13 @@ public class TransRespDto {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date dateCreated;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getOrderNum() {
         return orderNum;

@@ -9,9 +9,11 @@ import com.boanwl.manager.service.TransService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -45,7 +47,7 @@ public class TransController {
         return transList;
     }
     /**
-     * 添加一条初始状态的记录，从寄件处获得订单号
+     * 添加一条初始状态的记录，从寄件处获得订单号给牛牛
      * */
     @RequestMapping("/saveOneMsg")
     public String saveOneMsg(TbSend tbSend, HttpSession session){
@@ -57,9 +59,13 @@ public class TransController {
      * 点击订单按钮获得订单号用于添加页面订单号回显，然后快递员添加流转信息
      * */
     @RequestMapping("/getOrderNum")
-    public String getOrderNum(String orderNum, HttpSession session){
+    @ResponseBody
+    public Map<String,Object> getOrderNum(@RequestParam("orderNum") String orderNum, HttpSession session){
+        //System.out.println(orderNum);
         session.setAttribute("orderNum",orderNum);
-        return "forward:pages/ordertrans/translist";
+        Map<String,Object> map = new HashMap<>();
+        map.put("orderNum","orderNum");
+        return map;
     }
     /**
      * 添加一条流水记录不是初始状态的记录
@@ -70,6 +76,7 @@ public class TransController {
         transService.saveTrans(trans);
         return null;
     }
+
     /**
      * 修改一条流水记录之前查询出当前记录的信息
      * */
@@ -85,8 +92,8 @@ public class TransController {
      * */
     @RequestMapping("/modifyTrans")
     @ResponseBody
-    public String modifyTrans(String id,TbTrans trans){
-        long result=transService.modifyTrans(id,trans);
+    public String modifyTrans(TbTrans trans){
+        long result=transService.modifyTrans(trans);
         return "回到显示所有记录的页面";
     }
 

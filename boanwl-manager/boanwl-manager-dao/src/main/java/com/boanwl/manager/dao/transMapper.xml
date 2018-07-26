@@ -36,11 +36,14 @@
     <select id="getTrans"  resultType="com.boanwl.manager.pojo.po.TbTrans">
         select <include refid="transsql"/> from tb_trans  where id =#{id}
     </select>
+    <select id="selectById" resultType="com.boanwl.manager.pojo.po.TbTrans">
+        SELECT * from tb_trans WHERE id = #{id}
+    </select>
     <!--修改信息根据id-->
-    <update id="modifyTrans" parameterType="java.lang.String" >
+    <update id="modifyTrans" parameterType="com.boanwl.manager.pojo.po.TbTrans" >
         UPDATE tb_trans SET id=#{tbTrans.id},order_num=#{tbTrans.orderNum}
-        ,name=#{tbTrans.name},city=#{tbTrans.city}
-        ,date_created=#{tbTrans.dateCreated},status=#{status},msg=#{msg}
-        where id=#{id}
+        ,`name`=#{tbTrans.name},city=#{tbTrans.city}
+        ,date_created=#{tbTrans.dateCreated},`status`=#{tbTrans.status},msg=#{tbTrans.msg}
+        where id=#{tbTrans.id}
     </update>
 </mapper>
