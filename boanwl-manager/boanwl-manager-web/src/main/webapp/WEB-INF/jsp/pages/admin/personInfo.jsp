@@ -22,7 +22,7 @@
 			<span>个人信息</span>
 		</header><!-- /header -->
 		<div class="larry-personal-body clearfix">
-			<form class="layui-form col-lg-5" action="" method="post">
+			<form class="layui-form col-lg-5" action="" method="get">
 				<div class="layui-form-item">
 					<label class="layui-form-label">用户名</label>
 					<div class="layui-input-block">  
@@ -62,8 +62,8 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">性别</label>
 					<div  class="layui-input-block">
-						<input type="radio" checked="checked" id="mail" name="sex" value="男" title="男" ><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><span>男</span></div>
-						<input type="radio" id="femail" name="sex" value="女" title="女"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>女</span></div>
+						<input type="radio" checked="" id="mail" name="sex" value="男" title="男" >
+						<input type="radio" id="femail" name="sex"  value="女" title="女">
 					</div>
 				</div>
 				<%--<div class="layui-form-item">
@@ -84,9 +84,9 @@
 				</div>--%>
 
 				<div class="layui-form-item layui-form-text">
-					<label class="layui-form-label">座右铭</label>
+					<label class="layui-form-label">简介</label>
 					<div class="layui-input-block">
-						<textarea id="remark" placeholder="既然选择了远方，便只顾风雨兼程；路漫漫其修远兮，吾将上下而求索" value="" class="layui-textarea"></textarea>
+						<textarea id="remark" placeholder="凌波微步,罗袜生尘;体迅微凫,飘忽若神" value="" class="layui-textarea"></textarea>
 					</div>
 				</div>
 				
@@ -122,18 +122,15 @@
                  $("#idcard").val(data.data[0].idcard);
 
                  $("#remark").text(data.data[0].remark);
-                 if(data.data[0].sex){
-                    $(".layui-input-block div")[1].className("layui-unselect layui-form-radio");
-                     $(".layui-input-block i")[1].className("layui-anim layui-icon")
-                    $(".layui-input-block div")[0].className("layui-unselect layui-form-radio layui-form-radioed");
-                     $(".layui-input-block i")[0].className("layui-anim layui-icon layui-anim-scaleSpring")
+
+                 if(data.data[0].sex!='0'){
+
+                     /*$("#mail").attr("checked","checked");
+                     layui.form.render();*/
                  }else{
-                     $(".layui-input-block div")[0].className("layui-unselect layui-form-radio");
-                     $(".layui-input-block i")[0].className("layui-anim layui-icon");
-                     $(".layui-input-block div")[1].className("layui-unselect layui-form-radio layui-form-radioed");
-                     $(".layui-input-block i")[1].className("layui-anim layui-icon layui-anim-scaleSpring");
-
-
+                     alert(data.data[0].sex);
+                     $("#femail").attr("checked",true);
+                     layui.form.render();
                  }
 
 
@@ -141,8 +138,8 @@
 				 'json'
 			 );
 		 });
-        $("#editbtn").click(function(){$.get(
-            '../../admin/updateAdmin' ,//上传接口
+        $("#editbtn").on("click",function(){$.get(
+            '${pageContext.request.contextPath}/admin/updateAdmin' ,//上传接口
             {"id":backData.id,"realname":$("#realname").val(),"sex":backData.sex,"remark":$("#remark").val(),"tel":$("#tel").val(),"birthday":$("#birthday").val(),"idcard":$("#idcard").val()},
              function(data){
 

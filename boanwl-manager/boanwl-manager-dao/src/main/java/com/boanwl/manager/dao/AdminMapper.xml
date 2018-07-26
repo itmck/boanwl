@@ -7,7 +7,7 @@
   </select>
   <select id="listAdmins" parameterType="com.boanwl.manager.pojo.dto.PageParam" resultType="com.boanwl.manager.pojo.po.TbAdmin">
     select
-    id, adminname,pwd realname,sex ,remark, a.status,role,tel, birthday,idcard
+    id, adminname,pwd, realname,sex ,remark, a.status,role,tel, birthday,idcard
     from tb_admin a
     where a.status!=3
     limit #{offset},#{limit}
@@ -20,7 +20,7 @@
   </select>
   <select id="listPageAdmins"  resultType="com.boanwl.manager.pojo.po.TbAdmin">
     select
-    id, adminname,pwd realname,sex ,remark, a.status,role,tel, birthday,idcard
+    id, adminname,pwd ,realname,sex ,remark, a.status,role,tel, birthday,idcard
     from tb_admin a
     where  a.status!=3
     <if test="searchName!=null and searchName!=''">
