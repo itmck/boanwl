@@ -5,6 +5,7 @@ import com.boanwl.manager.pojo.dto.NewsQueryDTO;
 import com.boanwl.manager.pojo.po.TbNews;
 import com.boanwl.manager.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import java.util.Map;
  * Time: 18:46
  * Version:V1.0
  */
+@Controller
 @RequestMapping("/news")
 public class NewsAction {
     @Autowired
@@ -65,7 +67,7 @@ public class NewsAction {
      * @param nids
      * @return
      */
-    @PutMapping("/updateNids")
+   @PutMapping("/updateNids")
     @ResponseBody()
     public Object updateNewsByNids(@RequestParam("nids[]")List<String> nids) {
         Map<String,Object> map = new HashMap<>();
@@ -98,14 +100,14 @@ public class NewsAction {
         return map;
     }
 
-    @GetMapping("list")
+    @GetMapping("/list")
     @ResponseBody
     public Object listNews(NewsQueryDTO newsQueryDTO) {
         ItemDTO<TbNews> tbNewsItemDTO = null;
 
         try{
             tbNewsItemDTO = newsService.listNews(newsQueryDTO);
-
+         // System.out.print(tbNewsItemDTO.getData());
         }catch (Exception e) {
             e.printStackTrace();;
         }

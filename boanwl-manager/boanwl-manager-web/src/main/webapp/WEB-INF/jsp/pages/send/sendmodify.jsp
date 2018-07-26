@@ -14,46 +14,77 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/common/layui/css/layui.css"
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/lib/layui/css/layui.css"
           media="all">
 </head>
 <body>
-<form class="layui-form" action="" method="post">
+<form class="layui-form" >
     <div class="layui-form-item">
-        <label class="layui-form-label">运单号</label>
+        <label class="layui-form-label">收件人姓名</label>
         <div class="layui-input-block">
-            <input type="text" name="orderNum" lay-verify="title" autocomplete="off" placeholder="请输入运单号" class="layui-input">
+            <input type="text" name="receiverName" lay-verify="title" autocomplete="off" placeholder="寄件人姓名" class="layui-input receiverName">
+            <input type = "hidden" name ="seId" lay-verify="title" autocomplete="off" placeholder="寄件人姓名" class="layui-input seId">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">到达地点</label>
+        <label class="layui-form-label">收件人手机</label>
         <div class="layui-input-block">
-            <input type="text" name="city" lay-verify="title" autocomplete="off" placeholder="请输入到达地" class="layui-input">
+            <input type="text" name="receiverPhone" lay-verify="title" autocomplete="off" placeholder="请输入收件人手机" class="layui-input receiverPhone">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">运单状态</label>
+        <label class="layui-form-label">收件人地址</label>
         <div class="layui-input-block">
-            <select name="status" lay-filter="aihao">
-                <option value=""></option>
-                <option value="1" selected="">运输中</option>
-                <option value="2">派件中</option>
-                <option value="3">已签收</option>
-            </select>
+            <input type="text" name="receiverAddress" lay-verify="title" autocomplete="off" placeholder="请输入到达地" class="layui-input receiverAddress">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">运单流转备注信息</label>
+        <label class="layui-form-label">收件人详细地址</label>
         <div class="layui-input-block">
-            <input type="text" name="msg" lay-verify="title" autocomplete="off" placeholder="请输入到达地" class="layui-input">
+            <input type="text" name="receiverAdderssDetail" lay-verify="title" autocomplete="off" placeholder="请输入到达地" class="layui-input receiverAdderssDetail">
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button class="layui-btn" lay-submit lay-filter="demo">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
 </form>
+
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.all.js" charset="utf-8">
+</script>
+<script>
+
+    layui.use(['form','jquery','layer'], function(){
+        var form = layui.form,
+            $=layui.jquery,
+            layer=layui.layer;
+        form.on('submit(demo)', function(data) {
+
+            $.ajax({
+                url:"${pageContext.request.contextPath}/send/update",
+                method:"put",
+                data:data.field,
+                success:function(d) {
+                },
+                dateType:"json"
+            });
+            var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
+            setTimeout(function(){
+                top.layer.close(index);
+                top.layer.msg("修改成功！");
+                layer.closeAll("iframe");
+                //刷新父页面
+                parent.location.reload();
+            },200);
+            return false;
+
+
+        });
+    });
+
+</script>
+
 </html>

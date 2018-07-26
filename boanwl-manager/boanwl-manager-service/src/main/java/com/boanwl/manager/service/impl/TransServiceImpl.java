@@ -27,6 +27,7 @@ public class TransServiceImpl implements TransService{
     private TbTransMapper tbTransMapper;
     @Autowired
     private transMapper transMapper;
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
      * 条件查询流水单ok
@@ -103,7 +104,8 @@ public class TransServiceImpl implements TransService{
         tbTrans.setCity(trans.getCity());
         tbTrans.setName(trans.getName());
         tbTrans.setStatus(trans.getStatus());
-        tbTransMapper.insert(trans);
+        tbTrans.setMsg(trans.getMsg());
+        tbTransMapper.insert(tbTrans);
         } catch (Exception e) {
 
             logger.error(e.getMessage(), e);
@@ -123,17 +125,25 @@ public class TransServiceImpl implements TransService{
      * 修改流水单信息
      * */
     @Override
-    public long modifyTrans(String id, TbTrans trans) {
-        TbTrans tbTrans = new TbTrans();
-        tbTrans.setId(id);
+    public long modifyTrans( TbTrans trans) {
+//        TbTrans tbTrans = new TbTrans();
+        /*tbTrans.setId(id);
         tbTrans.setDateCreated(trans.getDateCreated());
         tbTrans.setMsg(trans.getMsg());
         tbTrans.setStatus(trans.getStatus());
         tbTrans.setName(trans.getName());
         tbTrans.setOrderNum(trans.getOrderNum());
-        trans.setCity(trans.getCity());
-       long result= transMapper.modifyTrans(tbTrans);
-        return 0;
+        trans.setCity(trans.getCity());*/
+        String id=trans.getId();
+        TbTrans tbTrans = transMapper.selectById(id);
+        tbTrans.setMsg(trans.getMsg());
+        tbTrans.setCity(trans.getCity());
+        tbTrans.setDateUpdated(new Date());
+        long result= transMapper.modifyTrans(tbTrans);
+        if (result <= 0) {
+            throw new RuntimeException("数据修改失败！");
+        }
+        return 1;
     }
 
 }

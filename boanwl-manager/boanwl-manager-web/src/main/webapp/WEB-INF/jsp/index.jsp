@@ -164,7 +164,7 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;">
+                            <a href="javascript:;"  data-url="${pageContext.request.contextPath}/pages/news/list">
                                 <i class="iconfont icon-wenzhang2" data-icon='icon-wenzhang2'></i>
                                 <span>新闻列表</span>
                             </a>

@@ -25,5 +25,5 @@ public interface TransService {
 
     TbTrans getTrans(String id);
 
-    long modifyTrans(String id, TbTrans trans);
+    long modifyTrans(TbTrans trans);
 }

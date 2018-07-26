@@ -85,4 +85,19 @@ public class TbTrans {
     public void setMsg(String msg) {
         this.msg = msg == null ? null : msg.trim();
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("TbTrans{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", orderNum='").append(orderNum).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", city='").append(city).append('\'');
+        sb.append(", dateCreated=").append(dateCreated);
+        sb.append(", dateUpdated=").append(dateUpdated);
+        sb.append(", status=").append(status);
+        sb.append(", msg='").append(msg).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

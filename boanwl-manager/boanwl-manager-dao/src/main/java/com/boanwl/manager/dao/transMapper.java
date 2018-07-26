@@ -22,5 +22,7 @@ public interface transMapper {
 
     TbTrans getTrans(String id);
 
-    long modifyTrans( @Param("tbTrans")TbTrans tbTrans);
+    long modifyTrans( @Param("tbTrans") TbTrans tbTrans);
+
+    TbTrans selectById(@Param("id") String id);
 }
