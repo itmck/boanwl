@@ -180,7 +180,7 @@
                             page: {curr: 1},
                             //第一个title作为表单数据传出去的key
                             //第二个参数就是js定义的变量(就是我们获取的文本框值)
-                            where: {senderName: title}
+                            where: {sid: title}
 
                         });
                 },
