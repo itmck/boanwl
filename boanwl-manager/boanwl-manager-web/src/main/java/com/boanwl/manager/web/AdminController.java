@@ -78,10 +78,16 @@ public class AdminController {
         ItemDTO<TbAdmin> item = adminService.updatepwd(admin);
         return item;
     }
-    @RequestMapping("/admin/select/{id}")
+    @RequestMapping("/admin/getAdmin")
     @ResponseBody
-    public ItemDTO<TbAdmin> select(@RequestParam("id") String id){
+    public ItemDTO<TbAdmin> select(String id){
         ItemDTO<TbAdmin> item = adminService.selectById(id);
+        return item;
+    }
+    @RequestMapping("/admin/updateAdmin")
+    @ResponseBody
+    public ItemDTO<TbAdmin> update(TbAdmin admin){
+        ItemDTO<TbAdmin> item = adminService.updateAdmin(admin);
         return item;
     }
 
