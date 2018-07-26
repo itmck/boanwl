@@ -25,7 +25,7 @@
 
                 <div class="layui-inline">
                     <div class="layui-input-inline">
-                        <input value="" id="title" placeholder="请输入关键字" class="layui-input search_input" type="text" >
+                        <input value="" id="title" placeholder="请输入关键字" class="layui-input search_input" type="text">
                     </div>
                     <a class="layui-btn search_btn" id="search" data-type="search">查询</a>
                 </div>
@@ -36,7 +36,7 @@
                 </div>
             </blockquote>
             <div class="weadmin-block demoTable">
-                <button class="layui-btn layui-btn-danger" data-type="getCheckData"><i class="layui-icon">&#xe649;</i>批量办理
+                <button class="layui-btn layui-btn-danger" data-type="getCheckData" id="del"><i class="layui-icon">&#xe649;</i>批量办理
                 </button>
                 <%--<button class="layui-btn" onclick="WeAdminShow('添加商品','./login',600,500)"><i
                         class="layui-icon">&#xe61f;</i>添加
@@ -66,8 +66,9 @@
             //第一个实例
             table.render({
                 elem: '#articleList'
-                , url: '../../getList2' //数据接口
+                , url: '../../mck/getList2' //数据接口
                 , page: true //开启分页
+                , limit: 7      //默认每页显示10条.
                 , cols: [[
                     //field title 列属性
                     {type: 'checkbox'},
@@ -77,7 +78,7 @@
                     {field: 'utel', title: '用户电话'},
                     {field: 'address', title: '收件地址'},
                     {field: 'requestMsg', title: '留言信息'},
-                   // {field: 'statusName', title: '代办状态'},
+                    // {field: 'statusName', title: '代办状态'},
                     {fixed: 'right', title: '操作', width: 100, toolbar: '#operateTpl'}
                 ]],
             });
@@ -85,43 +86,35 @@
 
             //监听工具条事件
             table.on('tool(demo)', function (obj) {
-
                 //获取当前行数据
-                var data = obj.data;
-                //获取到当前行id
-                var id = data.orderNo;
+                var item = obj.data;
                 //根据监听按钮来作出相应的处理
                 if (obj.event === 'detail') {
-
                     //当点击回复的时候弹出一个对话层
-                    //iframe层
+                    var index = layer.open({
+                        type: 2,
+                        title: "订单号:" + " " + item.orderNo,
+                        maxmin: true,
+                        area: ['500px', '450px'],
+                        content: 'resp',
 
-                    layer.prompt(
-                        {title: '请输回复内容!!!!!', formType: 2},
-                        function (pass, index) {
+                        success: function (layero, index) {
 
+                            var body = layui.layer.getChildFrame('body', index);
+                            body.find(".uname").val(item.uname);
+                            body.find(".utel").val(item.utel);
+                            body.find(".theme").val(item.theme);
+                            body.find(".orderNo").val(item.orderNo);
+                            body.find(".requestMsg").val(item.requestMsg);
+                            form.render();
 
-                           // layer.msg(pass);
-                          //  layer.close(index);
+                        },
 
-                            //发送ajax异步请求
-                            $.post(
-                                '../../item/batch', //兄弟们在此写上你们的接口地址
-                                {'ids': id},
-                                function (data) {
+                        end: function () {
+                            layer.tips('啊,我要走了', '#about', {tips: 1})
+                        }
 
-                                    //至少删除一条记录
-                                    if (data > 0) {
-                                        //停留在原来界面并刷新
-                                        $('.layui-laypage-btn').click();
-                                        layer.msg("恭喜您,回复成功", {icon: 1});
-                                        layer.close(index);
-                                    }
-                                }
-                            )
-
-                        });
-
+                    })
                 }
 
             });
@@ -171,7 +164,7 @@
                     } else {
 
                         //layer.msg('亲,您未输入任何东西', {icon: 1});
-                        layer.tips('你TM不会输入的内容都没有,查毛啊?????', '#search', {
+                        layer.tips('你TM不输入内容,查毛啊?????', '#search', {
                             tips: [2, '#ff6600'],
                             time: 4000
                         });
@@ -207,7 +200,10 @@
                                 if (data > 0) {
                                     //停留在原来界面并刷新
                                     $('.layui-laypage-btn').click();
-                                    layer.msg("恭喜您,删除成功", {icon: 1});
+                                    layer.tips('恭喜您回复成功?', '#del', {
+                                        tips: [2, '#009900'],
+                                        time: 4000
+                                    });
                                 }
                             }
                         )
@@ -215,7 +211,10 @@
 
                     } else {
 
-                        layer.msg('请至少选中一行数据!!!!', {icon: 2});
+                        layer.tips('眼瞎么?不知道自己没选么?', '#del', {
+                            tips: [2, ' #ff4000'],
+                            time: 4000
+                        });
 
                     }
 
