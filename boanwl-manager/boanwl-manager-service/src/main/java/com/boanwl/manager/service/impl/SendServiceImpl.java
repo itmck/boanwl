@@ -23,6 +23,7 @@ import java.util.UUID;
 //import com.boanwl.manager.pojo.dto.SendQueryDTO;
 //import com.boanwl.manager.pojo.po.TbSend;
 //import com.boanwl.manager.pojo.po.TbSendExample;
+
 /**
  * User: Boan
  * Date: 2018/7/23
@@ -75,7 +76,7 @@ public class SendServiceImpl implements SendService {
             tbSend.setSeState("1");
             TbSendExample tbSendExample = new TbSendExample();
             tbSendExample.createCriteria().andSeIdIn(sids);
-            i = tbSendMapper.updateByExampleSelective(tbSend,tbSendExample);
+            i = tbSendMapper.updateByExampleSelective(tbSend, tbSendExample);
 
         } catch (Exception e) {
             bugRobot.sendErrorToDD(e);
@@ -136,13 +137,13 @@ public class SendServiceImpl implements SendService {
 
         // 先到jdeis查
         try {
-            String json = jedisClient.get(sid);
+            String json = jedisClient.hget("send", sid);
             if (StrKit.notBlank(json)) {
-                return JsonUtils.jsonToPojo(json,TbSend.class);
+                jedisClient.expire("send", 60 * 3600 * 30);
+                return JsonUtils.jsonToPojo(json, TbSend.class);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-
         }
 
         //从数据库中查询
@@ -158,7 +159,8 @@ public class SendServiceImpl implements SendService {
 
         //存到jedis中
         try {
-          jedisClient.set(sid,JsonUtils.objectToJson(tbSend));
+            jedisClient.hset("send", sid, JsonUtils.objectToJson(tbSend));
+            jedisClient.expire("send", 60 * 3600 * 30);
 
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
