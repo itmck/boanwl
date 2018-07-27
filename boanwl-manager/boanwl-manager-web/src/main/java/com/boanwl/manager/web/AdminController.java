@@ -63,7 +63,7 @@ public class AdminController {
      * @param admin
      * @return
      */
-    @RequestMapping("/admin/add")
+    @PostMapping("/admin/add")
     @ResponseBody
     public ItemDTO<TbAdmin> addAdmin(TbAdmin admin){
         ItemDTO<TbAdmin> item = adminService.addAdmin(admin);
@@ -81,7 +81,7 @@ public class AdminController {
         ItemDTO<TbAdmin> item = adminService.selectById(id);
         return item;
     }
-    @RequestMapping("/admin/updateAdmin")
+    @GetMapping("/admin/updateAdmin")
     @ResponseBody
     public ItemDTO<TbAdmin> update(TbAdmin admin){
         ItemDTO<TbAdmin> item = adminService.updateAdmin(admin);
