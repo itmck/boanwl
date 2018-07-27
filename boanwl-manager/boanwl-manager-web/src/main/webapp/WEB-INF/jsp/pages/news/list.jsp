@@ -38,17 +38,22 @@
             <div class="weadmin-block demoTable">
                 <button class="layui-btn layui-btn-danger" data-type="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除
                 </button>
-                <button data-method="setTop" class="layui-btn">添加1</button>
-                <button class="layui-btn" onclick="addnews()"><i
-                        class="layui-icon">&#xe61f;</i>添加
-                </button>
+                <div class="layui-inline">
+                    <a class="layui-btn layui-btn-normal addNews_btn">添加</a>
+                </div>
+                <%--<button data-method="setTop" class="layui-btn" lay-event="add">添加1</button>--%>
+                <%--<button class="layui-btn" onclick="addnews()"><i--%>
+                        <%--class="layui-icon">&#xe61f;</i>添加--%>
+                <%--</button>--%>
             </div>
             <!-- 操作日志 -->
             <div class="layui-form news_list">
                 <%--这个是动态的表格--%>
-                <table class="layui-hide" id="articleList"></table>
+                <table class="layui-hide" id="articleList" lay-filter="demo"></table>
                 <script type="text/html" id="operateTpl">
-                    <a class="layui-btn layui-btn-mini news_edit"><i class="iconfont icon-edit"></i>编辑</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="add">添加</a>
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    <%--<a class="layui-btn layui-btn-mini news_edit"><i class="iconfont icon-edit"></i>编辑</a>--%>
                     </script>
 </div>
 
@@ -79,7 +84,7 @@ table.render({
         {field: 'time', edit: 'text',title: '时间',templet:'<div>{{ Format(d.time,"yyyy-MM-dd")}}</div>'},
       {field: 'image',edit: 'text', title: '图片'},
      // {field: 'status', title: '状态'},
-     {fixed: 'right', width: 100, align: 'center', toolbar: '#operateTpl'}
+     {fixed: 'right',title: '操作', width: 150, align: 'center', toolbar: '#operateTpl'}
  ]],
  done:function (res,curr,count) {
      console.log($("[data-field='status']").children());
@@ -92,29 +97,82 @@ table.render({
      })
  }
 });
-        table.on('edit(articleList)', function(obj){
-            var value = obj.value //得到修改后的值
-                ,data = obj.data //得到所在行所有键值
-                ,field = obj.field; //得到字段
-            layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
-            $.ajax({
-                url:"../../news/update",
-                method:"put",
-                data:data,
-                //data:{"id":data.id,field:value},
-                success:function(data) {
-                    if(data.update_code == "0");
-                    $('.layui-laypage-btn').click();
-                    layer.msg("恭喜您,修改成功", {icon: 1});
-                },
-                dateType:"json"
-            })
 
+        table.on('tool(demo)', function(obj){
+
+            if(obj.event === 'edit'){
+                var item = obj.data;
+                var index =  layer.open({
+                    type: 2,
+                    title: "新闻编号:" + "  " + item.id,
+                    maxmin: true,
+                    area: ['800px', '400px'],
+                    content: 'newsmodify',
+
+                    success: function(layero, index){
+                        var body = layui.layer.getChildFrame('body', index);
+
+                        body.find(".title").val(item.title);     //登录名
+                        body.find(".content").val(item.content);
+                        body.find(".image").val(item.image);
+                        body.find(".id").val(item.id);
+                        form.render();
+                    },
+
+                    end: function () {
+
+                        layer.tips('新闻真好看', '#about', {tips: 1})
+                    }
+                })
+            }
+            else if(obj.event === 'add'){
+                var index =  layer.open({
+                    type: 2,
+                    title: "新闻添加" ,
+                    maxmin: true,
+                    area: ['800px', '550px'],
+                    content: 'newsadd',
+                })
+            }
+        });
+//        table.on('edit(articleList)', function(obj){
+//            var value = obj.value //得到修改后的值
+//                ,data = obj.data //得到所在行所有键值
+//                ,field = obj.field; //得到字段
+//            layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
+//            $.ajax({
+//                url:"../../news/update",
+//                method:"put",
+//                data:data,
+//                //data:{"id":data.id,field:value},
+//                success:function(data) {
+//                    if(data.update_code == "0");
+//                    $('.layui-laypage-btn').click();
+//                    layer.msg("恭喜您,修改成功", {icon: 1});
+//                },
+//                dateType:"json"
+//            })
+//
+//
+//        });
+
+//111111
+        $('.addNews_btn').on('click', function () {
+            layer.open({
+                type: 2,
+                title: '添加新闻',
+                maxmin: true,
+                area: ['1000px', '500px'],
+                content: 'addnews',
+                end: function () {
+                    layer.tips('Hi', '#about', {tips: 1})
+                }
+
+            });
 
         });
 
-//111111
-
+        ///
 
 //搜索操作 先获取搜索按钮事件
 $('#search').on('click', function () {
@@ -134,36 +192,9 @@ $(".demoTable .layui-btn-danger").click(function () {
  active[type] ? active[type].call(this) : '';
 });
 
+
+
 var active = {
-    setTop: function(){
-        var that = this;
-        //多窗口模式，层叠置顶
-        layer.open({
-            type: 2 //此处以iframe举例
-            ,title: '当你选择该窗体时，即会在最顶端'
-            ,area: ['390px', '260px']
-            ,shade: 0
-            ,maxmin: true
-            ,offset: [ //为了演示，随机坐标
-                Math.random()*($(window).height()-300)
-                ,Math.random()*($(window).width()-390)
-            ]
-            ,content: 'http://layer.layui.com/test/settop.html'
-            ,btn: ['继续弹出', '全部关闭'] //只是为了演示
-            ,yes: function(){
-                $(that).click();
-            }
-            ,btn2: function(){
-                layer.closeAll();
-            }
-
-            ,zIndex: layer.zIndex //重点1
-            ,success: function(layero){
-                layer.setTop(layero); //重点2
-            }
-        });
-    },
-
  search: function () {
 
      // alert(5);
@@ -253,15 +284,15 @@ function Format(datetime,fmt) {
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
     return fmt;
 }
-function addnews(){
-    layer.open({
-        //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-        type:1,
-        title:"添加新闻",
-        area: ['70%','70%'],
-        content:'',
-    });
-}
+//function addnews(){
+//    layer.open({
+//        //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+//        type:1,
+//        title:"添加新闻",
+//        area: ['70%','70%'],
+//        content:'newadd',
+//    });
+//}
 
 </script>
 </body>
