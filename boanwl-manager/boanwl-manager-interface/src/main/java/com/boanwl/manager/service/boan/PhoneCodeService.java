@@ -1,5 +1,7 @@
 package com.boanwl.manager.service.boan;
 
+import java.util.Map;
+
 /**
  * User: Boan
  * Date: 2018/7/26
@@ -9,6 +11,9 @@ package com.boanwl.manager.service.boan;
 
 public interface PhoneCodeService {
 
-    public String sendCode(String ip,String phoneNumber);
+    Map<String ,Object> sendRegisterCode(String phoneNumber);
+    Map<String ,Object> sendResetPasswordCode(String phoneNumber);
+    boolean checkRegisterCode(String phoneNumber,String code);
+    boolean checkResetPasswordCode(String phoneNumber,String code);
 
 }
