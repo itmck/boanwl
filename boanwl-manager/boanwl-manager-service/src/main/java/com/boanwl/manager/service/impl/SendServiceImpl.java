@@ -1,6 +1,7 @@
 package com.boanwl.manager.service.impl;
 
 import com.boan.comcom.utils.BugRobot;
+import com.boan.comcom.utils.OrderNumberUtils;
 import com.boan.jedis.JedisClient;
 import com.boanwl.common.dto.ItemDTO;
 import com.boanwl.manager.dao.SendMapper;
@@ -18,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 //import com.boanwl.manager.pojo.dto.SendQueryDTO;
 //import com.boanwl.manager.pojo.po.TbSend;
@@ -48,7 +48,7 @@ public class SendServiceImpl implements SendService {
     public int saveSend(TbSend send) {
         int i = 0;
         try {
-            send.setSeId(UUID.randomUUID().toString().replaceAll("-", ""));
+            send.setSeId(OrderNumberUtils.getSendID());
             double price = 0.0;
             double weight = send.getCargoWeight();
             if (weight <= 1.0) {
