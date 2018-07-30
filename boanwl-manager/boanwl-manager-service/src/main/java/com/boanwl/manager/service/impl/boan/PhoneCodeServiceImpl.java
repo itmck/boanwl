@@ -92,9 +92,9 @@ public class PhoneCodeServiceImpl implements PhoneCodeService {
         String code = null, codeKey = phoneNumber + "code";
         try {
             if (register) {
-                code = PhoneCodeUtils.sendRegisterCode(phoneNumber, really);
+                code = PhoneCodeUtils.sendLoginCode(phoneNumber,really);
             } else {
-                code = PhoneCodeUtils.sendResetPasswordCode(phoneNumber, really);
+                code = PhoneCodeUtils.sendRepwdCode(phoneNumber, really);
             }
         } catch (Exception e) {
             bugRobot.sendErrorToDD(e, "13567557892");
