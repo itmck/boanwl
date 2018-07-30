@@ -51,7 +51,7 @@
                 <%--这个是动态的表格--%>
                 <table class="layui-hide" id="articleList" lay-filter="demo"></table>
                 <script type="text/html" id="operateTpl">
-                    <a class="layui-btn layui-btn-xs" lay-event="add">添加</a>
+                    <%--<a class="layui-btn layui-btn-xs" lay-event="add">添加</a>--%>
                     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
                     <%--<a class="layui-btn layui-btn-mini news_edit"><i class="iconfont icon-edit"></i>编辑</a>--%>
                     </script>
