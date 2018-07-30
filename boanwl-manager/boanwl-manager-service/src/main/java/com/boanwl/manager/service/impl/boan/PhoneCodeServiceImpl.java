@@ -2,9 +2,6 @@ package com.boanwl.manager.service.impl.boan;
 
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
-import com.boan.comcom.utils.BugRobot;
-import com.boan.comcom.utils.PhoneCodeUtils;
-import com.boan.jedis.JedisClient;
 import com.boanwl.manager.service.boan.PhoneCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,7 +62,13 @@ public class PhoneCodeServiceImpl implements PhoneCodeService {
         String codeKey = phoneNumber + "code";
 
         Map<String, Object> map = new HashMap<>();
-        if (jedisClient.exists(countKey)) {
+        boolean flg = false;
+        try {
+            flg = jedisClient.exists(countKey);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (flg) {
 
             int count = Integer.parseInt(jedisClient.get(countKey));
             if (count >= 5) {
