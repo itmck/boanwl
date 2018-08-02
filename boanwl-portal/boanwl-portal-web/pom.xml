@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>boanwl-portal</artifactId>
+        <groupId>com.boanwl</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>boanwl-portal-web</artifactId>
+    <packaging>war</packaging>
+
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.boanwl</groupId>
+            <artifactId>boanwl-portal-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+    <plugins>
+        <!--Tomcat的maven插件的坐标-->
+        <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <!--配置Tomcat插件-->
+            <configuration>
+                <!--端口号-->
+                <port>8282</port>
+                <!--上下文-->
+                <path>/boanwl</path>
+                <!--解决GET请求中的中文乱码问题-->
+                <uriEncoding>UTF-8</uriEncoding>
+            </configuration>
+        </plugin>
+    </plugins>
+
+    <resources>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+    </resources>
+
+</build>
+</project>

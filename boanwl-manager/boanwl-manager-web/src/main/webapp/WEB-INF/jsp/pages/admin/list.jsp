@@ -37,7 +37,7 @@
                 </div>
             </blockquote>
             <div class="weadmin-block demoTable">
-                <button class="layui-btn layui-btn-danger" data-type="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除
+                <button class="layui-btn layui-btn-danger" id="delbatch" data-type="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除
                 </button>
                 <button class="layui-btn" id="addadmin"><i
                         class="layui-icon">&#xe61f;</i>添加
@@ -73,6 +73,7 @@
                 //field title 列属性
                 {type: 'checkbox'},
                 {field: 'id', title: '工号', sort: true},//
+                {field: 'image',title: '图片',templet:'<div><img src="{{ d.image}}" height="30px" width="35px"></div>'},
                 {field: 'adminname', title: '花名'},
                 {field: 'realname', title: '用户姓名'},//
                 {
@@ -88,6 +89,7 @@
             ]],
             //这是前台修改商品状态的方式,由于在后台已经写了 ,在此注释掉即可
             done: function (res, curr, count) {
+                hoverOpenImg();
                 $("[data-field='sex']").children().each(function () {
                     if ($(this).text() == '0') {
                         $(this).text('女');
@@ -170,14 +172,14 @@
         //
         //
         // //搜索操作 先获取搜索按钮事件
-        // $('#search').on('click', function () {
-        //
-        //     var type = $(this).data('type');
-        //     //console.log(type);
-        // //console.log( active[type] );
-        //     active[type] ? active[type].call(this) : '';
-        //
-        // });
+        $('#search').on('click', function () {
+
+            var type = $(this).data('type');
+            //console.log(type);
+        //console.log( active[type] );
+            active[type] ? active[type].call(this) : '';
+
+        });
 
         //批量删除的点击事件
         $(".demoTable .layui-btn-danger").click(function () {
@@ -207,13 +209,15 @@
                         page: {curr: 1},
                         //第一个title作为表单数据传出去的key
                         //第二个参数就是js定义的变量(就是我们获取的文本框值)
-                        where: {searchName: title}
+                        where: {"searchName": title}
 
                     });
 
                 } else {
-
-                    layer.msg('亲,您未输入任何东西', {icom: 1});
+                    layer.tips('请一定要输入点什么,阿里嘎多', '#search', {
+                        tips: [2, '#ff050a'],
+                        time: 4000
+                    });
                 }
 
 
@@ -253,7 +257,7 @@
 
 
                 } else {
-                    layer.tips('请一定要输入点什么,阿里嘎多', '#search', {
+                    layer.tips('请先选中要删除的项', '#delbatch', {
                         tips: [2, '#ff050a'],
                         time: 4000
                     });
@@ -264,7 +268,20 @@
 
         }
     });
-
+    function hoverOpenImg(){
+        var img_show = null; // tips提示
+        $('td img').hover(function(){
+            //alert($(this).attr('src'));
+            var img = "<img class='img_msg' src='"+$(this).attr('src')+"' style='width:130px;' />";
+            img_show = layer.tips(img, this,{
+                tips:[2, 'rgba(41,41,41,.5)']
+                ,area: ['160px']
+            });
+        },function(){
+            layer.close(img_show);
+        });
+        $('td img').attr('style','max-width:70px');
+    }
 
 </script>
 </body>

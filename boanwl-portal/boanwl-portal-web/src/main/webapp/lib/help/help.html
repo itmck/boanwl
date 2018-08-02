@@ -1,0 +1,342 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>伯安快递 - 帮助中心 </title>
+    <meta name="keywords" content="伯安,快递, 伯安快递,速递">
+    <meta name="description" content="伯安快递是伯安集团旗下专业快递品牌，以“精彩生活，快递欢乐”为理念，为用户提供“年轻、快乐”的快递服务">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="shortcut icon" type="image/x-icon" href="/images/800bestexicon.ico" />
+    <link href="../static/css/4d1d91a0f011495495fa6b5014e07cfc.css" rel="stylesheet"/>
+
+    <link href="../static/css/ae348c73226940d9ba72fd0bba6d5dbc.css" rel="stylesheet"/>
+
+    <link href="../static/css/603b43e0f06144a4926748f5ad59248e.css" rel="stylesheet"/>
+
+    <link href="../static/css/9a2859e2dd884eecbfc6b9f0f67810f5.css" rel="stylesheet"/>
+
+    <script src="../static/js/47a12ec1dabd46ff8c6830b636086b59.js"></script>
+
+    <script>
+        var urlConfig = {
+            web: "",
+            api: "/htwebapi",
+            q9api : "/q9api",
+            wx: "/wxapi",
+            wxplatform: "http://psapi.appl.800best.com/",
+            weixinappid: "wx61af89c230ee8c23",
+            wxVerificationCodePath: "/security/sendsms"
+        };
+        var appConfig = {
+            appId: "HTWeb",
+            userId: "",
+            userName: ""
+        }
+        var app = {}
+        $(function () {
+            $(':text, textarea').placeholder();
+        });
+    </script>
+
+</head>
+<body>
+
+    <div class="topnav">
+    <div class="container clearfix">
+        <img onclick="window.open('http://webcs.800best.com/smWeb.html', 'webcs', 'width=750,height=600,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no,center=yes');" src="../static/picture/minionlinesevice.png" style="position:absolute;right:0;top:0;cursor:pointer" />
+        <!--<span class="pull-left">
+            <a href="http://www.800best.com" target="_blank">伯安集团官网</a> |
+            <a href="javascript:void(0);" class="addFavorite">加入收藏</a> |
+            <a href="javascript:void(0);" class="follow-wx">关注微信</a> |
+            <a href="javascript:void(0);" class="follow-wxxcx">使用微信小程序</a> |
+            <a href="javascript:void(0);" class="follow-alipay">关注支付宝服务窗</a> |
+            
+
+        </span>-->
+        <span class="pull-left">
+            <a href="" target="_blank">伯安欢迎您浏览</a> |
+
+        </span>
+        
+
+    </div>
+</div>
+<div class="modal hide fade wx-box p20" id="wx-box" style="text-align: center; width: 360px; margin-left: -180px;">
+    <img src="../static/picture/wx.jpg"/>
+    <div class="text-center" style="background: #ff3d3b">
+        <p class="font14 font-white">用微信扫一扫</p>
+        <p class="font12 font-white">关注伯安快递官方微信</p>
+    </div>
+</div>
+<div class="modal hide fade wxxcx-box p20" id="wxxcx-box" style="text-align: center; width: 360px; margin-left: -210px;">
+    <img src="../static/picture/wxxcx.jpg"/>
+    <!--<div class="text-center" style="background: #ff3d3b">
+        <p class="font14 font-white">用微信扫一扫</p>
+        <p class="font12 font-white">关注伯安快递官方微信</p>
+    </div>-->
+</div>
+<div class="modal hide fade alipay-box p20" id="alipay-box" style="text-align: center;width:360px;margin-left:-240px;">
+    <img src="../static/picture/alipay_qr.jpg" />
+    <div class="text-center" style="background:#ff3d3b">
+        <p class="font14 font-white">用支付宝扫一扫</p>
+        <p class="font12 font-white">关注伯安快递服务窗</p>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $(".follow-wx").popover({
+            html: true,
+            trigger: 'hover',
+            content: $('#wx-box').html(),
+            placement: 'bottom'
+        });
+        $(".follow-alipay").popover({
+            html: true,
+            trigger: 'hover',
+            content: $('#alipay-box').html(),
+            placement: 'bottom'
+        })
+        $(".follow-wxxcx").popover({
+            html: true,
+            trigger: 'hover',
+            content: $('#wxxcx-box').html(),
+            placement: 'bottom'
+        })
+        // $(".follow-wx").bind("click", function () {
+        //     var detail = $('#wx-box')
+
+        //     detail.modal('show')
+        // })
+
+    })
+
+</script>
+    <div class="nav main-nav" id="main-nav">
+    <div class="container">
+        <div class="border-line hide"></div>
+        <div class="logo pull-left">
+            <a href="/" title="伯安快递">
+                <img src="../static/picture/logo.png"  alt="伯安快递">
+            </a>
+        </div>
+        <ul id="main-nav-wrap" class="unstyled inline clearfix pull-right">
+            <li><a href="/boanwl/lib/homepage.html">首 页</a></li>
+            <!--<li><a href="/Bill/Track">查 件</a></li>-->
+            <li><a href="/boanwl/lib/query/queryExpress.html">查 件</a></li>
+            <!--<li><a href="/Order/Create">寄 件</a></li>-->
+            <li><a href="/boanwl/lib/send/sendExpress.html">寄 件</a></li>
+            <!--<li><a href="javascript:void(0);">网 点</a>
+                <ul class="unstyled hide" style="position: absolute;left : -20px;width : 85px;">
+                    <li><a href="/Site/Query">伯安快递站点</a> </li>
+                    <li><a href="/Site/ServiceQuery">伯安快递服务点</a> </li>
+                </ul>
+            </li>-->
+
+            <!--<li>
+                <a href="javascript:void(0);">产品服务</a>
+
+                <ul class="unstyled hide">
+                    <li><a href="/Best/Products">快递</a></li>
+                    <li><a href="http://www.800best.com/freight/" target="_blank">快运</a></li>
+                    <li><a href="http://www.800best.com/supply-chain/" target="_blank">云仓</a></li>
+                </ul>
+            </li>-->
+            <li><a href="/boanwl/lib/news/news.html">新闻中心</a></li>
+            <!--<li><a href="javascript:void(0);">企业服务</a>
+                <ul class="unstyled hide">
+                    <li><a href="http://www.800best.com/express/partner/" target="_blank">加盟合作</a></li>
+                    <li><a href="/static/Index/70EBB44ADC5E52ED" target="_blank">采购招标</a> </li>
+                </ul>
+            </li>-->
+            <li><a href="/boanwl/lib/help/help.html" style="padding-right:0;">帮助中心</a></li>
+        </ul>
+        
+    </div>
+</div>
+    
+
+    <div class="flexslider slide   helperslide" id="slide">
+        
+
+    </div>
+
+    <div class="main">
+        <div class="container">
+
+            
+<div class="breadcrum">
+    <div class="Left-title"><i class="icon icon-s1 icon-help"></i>帮助中心</div>
+    <!-- <div class="line"></div> -->
+</div>
+<div class="box help-box">
+    <div style="background:#F2F2F2;padding: 15px 10px;">
+        
+        <div class="row">
+            <div class="span"><a href="javascript:void(0)" onclick="window.open('http://webcs.800best.com/smWeb.html', 'webcs', 'width=750,height=600,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no,center=yes');"><img src="../static/picture/h2.gif" alt="在线客服"></a></div>
+            <div class="span"><a href="/static/Index/BB4318709137ED52"><img src="../static/picture/h3.gif" alt="各地客服电话"></a></div>
+            <div class="span"><a href="/boanwl/lib/help/helpLeaveWord.html"><img src="../static/picture/h4.gif" alt="在线留言"></a></div>
+            <div class="span contact"> <a href="mailto:95320@800best.com"><img src="../static/picture/h1.gif" alt="客服热线"></a> </div>
+        </div>
+    </div>
+
+
+
+    <div class="questions pl30 pr30" id="questions">
+    </div>
+<div id="wc" class="wc"><img src="../static/picture/wc.png" alt="微信客服"></div>
+</div>
+
+<script type="text/template" id="questions-template">
+    <div class="breadcrum mb20">
+        <div class="Left-title"><i class="icon icon-s1 icon-question"></i>常见问题</div>
+        <!-- <div class="line"></div> -->
+    </div>
+    <ul class="nav nav-tabs">
+        <%
+        _.each(data,function(item){
+        category = item.faqcategorydto
+        %>
+        <li><a href="#faqc-{{category.id}}" data-toggle="tab">{{category.title}}</a></li>
+        <% }); %>
+    </ul>
+    <div class="tab-content">
+        <%
+        _.each(data,function(item){
+        category = item.faqcategorydto
+        %>
+        <div class="tab-pane" id="faqc-{{category.id}}">
+            <% _.each(item.faqdtolist,function(faq){%>
+            <ul class="unstyled">
+                <li>
+                    <div class="question">
+                        <i class="icon icon-arrow-down"></i>
+                        <strong>{{faq.title}}</strong>
+                    </div>
+                    <div class="answers">{{faq.content}}</div>
+                </li>
+            </ul>
+            <% });%>
+        </div>
+        <% }); %>
+    </div>
+
+</script>
+
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="span span2">
+                    <dl>
+                        <dt class="foot-blue">企业服务</dt>
+                        <dd><a class="foot-blue" href="http://www.800best.com/express/partner/" target="_blank">加盟合作</a></dd>
+                        <dd><a class="foot-blue" href="/static/Index/70EBB44ADC5E52ED" target="_blank">采购招标</a></dd>
+                        <dd><a class="foot-blue" href="http://inner.800bestex.com:8090/" target="_blank">站点登录入口</a></dd>
+                    </dl>
+                </div>
+                <div class="span span2">
+                    <dl>
+                        <dt>查询·寄件</dt>
+                        <dd><a href="/bill/track">运单追踪</a></dd>
+                        <dd><a href="/order/create">寄件</a></dd>
+                        <dd><a href="/Site/Query">网点</a></dd>
+                        <dd><a href="/Best/Products">产品服务</a></dd>
+                        <dd><a class="foot-red" href="/static/Index/28B9E6753B7C2055" target="_blank">禁寄须知</a></dd>
+                    </dl>
+                </div>
+     
+                <div class="span span2">
+                    <dl>
+                        <dt>关于我们</dt>
+                        <dd> <a href="/news/list">新闻中心</a></dd>
+                        <dd><a target="_blank" href="http://www.800best.com/hr">人才招聘</a></dd>
+                        <!-- <dd><a href="#">关于伯安快递</a></dd> -->
+                        <dd><a href="/home/About">关于伯安快递</a></dd>
+                        <dd><a target="_blank" href="http://www.800best.com ">伯安物流</a></dd>
+                    </dl>
+                </div>
+                <div class="span span2">
+                    <dl>
+                        <dt>帮助中心</dt>
+                  
+                        <dd class="">95320</dd>
+                        <dd><a  href="javascript:void(0);" onclick="window.open('http://webcs.800best.com/smWeb.html', 'webcs', 'width=750,height=600,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no,center=yes');">在线客服</a></dd>
+                        <dd><a href="/help/Feedback">投诉与建议</a></dd>
+                        <dd><a href="/static/Index/BB4318709137ED52">各地客服电话</a></dd>
+                    </dl>
+                </div>
+                <div class="span wx-span" style="float:right">
+                    <div class="divider">
+                        <div>微信公众号</div>
+                    </div>
+                    <div class="row mt30">
+                        <div class="span text-center">
+                            <div>
+                                <img src="../static/picture/htewm.png" alt="访问伯安快递官方微博">
+                            </div>
+                            <div class="mt10 pt5">伯安快递</div>
+                        </div>
+                        <div class="span text-center" style="float: right">
+                            <div>
+                                <img src="../static/picture/rcewm.png" alt="伯安招聘">
+                            </div>
+                            <div class="mt10 pt5">伯安招聘</div>
+                        </div>
+                    </div>
+           
+                </div>
+            </div>
+
+            <div class="copy row">
+                <div class="span span1">
+                    <a href="http://www.spb.gov.cn" target="_blank" title="中华人民共和国国家邮政局">
+                        <img src="../static/picture/f1.png" alt="中华人民共和国国家邮政局">
+                    </a>
+                    <a href="http://www.cea.org.cn" target="_blank" title="中国快递协会">
+                        <img src="../static/picture/f2.png" alt="中国快递协会">
+                    </a>
+
+                    
+                </div>
+                <div class="span span8">
+                    伯安网络 版权所有 Copyright 2014 800bestex.com Inc. All rights reserved.  <a href="http://www.miibeian.gov.cn" target="_blank" style="text-decoration: underline;">沪ICP备11045012号</a>
+                  
+
+                </div>
+                <div class="span span3 text-right">
+                   伯安快递微博：<a href="http://e.weibo.com/bestexpress" target="_blank" title="访问伯安快递官方微博"><img src="../static/picture/f3.png" alt="访问伯安快递官方微博"></a>
+                </div>
+            </div>
+            <div class="text-center">  
+                    <a style="color:#939393;" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011802001068">
+                        <img src="../static/picture/beian.png" />沪公网安备 31011802001068号
+                    </a>
+                    <a style="color:#939393;text-decoration: underline" target="_blank" href="/Images/yyzz.jpg">企业营业执照</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="../static/js/81837495ffad4e089cefb5382d2d1651.js"></script>
+
+<script src="../static/js/12aca07aac2a4ff7b6b1b9ad7332e866.js"></script>
+
+<script src="../static/js/85c8f06dda144f088505ab4384687338.js"></script>
+
+
+        <div class="hide">
+            <script type="text/javascript">
+                var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F8fd193f17ae8acf2be1a1cfc65323057' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+            <script src="../static/js/stat.js" language="JavaScript"></script>
+        </div>
+
