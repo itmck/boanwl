@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * User: DHC
@@ -25,15 +28,17 @@ public class PortalIndexAction {
     private ImgService imgService;
 
     @RequestMapping(value = "/home",method = RequestMethod.GET)
-    public String index(HttpServletRequest request){
+    @ResponseBody
+    public Map<String,Object> index(HttpServletRequest request){
         //0 读取配置文件获取分类编号
-
+        Map<String,Object> map = new HashMap<>();
        Long imgid = PropKit.use("index.properties").getLong("lubo.imgid");
         //1 调用业务层代码
         List<TbImg> imglist = imgService.getImgListById(imgid);
-        //2 存放到request域中
+        map.put("imglist",imglist);
+        /*//2 存放到request域中
         request.setAttribute("imgList",imglist);
-        //3 转发
-        return "homepage";
+        //3 转发*/
+        return map;
     }
 }
