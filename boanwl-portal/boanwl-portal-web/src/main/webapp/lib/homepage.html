@@ -408,7 +408,13 @@
             function (data) {
                 var weather = data.data.forecast[1].type;
                 var not = data.data.forecast[1].notice;
-                $("#myspan").html("今日天气" + weather + "  " + not);
+                var shidu = data.data.shidu;
+                var pm = data.data.pm25;
+                var low = data.data.forecast[1].low;
+                var hihg = data.data.forecast[1].high;
+                var ganmao = data.data.ganmao;
+                $("#myspan").html("今日天气" + weather + "  | " +  low +"~" + hihg+ "  | "+ not + "  |  " +  "湿度:" + shidu +  "  |   " +  "pm2.5:" + pm + "   | " + "注意:"  + ganmao);
+
 
 
             },
