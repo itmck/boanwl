@@ -23,11 +23,14 @@ public class TbAdmin {
     private Integer role;
 
     private String tel;
+
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     @JsonFormat(pattern = "yyyy/MM/dd")
     private Date birthday;
 
     private String idcard;
+
+    private String image;
 
     public String getId() {
         return id;
@@ -115,5 +118,13 @@ public class TbAdmin {
 
     public void setIdcard(String idcard) {
         this.idcard = idcard == null ? null : idcard.trim();
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image == null ? null : image.trim();
     }
 }

@@ -22,6 +22,19 @@
 
     <form class="layui-form">
         <div class="layui-form-item" >
+            <label class="layui-form-label">头像大小小于600KB</label>
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test1">上传头像</button>
+                <%--<div class="layui-upload-list">--%>
+                <div>
+                    <img class="layui-upload-img" id="demo1"  name="file" height="150px" max-width="150px">
+                    <p id="demoText"></p>
+                </div>
+            </div>
+            <div class="layui-input-block"  >
+                <input type="hidden" name="image" lay-verify="title" autocomplete="off"
+                       class="layui-input image"  style="border-left-color: white" id="image_address">
+            </div>
             <label class="layui-form-label">角色</label>
             <div class="layui-input-block">
                 <select name="role" lay-verify="required">
@@ -130,5 +143,40 @@
     });
 
 </script>
+<script>
+    layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
 
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: '${pageContext.request.contextPath}/uploadImage'
+            ,size:600
+            ,accept:'images'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                // $('#image_address').attr('value', dataMap.get("src"));
+                $('#image_address').val(res.data.src);//上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+    });
+</script>
 </html>

@@ -109,7 +109,7 @@ public class NewsAction {
             tbNewsItemDTO = newsService.listNews(newsQueryDTO);
          // System.out.print(tbNewsItemDTO.getData());
         }catch (Exception e) {
-            e.printStackTrace();;
+            e.printStackTrace();
         }
         return tbNewsItemDTO;
     }

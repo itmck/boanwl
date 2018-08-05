@@ -24,6 +24,19 @@
 		<div class="larry-personal-body clearfix">
 			<form class="layui-form col-lg-5" action="" method="get">
 				<div class="layui-form-item">
+					<label class="layui-form-label">头像应小于600KB</label>
+					<div class="layui-upload">
+						<button type="button" class="layui-btn" id="test1">修改头像</button>
+						<div class="layui-upload-list">
+							<img class="layui-upload file" id="demo1"  name="file" height="150px" width="150px">
+							<p id="demoText"></p>
+						</div>
+					</div>
+					<div class="layui-input-block">
+						<input id="image_address" type="hidden" name="image" lay-verify="title" autocomplete="off" placeholder="请上传图片" class="layui-input image" >
+						<%--<img class="layui-upload file" id="demo1"  name="file" max-height="100px" max-width="100px">--%>
+					</div>
+				<div class="layui-form-item">
 					<label class="layui-form-label">用户名</label>
 					<div class="layui-input-block">  
 						<input type="text" name="title"  autocomplete="off"  class="layui-input layui-disabled" id="adminname" value="" disabled="disabled" >
@@ -59,13 +72,13 @@
 						<input type="text" name="username" id="idcard"  autocomplete="off" class="layui-input" placeholder="输入身份证号">
 					</div>
 				</div>
-				<div class="layui-form-item">
-					<label class="layui-form-label">性别</label>
-					<div  class="layui-input-block">
-						<input type="radio" checked="" id="mail" name="sex" value="男" title="男" >
-						<input type="radio" id="femail" name="sex"  value="女" title="女">
+					<div class="layui-form-item">
+						<label class="layui-form-label">性别</label>
+						<div class="layui-input-block">
+							<input type="radio" name="sex" value="男" title="男">
+							<input type="radio" name="sex" value="女" title="女" checked="">
+						</div>
 					</div>
-				</div>
 				<%--<div class="layui-form-item">
 					<label class="layui-form-label">修改头像</label>
 					<div class="layui-input-block">
@@ -100,13 +113,13 @@
 		</div>
 	</div>
 </section>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/common/layui/layui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/lib/layui/layui.js"></script>
 <script type="text/javascript">
-	layui.use(['form','upload','jquery'],function(){
-         var form = layui.form()
-		 $=layui.jquery;
+	layui.use(['upload','jquery'],function(){
+         /*var form = layui.form()*/
+		 var $=layui.jquery;
 
-        $(document).ready(function(){
+        $(function(){
              $.get(
                  '../../admin/getAdmin' ,//请求个人信息接口
 				 {"id":"000001"},
@@ -114,13 +127,14 @@
                  //上传成功后的回调
 					  backData=data.data[0];
                  $("#adminname").val(data.data[0].adminname);
-                 var role=data.data[0].role == 0? "超级管理员":"管理员";
-                 $("#role").val(role);
+                 var rol=data.data[0].role == 0? "超级管理员":"管理员";
+                 $("#role").val(rol);
                  $("#realname").val(data.data[0].realname);
                  $("#tel").val(data.data[0].tel);
                  $("#birthday").val(data.data[0].birthday);
                  $("#idcard").val(data.data[0].idcard);
-
+                 $("#demo1").attr('src',data.data[0].image);
+                 $("#image_address").val(data.data[0].image)
                  $("#remark").text(data.data[0].remark);
 
                  if(data.data[0].sex!='0'){
@@ -128,9 +142,9 @@
                      /*$("#mail").attr("checked","checked");
                      layui.form.render();*/
                  }else{
-                     alert(data.data[0].sex);
-                     $("#femail").attr("checked",true);
-                     layui.form.render();
+                     //alert(data.data[0].sex);
+                     //$("#femail").attr("checked",true);
+                     //layui.form.render();
                  }
 
 
@@ -140,7 +154,7 @@
 		 });
         $("#editbtn").on("click",function(){$.get(
             '${pageContext.request.contextPath}/admin/updateAdmin' ,//上传接口
-            {"id":backData.id,"realname":$("#realname").val(),"sex":backData.sex,"remark":$("#remark").val(),"tel":$("#tel").val(),"birthday":$("#birthday").val(),"idcard":$("#idcard").val()},
+            {"id":backData.id,"realname":$("#realname").val(),"sex":backData.sex,"remark":$("#remark").val(),"tel":$("#tel").val(),"birthday":$("#birthday").val(),"image":$("#image_address").val(),"idcard":$("#idcard").val()},
              function(data){
 
             } ,
@@ -156,6 +170,42 @@
          });*/
 
 	});
+</script>
+<script>
+    layui.use(['upload','jquery'], function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: '${pageContext.request.contextPath}/uploadImage'
+            ,size:600
+            ,accept:'images'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                // $('#image_address').attr('value', dataMap.get("src"));
+                $('#image_address').val(res.data.src);//上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+    });
 </script>
 </body>
 </html>

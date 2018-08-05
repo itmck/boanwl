@@ -1,0 +1,211 @@
+﻿.tooltipster-default {
+  border-radius: 0;
+  border: 1px solid #0085ff; }
+  .tooltipster-default .tooltipster-content {
+    padding: 20px;
+    background: white;
+    color: #666; }
+  .tooltipster-default .tooltipster-arrow span {
+    border-color: white; }
+  .tooltipster-default .tooltipster-arrow .tooltipster-arrow-border {
+    border-color: #0085ff; }
+
+.query-icon {
+  background-position: -112px -84px;
+  margin-top: 5px; }
+
+.icon-arrow {
+  background-position: -112px -115px; }
+
+.icon-no {
+  background-position: 0px -532px;
+  margin-left: 20px; }
+
+.popover-content {
+  color: #666; }
+
+#history span {
+  cursor: pointer; }
+
+.track-box {
+  border-bottom: none;
+  position: relative; }
+  .track-box .bill-query {
+    border-bottom: 1px solid #d2d2d2; }
+    .track-box .bill-query .span9 {
+      width: 753px;
+      padding: 10px;
+      border-right: 1px solid #d2d2d2; }
+    .track-box .bill-query .span3 {
+      width: 200px; }
+    .track-box .bill-query form {
+      margin-bottom: 0px; }
+    .track-box .bill-query .textarea {
+      background: white;
+      width: 720px;
+      padding: 5px;
+      height: 85px;
+      border: 1px solid #d2d2d2;
+      border-radius: 5px;
+      overflow: hidden; }
+      .track-box .bill-query .textarea span {
+        background: #f2f2f2;
+        display: inline-block;
+        margin: 5px;
+        padding: 0;
+        width: 130px;
+        height: 32px;
+        line-height: 32px;
+        overflow: hidden;
+        text-align: center;
+        border: 1px solid transparent;
+        float: left;
+        cursor: pointer; }
+        .track-box .bill-query .textarea span i {
+          cursor: pointer;
+          font-style: normal;
+          padding-right: 4px;
+          float: right; }
+          .track-box .bill-query .textarea span i:hover {
+            font-weight: bold; }
+        .track-box .bill-query .textarea span.error {
+          border-color: #ff5d70; }
+      .track-box .bill-query .textarea .code-wrap {
+        float: left;
+        width: 10px;
+        margin: 5px;
+        width: 132px; }
+        .track-box .bill-query .textarea .code-wrap .code {
+          resize: none;
+          overflow: hidden;
+          margin: 0;
+          height: 20px;
+          padding: 6px 1px;
+          width: 100%;
+          border-color: transparent;
+          border-radius: 0;
+          outline: none;
+          -webkit-appearance: none;
+          ime-mode: active;
+          outline: none;
+          -moz-box-shadow: none;
+          -webkit-box-shadow: none;
+          box-shadow: none; }
+          .track-box .bill-query .textarea .code-wrap .code:focus {
+            outline: none;
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+            box-shadow: none; }
+    .track-box .bill-query .group-controls input {
+      border-radius: 0;
+      height: 24px;
+      width: 100px;
+      float: left; }
+    .track-box .bill-query .group-controls button {
+      padding-top: 7px;
+      padding-bottom: 7px;
+      float: left; }
+    .track-box .bill-query .group-controls img {
+      float: left;
+      vertical-align: top; }
+  .track-box .bills-code {
+    position: relative;
+    padding: 0;
+    margin-top: 20px;
+    width: 960px;
+    padding-left: 10px;
+    padding-right: 10px; }
+    .track-box .bills-code .wrap {
+      margin: 0 auto;
+      width: 100%; }
+    .track-box .bills-code ul {
+      margin: 0; }
+    .track-box .bills-code li {
+      width: 190px;
+      text-align: center;
+      background: #838383;
+      height: 35px;
+      line-height: 35px;
+      float: left;
+      border-bottom: 1px solid white;
+      border-right: 1px solid white;
+      padding: 0;
+      cursor: pointer;
+      color: white; }
+      .track-box .bills-code li.right {
+        background: #0085ff; }
+      .track-box .bills-code li.wrong {
+        background: #f11117; }
+  .track-box .fixed {
+    position: fixed;
+    top: 0;
+    margin-top: 0; }
+  .track-box .bills-code-placeholder {
+    height: 72px;
+    margin-top: 20px; }
+  .track-box .bills .bill {
+    padding: 20px 10px;
+    border-bottom: 1px solid #d2d2d2; }
+    .track-box .bills .bill .span9 {
+      width: 720px; }
+    .track-box .bills .bill .span3 {
+      float: right;
+      width: 160px;
+      text-align: center;
+      margin-right: 30px;
+      padding-top: 38px; }
+  .track-box .bills .site-high-area {
+    color: #0085ff;
+    cursor: pointer; }
+  .track-box .bills .table tr {
+    background: #f7f7f7; }
+  .track-box .bills .table tbody tr:first-child {
+    background: #0085ff;
+    color: white; }
+    .track-box .bills .table tbody tr:first-child .site-high-area {
+      color: white; }
+  .track-box .bills .table td {
+    border-top: 3px solid white;
+    background: transparent; }
+  .track-box .bills .bill strong {
+    font-weight: normal;
+    font-size: 20px;
+    margin-bottom: 30px;
+    display: block; }
+  .track-box .bills .bill .state {
+    margin-bottom: 30px;
+    /*padding:0;*/
+    border: 1px solid #d2d2d2;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    padding: 0 3px; }
+    .track-box .bills .bill .state li {
+      height: 42px;
+      line-height: 42px;
+      font-size: 13px;
+      padding: 0px 3px; }
+  .track-box .bills .bill .contact {
+    margin-top: 60px;
+    border: 1px dashed #0085ff;
+    padding: 20px 10px; }
+
+.captcha {
+  min-width: 200px;
+  height: 50px; }
+  .captcha input, .captcha img, .captcha span {
+    float: left;
+    display: inline; }
+  .captcha img {
+    margin-top: 1px; }
+  .captcha .field-validation-error {
+    display: none; }
+
+#alert {
+  background: none;
+  border: none;
+  padding-left: 26px;
+  height: 34px;
+  line-height: 34px; }
+
+/*# sourceMappingURL=bill.css.map */
