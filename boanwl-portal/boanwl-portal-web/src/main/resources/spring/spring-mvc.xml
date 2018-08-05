@@ -40,4 +40,5 @@
     <!--url路径如下：http://localhost:81/manager/static/ab/b/c/hello.css-->
     <!--静态资源放行：http://localhost:81/manager/css/hello.css本来是要经过contrller,但是配置了这句话，配置完了以后，直接去寻找webapp/css/hello.css-->
     <mvc:resources mapping="/lib/**" location="/lib/"/>
+    <mvc:resources mapping="/static/**" location="/static/"/>
 </beans>

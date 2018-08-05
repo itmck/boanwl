@@ -1,6 +1,7 @@
-﻿
-<!DOCTYPE html>
-<html>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>伯安快递  </title>
     <meta name="keywords" content="伯安,快递, 伯安快递,速递">
@@ -61,7 +62,7 @@
 
     <div class="topnav">
     <div class="container clearfix">
-        <img onclick="window.open('http://boan.html', 'webcs', 'width=750,height=600,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no,center=yes');" src="static/picture/minionlinesevice.png" style="position:absolute;right:0;top:0;cursor:pointer" />
+        <img onclick="window.open('http://boan.html', 'webcs', 'width=750,height=600,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no,center=yes');" src="" style="position:absolute;right:0;top:0;cursor:pointer" />
         <span class="pull-left">
             <a href="" target="_blank">伯安欢迎您浏览</a> |
            
@@ -74,6 +75,10 @@
         <div class="logo pull-left">
             <a href="/" title="伯安快递">
                 <img src="static/picture/logo.png"  alt="伯安快递">
+
+
+
+
             </a>
         </div>
         <ul id="main-nav-wrap" class="unstyled inline clearfix pull-right">
@@ -160,14 +165,18 @@
 		<div class="item"><img src="static/picture/3.jpg"></div>
 	</div> -->
     <ul class="slides">
-                <li style="background:url(static/images/bex20180103.jpg)  center top no-repeat">                    <a href="http://www.800bestex.com/news/detail/E2A36DBF2AA5AB0B" , target=&#39;_blank&#39;></a>
-</li>
-                <li style="background:url(static/images/md.jpg)  center top no-repeat">                    <a href="http://www.800best.com/express/md/pc/" , target=&#39;_blank&#39;></a>
-</li>
-                <li style="background:url(static/images/zs.jpg)  center top no-repeat">                    <a href="http://www.800best.com/express/partner/" , target=&#39;_blank&#39;></a>
-</li>
+        <%--<li style="background:url(static/images/bex20180103.jpg)  center top no-repeat"><a href="javascript:void(0)" , target=&#39;_blank&#39;></a>--%>
+<%--</li>--%>
+        <%--<li style="background:url(static/images/md.jpg)  center top no-repeat"><a href="javascript:void(0)" , target=&#39;_blank&#39;></a>--%>
+<%--</li>--%>
+        <%--<li style="background:url(static/images/zs.jpg)  center top no-repeat"><a href="javascript:void(0)" , target=&#39;_blank&#39;></a>--%>
+<%--</li>--%>
+            <c:forEach items="${imgList}" var="con">
+                <li>
+                    <a name="sfbest_hp_hp_focus_1" class="fore_pic trackref" href="/html/activity/1524466990.html" target="_blank"><img id="lunbo_1" alt="放价过五一" src="${con.href}" /></a>
+                </li>
+            </c:forEach>
 
-                 
         
     </ul>	
 

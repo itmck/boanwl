@@ -1,0 +1,1 @@
+(function(){var n;n=api.newsDetail.url+id;api.call("newsDetail",{data:{desId:id},success:function(n){return View.render("news-detail",n)}},!1);View.activeNavIndex=5}).call(this)

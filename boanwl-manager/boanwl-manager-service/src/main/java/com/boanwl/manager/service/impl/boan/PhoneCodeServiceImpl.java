@@ -4,7 +4,6 @@ import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.boan.comcom.utils.BugRobot;
 import com.boan.comcom.utils.PhoneCodeUtils;
-import com.boan.exp.RedisFirstConnectException;
 import com.boan.jedis.JedisClient;
 import com.boanwl.manager.service.boan.PhoneCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +69,7 @@ public class PhoneCodeServiceImpl implements PhoneCodeService {
         try {
             flg = jedisClient.exists(countKey);
         } catch (Exception e) {
-            bugRobot.sendErrorToDD(new RedisFirstConnectException(),"13567667892");
+            e.printStackTrace();
         }
         if (flg) {
 
