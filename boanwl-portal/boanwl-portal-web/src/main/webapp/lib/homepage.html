@@ -62,8 +62,7 @@
     <div class="container clearfix">
         <img onclick="window.open('http://boan.html', 'webcs', 'width=750,height=600,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no,center=yes');" src="" style="position:absolute;right:0;top:0;cursor:pointer" />
         <span class="pull-left">
-            <a href="" target="_blank">伯安欢迎您浏览</a> |
-           
+            <a href="" target="_blank"><span id = "myspan"></span></a> |
         </span>
     </div>
 </div>
@@ -392,7 +391,6 @@
                 var img1 = data.imglist[0].href;
                 var img2 = data.imglist[1].href;
                 var img3 = data.imglist[2].href;
-                alert(img1);
                var content1 = "background:url("+img1+")  center top no-repeat; position: absolute;width: 100%;";
                 var content2 = "background:url("+img2+")  center top no-repeat;  position: absolute;width: 100%;";
                 var content3 = "background:url("+img3+")  center top no-repeat;  position: absolute;width: 100%;";
@@ -404,6 +402,19 @@
             },
             'json'
         );
+        $.get(
+            '/boanwl/weather',
+
+            function (data) {
+                var weather = data.data.forecast[1].type;
+                var not = data.data.forecast[1].notice;
+                $("#myspan").html("今日天气" + weather + "  " + not);
+
+
+            },
+            'json'
+        );
+
     });
 </script>
 
