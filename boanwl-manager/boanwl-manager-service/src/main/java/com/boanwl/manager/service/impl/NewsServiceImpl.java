@@ -32,18 +32,20 @@ public class NewsServiceImpl implements NewsService {
     NewsMapper newsMapper;
 
     @Override
-    public int saveNews(TbNews tbNews) {
-        int i = 0;
+    public String saveNews(TbNews tbNews) {
+        String id  = "";
+
         try {
-            tbNews.setId(UUID.randomUUID().toString().replace("-", ""));
+            id = UUID.randomUUID().toString().replaceAll("-","");
+            tbNews.setId(id);
             tbNews.setStatus(0);
-            i = tbNewsMapper.insertSelective(tbNews);
+            tbNewsMapper.insertSelective(tbNews);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return i;
+        return id;
     }
 
     @Override

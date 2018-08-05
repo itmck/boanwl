@@ -5,9 +5,13 @@ import com.boanwl.manager.pojo.dto.NewsQueryDTO;
 import com.boanwl.manager.pojo.po.TbNews;
 import com.boanwl.manager.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import javax.jms.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +25,11 @@ import java.util.Map;
 @Controller
 @RequestMapping("/news")
 public class NewsAction {
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
+    @Resource
+    private Destination topicDestination;
     @Autowired
     private NewsService newsService;
 
@@ -34,8 +43,15 @@ public class NewsAction {
     public Object saveNews(TbNews tbNews) {
         Map<String,Object> map = new HashMap<>();
         try {
-            newsService.saveNews (tbNews);
+           String id =  newsService.saveNews (tbNews);
             map.put("save_code","0");
+            jmsTemplate.send(topicDestination, new MessageCreator() {
+                @Override
+                public Message createMessage(Session session) throws JMSException {
+                    TextMessage textMessage = session.createTextMessage(id);
+                    return textMessage;
+                }
+            });
         }catch (Exception e) {
             e.printStackTrace();;
             map.put("save_code","1");

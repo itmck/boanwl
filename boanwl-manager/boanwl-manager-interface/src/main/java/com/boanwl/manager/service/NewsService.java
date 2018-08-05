@@ -11,7 +11,7 @@ import java.util.List; /**
  * Version:V1.0
  */
 public interface NewsService {
-    int saveNews(TbNews tbNews);
+    String saveNews(TbNews tbNews);
 
     int updateNewsByNid(String nid);
 
