@@ -2,10 +2,16 @@ package com.boanwl.manager.web;
 
 import com.boanwl.fdfs.FastDFSFile;
 import com.boanwl.fdfs.FastDFSUtils;
+import com.boanwl.manager.pojo.dto.NewsQueryDTO;
+import com.boanwl.manager.pojo.po.TbNews;
+import com.boanwl.manager.service.NewsService;
 import com.boanwl.manager.service.boan.PhoneCodeService;
 import com.dhc.util.JsonUtils;
 import com.dhc.util.PropKit;
 import com.dhc.util.StrKit;
+import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.common.SolrInputDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +32,10 @@ import java.util.Map;
 @Controller
 public class CodeTestAction {
 
+    @Autowired
+    private SolrServer solrServer;
+    @Autowired
+    NewsService service;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private PhoneCodeService phoneCodeService;
@@ -79,6 +90,46 @@ public class CodeTestAction {
             logger.error(e.getMessage(), e);
         }
         return jsonString;
+    }
+
+    @ResponseBody
+    @GetMapping("/boan")
+    public Map<String,Object> slorDataImport() throws IOException, SolrServerException {
+
+        NewsQueryDTO dto = new NewsQueryDTO();
+        dto.setPage(1);
+        dto.setLimit(1000);
+        service.listNews(dto).getData().forEach((TbNews n) ->{
+
+            SolrInputDocument document = new SolrInputDocument();
+
+            /**
+             * 	<field name="news_id" type="text_ik" indexed="false" stored="true"/>
+             <field name="news_title" type="text_ik" indexed="true" stored="true"/>
+             <field name="news_content" type="long" indexed="true" stored="true"/>
+             <field name="news_time" type="date" indexed="false" stored="true"/>
+             <field name="news_image" type="string" indexed="false" stored="true"/>
+             */
+            document.addField("id", n.getId());
+            document.addField("news_id",n.getId());
+            document.addField("news_title",n.getTitle());
+            document.addField("news_content",n.getContent());
+            document.addField("news_time",n.getTime());
+            document.addField("news_image",n.getImage());
+
+            try {
+                solrServer.add(document);
+            } catch (SolrServerException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
+        solrServer.commit();
+        Map<String,Object> map = new HashMap<>();
+        map.put("msg","ok");
+        return map;
     }
 
 
