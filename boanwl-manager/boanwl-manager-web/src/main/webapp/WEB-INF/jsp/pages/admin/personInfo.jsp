@@ -55,6 +55,13 @@
 					</div>
 				</div>
 				<div class="layui-form-item">
+					<label class="layui-form-label">性别</label>
+					<div id="mail" class="layui-input-block">
+						<input type="radio" name="sex" value="1" title="男" style="display: inline-block;">男
+						<input type="radio" name="sex" value="0" title="女" checked style="display: inline-block;">女
+					</div>
+				</div>
+				<div class="layui-form-item">
 					<label class="layui-form-label">手机号码</label>
 					<div class="layui-input-block">
 						<input type="text" name="username" id="tel"  autocomplete="off" class="layui-input" placeholder="输入手机号码">
@@ -71,14 +78,9 @@
 					<div class="layui-input-block">
 						<input type="text" name="username" id="idcard"  autocomplete="off" class="layui-input" placeholder="输入身份证号">
 					</div>
+
 				</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label">性别</label>
-						<div class="layui-input-block">
-							<input type="radio" name="sex" value="男" title="男">
-							<input type="radio" name="sex" value="女" title="女" checked="">
-						</div>
-					</div>
+
 				<%--<div class="layui-form-item">
 					<label class="layui-form-label">修改头像</label>
 					<div class="layui-input-block">
@@ -137,15 +139,23 @@
                  $("#image_address").val(data.data[0].image)
                  $("#remark").text(data.data[0].remark);
 
-                 if(data.data[0].sex!='0'){
 
+                     $("#mail input").each(function () {
+                         /*alert(data.data[0].sex);
+                         alert($(this).val());*/
+						 if ($(this).val()==data.data[0].sex) {
+                             $(this).prop("checked","checked");
+						 }
+
+                     });
+                     alert($("#sex").val());
                      /*$("#mail").attr("checked","checked");
                      layui.form.render();*/
-                 }else{
+
                      //alert(data.data[0].sex);
                      //$("#femail").attr("checked",true);
                      //layui.form.render();
-                 }
+
 
 
              },
@@ -154,7 +164,7 @@
 		 });
         $("#editbtn").on("click",function(){$.get(
             '${pageContext.request.contextPath}/admin/updateAdmin' ,//上传接口
-            {"id":backData.id,"realname":$("#realname").val(),"sex":backData.sex,"remark":$("#remark").val(),"tel":$("#tel").val(),"birthday":$("#birthday").val(),"image":$("#image_address").val(),"idcard":$("#idcard").val()},
+            {"id":backData.id,"realname":$("#realname").val(),"sex":$("input[name='sex']:checked").val(),"remark":$("#remark").val(),"tel":$("#tel").val(),"birthday":$("#birthday").val(),"image":$("#image_address").val(),"idcard":$("#idcard").val()},
              function(data){
 
             } ,
