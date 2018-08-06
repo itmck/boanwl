@@ -6,12 +6,11 @@ import com.boanwl.manager.pojo.po.TbNews;
 import com.boanwl.manager.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.jms.*;
+import javax.jms.Destination;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,13 +44,13 @@ public class NewsAction {
         try {
            String id =  newsService.saveNews (tbNews);
             map.put("save_code","0");
-            jmsTemplate.send(topicDestination, new MessageCreator() {
-                @Override
-                public Message createMessage(Session session) throws JMSException {
-                    TextMessage textMessage = session.createTextMessage(id);
-                    return textMessage;
-                }
-            });
+//            jmsTemplate.send(topicDestination, new MessageCreator() {
+//                @Override
+//                public Message createMessage(Session session) throws JMSException {
+//                    TextMessage textMessage = session.createTextMessage(id);
+//                    return textMessage;
+//                }
+//            });
         }catch (Exception e) {
             e.printStackTrace();;
             map.put("save_code","1");
