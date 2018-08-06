@@ -85,15 +85,7 @@
     <div class="topnav">
     <div class="container clearfix">
         <img onclick="window.open('http://webcs.800best.com/smWeb.html', 'webcs', 'width=750,height=600,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no,center=yes');" src="../static/picture/minionlinesevice.png" style="position:absolute;right:0;top:0;cursor:pointer" />
-       <!-- <span class="pull-left">
-            <a href="http://www.800best.com" target="_blank">伯安集团官网</a> |
-            <a href="javascript:void(0);" class="addFavorite">加入收藏</a> |
-            <a href="javascript:void(0);" class="follow-wx">关注微信</a> |
-            <a href="javascript:void(0);" class="follow-wxxcx">使用微信小程序</a> |
-            <a href="javascript:void(0);" class="follow-alipay">关注支付宝服务窗</a> |
-            
 
-        </span>-->
         <span class="pull-left">
             <a href="" target="_blank">伯安欢迎您浏览</a> |
 
@@ -111,10 +103,7 @@
 </div>
 <div class="modal hide fade wxxcx-box p20" id="wxxcx-box" style="text-align: center; width: 360px; margin-left: -210px;">
     <img src="../static/picture/wxxcx.jpg"/>
-    <!--<div class="text-center" style="background: #ff3d3b">
-        <p class="font14 font-white">用微信扫一扫</p>
-        <p class="font12 font-white">关注伯安快递官方微信</p>
-    </div>-->
+
 </div>
 <div class="modal hide fade alipay-box p20" id="alipay-box" style="text-align: center;width:360px;margin-left:-240px;">
     <img src="../static/picture/alipay_qr.jpg" />
@@ -167,29 +156,9 @@
             <li><a href="/boanwl/lib/query/queryExpress.html">查 件</a></li>
             <!--<li><a href="/Order/Create">寄 件</a></li>-->
             <li><a href="/boanwl/lib/send/sendExpress.html">寄 件</a></li>
-            <!--<li><a href="javascript:void(0);">网 点</a>
-                <ul class="unstyled hide" style="position: absolute;left : -20px;width : 85px;">
-                    <li><a href="/Site/Query">伯安快递站点</a> </li>
-                    <li><a href="/Site/ServiceQuery">伯安快递服务点</a> </li>
-                </ul>
-            </li>-->
 
-            <!--<li>
-                <a href="javascript:void(0);">产品服务</a>
-
-                <ul class="unstyled hide">
-                    <li><a href="/Best/Products">快递</a></li>
-                    <li><a href="http://www.800best.com/freight/" target="_blank">快运</a></li>
-                    <li><a href="http://www.800best.com/supply-chain/" target="_blank">云仓</a></li>
-                </ul>
-            </li>-->
             <li><a href="/boanwl/lib/news/news.html">新闻中心</a></li>
-            <!--<li><a href="javascript:void(0);">企业服务</a>
-                <ul class="unstyled hide">
-                    <li><a href="http://www.800best.com/express/partner/" target="_blank">加盟合作</a></li>
-                    <li><a href="/static/Index/70EBB44ADC5E52ED" target="_blank">采购招标</a> </li>
-                </ul>
-            </li>-->
+
             <li><a href="/boanwl/lib/help/help.html" style="padding-right:0;">帮助中心</a></li>
         </ul>
         
@@ -215,23 +184,23 @@
 		<h3>	◆ 网上寄件 ◆
 		<small>上门取件时间以客服电话确认为准。</small></h3>
 <form action="/Order/Result" class="form-horizontal mt10" id="send-form" method="post">			<fieldset class="send-container">
-				<input type="hidden" id="fromaid" name="fromaid">
+			<!--	<input type="hidden" id="fromaid" name="fromaid">
 				<input type="hidden" id="fromprov" name="fromprov">
 				<input type="hidden" id="fromcity" name="fromcity">
-				<input type="hidden" id="fromcounty" name="fromcounty">
+				<input type="hidden" id="fromcounty" name="fromcounty">-->
 				<strong>寄件人信息</strong><hr />
 				<div class="control-group">
 					
-					<label class="control-label" for="name"><span class="font-red">*</span> 姓名</label>
+					<label class="control-label" for="senderName"><span class="font-red">*</span> 姓名</label>
 					<div class="controls">
-						<input type="text" class="input-medium name-input" id="fromname" name="fromname">
+						<input type="text" class="input-medium name-input" id="fromname" name="senderName">
 					</div>
 				</div>
 				<div class="control-group">
 					
-					<label class="control-label" for="fromphone"><span class="font-red">*</span> 手机/固话</label>
+					<label class="control-label" for="senderPhone"><span class="font-red">*</span> 手机/固话</label>
 					<div class="controls">
-                        <input type="text" class="input-medium name-input" name="fromphone">
+                        <input type="text" class="input-medium name-input" name="senderPhone">
 					</div>
 				</div>
 				
@@ -241,11 +210,10 @@
 					<span class="font-red">*</span> 上门地址</label>
 				    <div class="controls">
 				    	<div class="district-input-wrap">
-				        <input type="text" class="input-xlarge district-input" readonly id="fromdistrict" name="fromdistrict" district-trigger="blur" placeholder="输入城市名（中文/拼音首字母）"/>
+				        <!--<input type="text" class="input-xlarge district-input" readonly id="fromdistrict" name="senderAddress" district-trigger="blur" placeholder="输入城市名（中文/拼音首字母）"/>-->
+                            <input type="text" class="input-medium name-input"name="senderAddress">
 						<i class="icon icon-district"></i>
 						</div>
-
-                    
 				    </div>
 				</div>
 				<div class="control-group">
@@ -253,29 +221,26 @@
 					<label class="control-label"></label>
 					<div class="controls">
 				
-                        <input type="text" class="input-xlarge span5" name="fromaddress" placeholder="详细地址（街道门牌信息）">
+                        <input type="text" class="input-xlarge span5" name="senderAdderssDetail" placeholder="详细地址（街道门牌信息）">
 					</div>
 				</div>
 			</fieldset>
 			<fieldset class="receive-container">
-				<input type="hidden" name="toaid" id="toaid">
-				<input type="hidden" name="toprov" id="toprov">
-				<input type="hidden" name="tocity" id="tocity">
-				<input type="hidden" name="tocounty" id="tocounty">
+
 			    <strong>收件人信息</strong>
                 <hr style="margin-left: 15px" />
 				<div class="control-group">
 					
 					<label class="control-label">姓名</label>
 					<div class="controls">
-                        <input type="text" class="input-medium name-input" name="toname">
+                        <input type="text" class="input-medium name-input" name="receiverName">
 					</div>
 				</div>
 				<div class="control-group">
 					
 					<label class="control-label">手机/固话</label>
 					<div class="controls">
-                        <input type="text" class="input-medium name-input" name="tophone">
+                        <input type="text" class="input-medium name-input" name="receiverPhone">
 					</div>
 				</div>
 				
@@ -284,8 +249,7 @@
 					<label class="control-label">收货地址</label>
 					<div class="controls">
 							<div class="district-input-wrap">
-						    	<input type="text" readonly class="input-xlarge district-input" id="todistrict" placeholder="输入城市名（中文/拼音首字母）"/>
-						    	<i class="icon icon-district"></i>
+                                <input type="text" class="input-medium name-input"name="receiverAddress">
                            	</div>
 						
 					</div>
@@ -296,120 +260,32 @@
 					<label class="control-label"></label>
 					<div class="controls">
 						
-						<input type="text" class="input-xlarge span5" name="toaddress" placeholder="详细地址（街道门牌信息）">
+						<input type="text" class="input-xlarge span5" name="receiverAdderssDetail" placeholder="详细地址（街道门牌信息）">
 					</div>
 				</div>
 
 			</fieldset>
 			<fieldset>
-				<strong style="padding-left: 16px;">物品信息</strong><hr />
+
 				<div class="control-group">
 					<!-- Select Basic -->
 					<label class="control-label">请选择重量</label>
 					<div class="controls">
-						<select class="input-medium" name="weight">
-							<option> 1公斤以下 </option>
-							<option> 1-5公斤</option>
-							<option> 5公斤以上 </option>
+						<select class="input-medium" name="cargoWeight">
+							<option value="1"> 1公斤以下 </option>
+							<option value="3"> 1-5公斤</option>
+							<option value="6"> 5公斤以上 </option>
 						</select>
 					</div>
 				</div>
-				<div class="control-group">
-					<label class="control-label"></label>
-					<!-- Multiple Checkboxes -->
-					<div class="controls">
-						<!-- Inline Checkboxes -->
-						<label class="checkbox inline">
-							<input type="checkbox" value="1" name="isbig">
-							我的货物不重，但是体积很大
-						</label>
-					</div>
-				</div>
+
 				<div class="control-group">
 					
 					<label class="control-label">备注</label>
 					<div class="controls">
-						<input type="text" class="input-xlarge span5" name="remark" placeholder="易碎品、液体、贵重物品等请特别说明">&nbsp;&nbsp;&nbsp;&nbsp;<a class="font-blue" href="/static/Index/28B9E6753B7C2055" target="_blank">禁寄须知</a>
+						<input type="text" class="input-xlarge span5" name="senderRemarks" placeholder="易碎品、液体、贵重物品等请特别说明">&nbsp;&nbsp;&nbsp;&nbsp;
 					</div>
 				</div>
-				
-				
-				
-				<div class="control-group">
-					<label class="control-label">附加服务</label>
-					<!-- Multiple Checkboxes -->
-					<div class="controls">
-						<!-- Inline Checkboxes -->
-						<label class="checkbox inline">
-							<input type="checkbox" value="1" name="issv" id="issv">
-							物品保价
-						</label>
-						<label class="checkbox inline">
-							<input type="checkbox" value="1" name="iscod" id="iscod">
-							代收货款
-						</label>
-					</div>
-				</div>
-
-				<div id="sv-detail" class="hide">
-					<div class="control-group">
-							<label class="control-label">保价类型</label>
-							<!-- Multiple Checkboxes -->
-							<div class="controls">
-								<!-- Inline Checkboxes -->
-								<label class="radio inline">
-									<input type="radio" value="1" name="vtype">
-									文件类不高于2000元
-								</label>
-								<label class="radio inline">
-									<input type="radio" value="1" name="vtype">
-									非文件类不高于5000
-								</label>
-							</div>
-						</div>
-
-						<div class="control-group">
-							
-							<label class="control-label">声明价值</label>
-							<div class="controls">
-								<input type="text" class="input-medium" name="sv"> 元
-							</div>
-						</div>
-
-						<div class="control-group">
-							
-							<label class="control-label"></label>
-							<div class="controls font-red">
-								说明：保价费用为声明价值的1%，最低收费5元，尾数遵循四舍五入的原则。
-								<br>1、快件声明价值不得超过快件实际价值，文件类最高声明价值不超过2000元，非文件类最高声明价值不超过5000元；
-								<br>2、若未选择保价，伯安快递对月结客户在不超过运费五倍的限额内，非月结客户在不超过运费三倍的限额内赔偿托寄物损失的实际价值。若选择保价，伯安快递按托寄物的声明价值和损失比例赔偿，托寄物声明价值高于实际价值的，按实际价值赔偿。
-							</div>
-						</div>
-				</div>
-
-				<div id="cod-detail" class="hide">
-					<div class="control-group">
-						
-						<label class="control-label">代收货款备注</label>
-						<div class="controls">
-							 <div class="textarea">
-								<textarea class="span5" name="cod" placeholder="请简单描述需求，下单之后等待工作人员的联系哦~"></textarea>
-							 </div>
-						</div>
-					</div>
-
-					<div class="control-group">
-						
-						<label class="control-label"></label>
-                        <div class="controls font-red">
-                            说明：当前只在上海、杭州两个城市提供代收货款服务
-                            <br>物品范围：符合快件承运范围，同时代收货款金额在2500元（含）内的货物。
-                            <br>需提供的资料：需与此货物相符的收款凭证，如货物发票或收据的原件。如寄方客户与收件人约定无须收款凭证，则以运单为收款依据。
-                        </div>
-					</div>
-
-				</div>
-
 			</fieldset>
 	 		<div class="control-group text-center">
 				<button type="button" id="send-btn" class="btn blue high wide">确认下单</button>
