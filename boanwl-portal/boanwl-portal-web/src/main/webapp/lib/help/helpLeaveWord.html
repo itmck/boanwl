@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>伯安快递 - 在线留言 </title>
@@ -8,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Cache-Control" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <link rel="shortcut icon" type="image/x-icon" href="/images/800bestexicon.ico" />
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"
+          media="all">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/800bestexicon.ico"/>
     <link href="../static/css/4d1d91a0f011495495fa6b5014e07cfc.css" rel="stylesheet"/>
 
     <link href="../static/css/ae348c73226940d9ba72fd0bba6d5dbc.css" rel="stylesheet"/>
@@ -20,35 +21,13 @@
 
     <link href="../static/css/9a2859e2dd884eecbfc6b9f0f67810f5.css" rel="stylesheet"/>
 
-    <script src="../static/js/47a12ec1dabd46ff8c6830b636086b59.js"></script>
-
-    <script>
-        var urlConfig = {
-            web: "",
-            api: "/htwebapi",
-            q9api : "/q9api",
-            wx: "/wxapi",
-            wxplatform: "http://psapi.appl.800best.com/",
-            weixinappid: "wx61af89c230ee8c23",
-            wxVerificationCodePath: "/security/sendsms"
-        };
-        var appConfig = {
-            appId: "HTWeb",
-            userId: "",
-            userName: ""
-        }
-        var app = {}
-        $(function () {
-            $(':text, textarea').placeholder();
-        });
-    </script>
-
 </head>
 <body>
 
-    <div class="topnav">
+<div class="topnav">
     <div class="container clearfix">
-        <img onclick="window.open('http://webcs.800best.com/smWeb.html', 'webcs', 'width=750,height=600,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no,center=yes');" src="../static/picture/minionlinesevice.png" style="position:absolute;right:0;top:0;cursor:pointer" />
+        <img onclick="window.open('http://webcs.800best.com/smWeb.html', 'webcs', 'width=750,height=600,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no,center=yes');"
+             src="../static/picture/minionlinesevice.png" style="position:absolute;right:0;top:0;cursor:pointer"/>
         <!--<span class="pull-left">
             <a href="http://www.800best.com" target="_blank">伯安集团官网</a> |
             <a href="javascript:void(0);" class="addFavorite">加入收藏</a> |
@@ -62,7 +41,7 @@
             <a href="" target="_blank">伯安欢迎您浏览</a> |
 
         </span>
-        
+
 
     </div>
 </div>
@@ -73,7 +52,8 @@
         <p class="font12 font-white">关注伯安快递官方微信</p>
     </div>
 </div>
-<div class="modal hide fade wxxcx-box p20" id="wxxcx-box" style="text-align: center; width: 360px; margin-left: -210px;">
+<div class="modal hide fade wxxcx-box p20" id="wxxcx-box"
+     style="text-align: center; width: 360px; margin-left: -210px;">
     <img src="../static/picture/wxxcx.jpg"/>
     <!--<div class="text-center" style="background: #ff3d3b">
         <p class="font14 font-white">用微信扫一扫</p>
@@ -81,48 +61,18 @@
     </div>-->
 </div>
 <div class="modal hide fade alipay-box p20" id="alipay-box" style="text-align: center;width:360px;margin-left:-240px;">
-    <img src="../static/picture/alipay_qr.jpg" />
+    <img src="../static/picture/alipay_qr.jpg"/>
     <div class="text-center" style="background:#ff3d3b">
         <p class="font14 font-white">用支付宝扫一扫</p>
         <p class="font12 font-white">关注伯安快递服务窗</p>
     </div>
 </div>
-<script>
-
-    $(document).ready(function () {
-        $(".follow-wx").popover({
-            html: true,
-            trigger: 'hover',
-            content: $('#wx-box').html(),
-            placement: 'bottom'
-        });
-        $(".follow-alipay").popover({
-            html: true,
-            trigger: 'hover',
-            content: $('#alipay-box').html(),
-            placement: 'bottom'
-        })
-        $(".follow-wxxcx").popover({
-            html: true,
-            trigger: 'hover',
-            content: $('#wxxcx-box').html(),
-            placement: 'bottom'
-        })
-        // $(".follow-wx").bind("click", function () {
-        //     var detail = $('#wx-box')
-
-        //     detail.modal('show')
-        // })
-
-    })
-
-</script>
-    <div class="nav main-nav" id="main-nav">
+<div class="nav main-nav" id="main-nav">
     <div class="container">
         <div class="border-line hide"></div>
         <div class="logo pull-left">
             <a href="/" title="伯安快递">
-                <img src="../static/picture/logo.png"  alt="伯安快递">
+                <img src="../static/picture/logo.png" alt="伯安快递">
             </a>
         </div>
         <ul id="main-nav-wrap" class="unstyled inline clearfix pull-right">
@@ -156,213 +106,314 @@
             </li>-->
             <li><a href="/boanwl/lib/help/help.html" style="padding-right:0;">帮助中心</a></li>
         </ul>
-        
-    </div>
-</div>
-    
-
-    <div class="flexslider slide   helperslide" id="slide">
-        
 
     </div>
-
-    <div class="main">
-        <div class="container">
-
-            
-
-<div class="breadcrum">
-  
-    <div class="Left-title"><i class="icon icon-s1 icon-help"></i> <a href="index">帮助中心</a><small> &gt; 在线留言</small></div>
-    <!-- <div class="line"></div> -->
 </div>
-<div class="box feedback-box">
 
-	<!-- <form action="" class="form-inline feedback-query pt10 pb10 text-right pr30 "> -->
-<form action="/Help/FeedbackQuery" class="form-inline feedback-query pt10 pb10 text-right pr30" id="feedback-query-form" method="post">		<label for="phone"><strong>留言回复查询</strong> </label>
-		<input type="text" name="phone" placeholder="请输入留言时填写的手机号码">
-		<button id="feedback-query-btn" class="btn blue mhigh pl20 pr20 disabled" disabled="true">查 询</button>
-</form>	<!-- </form> -->
-	<form class="form-horizontal" id="feedback-form">
-		<fieldset>
-			<div class="control-group">
-				<label class="control-label">留言类型</label>
-				<div class="controls">
-					<select class="input-xlarge" name="type">
-						<option value="1">查件</option>
-						<option value="2">咨询</option>
-						<option value="3">投诉延误</option>
-						<option value="4">投诉遗失</option>
-						<option value="5">投诉破损短少</option>
-						<option value="6">投诉服务态度</option>
-						<option value="7">其他</option>
-					</select>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label">主题</label>
-				<div class="controls"> 
-					<input type="text"   class="input-xlarge" name="title">
-					
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label">姓名</label>
-				<div class="controls">
-					<input type="text"  class="input-xlarge" name="name">
-					
-				</div>
-			</div>
 
-			<div class="control-group">
-				<label class="control-label">手机号</label>
-				<div class="controls">
-					<input type="text" class="input-xlarge" name="phone">
-					
-				</div>
-			</div>
-		    <div class="control-group">
-		        <label class="control-label">单号</label>
-		        <div class="controls">
-		            <input type="text"   class="input-xlarge" name="billcode">
-					
-		        </div>
-		    </div>
-            <div class="control-group">
-                <label class="control-label">收件地址：</label>
-                <div class="controls">
-                    <input type="text" class="input-xlarge" placeholder="" name="receiveaddress">
-                </div>
+<div class="flexslider slide   helperslide" id="slide">
+
+</div>
+
+<div class="main">
+    <div class="container">
+
+
+        <div class="breadcrum">
+            <div class="Left-title"><i class="icon icon-s1 icon-help"></i> <a href="index">帮助中心</a>
+                <small> &gt; 在线留言</small>
             </div>
-			<div class="control-group" style="height: 130px;">
-				<label class="control-label">内容</label>
-				<div class="controls">
-					<div class="textarea">
-						<textarea  name="content" rows="4" cols="30"> </textarea>
-					</div>
-					<span class="help-inline"> </span>
-				</div>
-			</div>
+            <!-- <div class="line"></div> -->
+        </div>
 
-			<div class="control-group">
-				<div class="controls">
-					<button type="button" id="feedback-btn" class="btn blue high wide">提交留言</button>
-				</div>
-			</div>
-			<div id="alert" class="hide alert"></div>
-		</fieldset>
-	</form>
-	
-</div>
+        <div class="box feedback-box">
+
+            <!--<form action="" class="form-inline feedback-query pt10 pb10 text-right pr30"-->
+            <!--id="feedback-query-form">-->
+            <!--<label><strong>留言回复查询</strong> </label>-->
+            <!--<input type="text" id="utel" name="utel" placeholder="请输入留言时填写的手机号码">-->
+            <!--<button id="query"  class="">查 询</button>-->
+            <!--</form>-->
+            <blockquote class="layui-elem-quote ">
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <input id="utel" placeholder="请输入手机号搜索留言回复信息" class="input-xlarge" type="text">
+                        <button id="query" class="layui-btn layui-btn-radius">
+                            <i class="layui-icon">&#xe615;</i> 搜索
+                        </button>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                </div>
+            </blockquote>
+            <form class="layui-form" action="">
+
+                <div style="height: 30px;">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">主题</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="input-xlarge" name="theme">
+
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">留言类型</label>
+                    <div class="layui-input-block " style="width:280px">
+                        <select name="uid" lay-verify="required">
+                            <option value="0">查寻快件</option>
+                            <option value="1">咨询物流</option>
+                            <option value="2">投诉延误</option>
+                            <option value="3">投诉遗失</option>
+                            <option value="4">其他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="input-xlarge" name="uname" lay-verify="required">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机号</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="input-xlarge" name="utel" lay-verify="required">
+
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">单号</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" name="orderNo" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">收件地址：</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="input-xlarge" placeholder="" name="address">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="height: 130px;">
+                    <label class="layui-form-label">内容</label>
+                    <div class="layui-input-block">
+                        <div class="textarea">
+                            <textarea name="requestMsg" rows="4" cols="30"> </textarea>
+                        </div>
+                        <span class="help-inline"> </span>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="demo">立即提交</button>
+                        <button type="reset" class="layui-btn">重置</button>
+                    </div>
+                </div>
+                <div id="alert" class="hide alert"></div>
+            </form>
         </div>
     </div>
-    
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="span span2">
-                    <dl>
-                        <dt class="foot-blue">企业服务</dt>
-                        <dd><a class="foot-blue" href="http://www.800best.com/express/partner/" target="_blank">加盟合作</a></dd>
-                        <dd><a class="foot-blue" href="/static/Index/70EBB44ADC5E52ED" target="_blank">采购招标</a></dd>
-                        <dd><a class="foot-blue" href="http://inner.800bestex.com:8090/" target="_blank">站点登录入口</a></dd>
-                    </dl>
-                </div>
-                <div class="span span2">
-                    <dl>
-                        <dt>查询·寄件</dt>
-                        <dd><a href="/bill/track">运单追踪</a></dd>
-                        <dd><a href="/order/create">寄件</a></dd>
-                        <dd><a href="/Site/Query">网点</a></dd>
-                        <dd><a href="/Best/Products">产品服务</a></dd>
-                        <dd><a class="foot-red" href="/static/Index/28B9E6753B7C2055" target="_blank">禁寄须知</a></dd>
-                    </dl>
-                </div>
-     
-                <div class="span span2">
-                    <dl>
-                        <dt>关于我们</dt>
-                        <dd> <a href="/news/list">新闻中心</a></dd>
-                        <dd><a target="_blank" href="http://www.800best.com/hr">人才招聘</a></dd>
-                        <!-- <dd><a href="#">关于伯安快递</a></dd> -->
-                        <dd><a href="/home/About">关于伯安快递</a></dd>
-                        <dd><a target="_blank" href="http://www.800best.com ">伯安物流</a></dd>
-                    </dl>
-                </div>
-                <div class="span span2">
-                    <dl>
-                        <dt>帮助中心</dt>
-                  
-                        <dd class="">95320</dd>
-                        <dd><a  href="javascript:void(0);" onclick="window.open('http://webcs.800best.com/smWeb.html', 'webcs', 'width=750,height=600,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no,center=yes');">在线客服</a></dd>
-                        <dd><a href="/help/Feedback">投诉与建议</a></dd>
-                        <dd><a href="/static/Index/BB4318709137ED52">各地客服电话</a></dd>
-                    </dl>
-                </div>
-                <div class="span wx-span" style="float:right">
-                    <div class="divider">
-                        <div>微信公众号</div>
-                    </div>
-                    <div class="row mt30">
-                        <div class="span text-center">
-                            <div>
-                                <img src="../static/picture/htewm.png" alt="访问伯安快递官方微博">
-                            </div>
-                            <div class="mt10 pt5">伯安快递</div>
-                        </div>
-                        <div class="span text-center" style="float: right">
-                            <div>
-                                <img src="../static/picture/rcewm.png" alt="伯安招聘">
-                            </div>
-                            <div class="mt10 pt5">伯安招聘</div>
-                        </div>
-                    </div>
-           
-                </div>
+</div>
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="span span2">
+                <dl>
+                    <dt class="foot-blue">企业服务</dt>
+                    <dd><a class="foot-blue" href="http://www.800best.com/express/partner/" target="_blank">加盟合作</a>
+                    </dd>
+                    <dd><a class="foot-blue" href="/static/Index/70EBB44ADC5E52ED" target="_blank">采购招标</a></dd>
+                    <dd><a class="foot-blue" href="http://inner.800bestex.com:8090/" target="_blank">站点登录入口</a></dd>
+                </dl>
+            </div>
+            <div class="span span2">
+                <dl>
+                    <dt>查询·寄件</dt>
+                    <dd><a href="/bill/track">运单追踪</a></dd>
+                    <dd><a href="/order/create">寄件</a></dd>
+                    <dd><a href="/Site/Query">网点</a></dd>
+                    <dd><a href="/Best/Products">产品服务</a></dd>
+                    <dd><a class="foot-red" href="/static/Index/28B9E6753B7C2055" target="_blank">禁寄须知</a></dd>
+                </dl>
             </div>
 
-            <div class="copy row">
-                <div class="span span1">
-                    <a href="http://www.spb.gov.cn" target="_blank" title="中华人民共和国国家邮政局">
-                        <img src="../static/picture/f1.png" alt="中华人民共和国国家邮政局">
-                    </a>
-                    <a href="http://www.cea.org.cn" target="_blank" title="中国快递协会">
-                        <img src="../static/picture/f2.png" alt="中国快递协会">
-                    </a>
-
-                    
-                </div>
-                <div class="span span8">
-                    伯安网络 版权所有 Copyright 2014 800bestex.com Inc. All rights reserved.  <a href="http://www.miibeian.gov.cn" target="_blank" style="text-decoration: underline;">沪ICP备11045012号</a>
-                  
-
-                </div>
-                <div class="span span3 text-right">
-                   伯安快递微博：<a href="http://e.weibo.com/bestexpress" target="_blank" title="访问伯安快递官方微博"><img src="../static/picture/f3.png" alt="访问伯安快递官方微博"></a>
-                </div>
+            <div class="span span2">
+                <dl>
+                    <dt>关于我们</dt>
+                    <dd><a href="/news/list">新闻中心</a></dd>
+                    <dd><a target="_blank" href="http://www.800best.com/hr">人才招聘</a></dd>
+                    <!-- <dd><a href="#">关于伯安快递</a></dd> -->
+                    <dd><a href="/home/About">关于伯安快递</a></dd>
+                    <dd><a target="_blank" href="http://www.800best.com ">伯安物流</a></dd>
+                </dl>
             </div>
-            <div class="text-center">  
-                    <a style="color:#939393;" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011802001068">
-                        <img src="../static/picture/beian.png" />沪公网安备 31011802001068号
-                    </a>
-                    <a style="color:#939393;text-decoration: underline" target="_blank" href="/Images/yyzz.jpg">企业营业执照</a>
+            <div class="span span2">
+                <dl>
+                    <dt>帮助中心</dt>
+
+                    <dd class="">95320</dd>
+                    <dd><a href="javascript:void(0);"
+                           onclick="window.open('http://webcs.800best.com/smWeb.html', 'webcs', 'width=750,height=600,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no,center=yes');">在线客服</a>
+                    </dd>
+                    <dd><a href="/help/Feedback">投诉与建议</a></dd>
+                    <dd><a href="/static/Index/BB4318709137ED52">各地客服电话</a></dd>
+                </dl>
+            </div>
+            <div class="span wx-span" style="float:right">
+                <div class="divider">
+                    <div>微信公众号</div>
+                </div>
+                <div class="row mt30">
+                    <div class="span text-center">
+                        <div>
+                            <img src="../static/picture/htewm.png" alt="访问伯安快递官方微博">
+                        </div>
+                        <div class="mt10 pt5">伯安快递</div>
+                    </div>
+                    <div class="span text-center" style="float: right">
+                        <div>
+                            <img src="../static/picture/rcewm.png" alt="伯安招聘">
+                        </div>
+                        <div class="mt10 pt5">伯安招聘</div>
+                    </div>
+                </div>
+
             </div>
         </div>
+
+        <div class="copy row">
+            <div class="span span1">
+                <a href="http://www.spb.gov.cn" target="_blank" title="中华人民共和国国家邮政局">
+                    <img src="../static/picture/f1.png" alt="中华人民共和国国家邮政局">
+                </a>
+                <a href="http://www.cea.org.cn" target="_blank" title="中国快递协会">
+                    <img src="../static/picture/f2.png" alt="中国快递协会">
+                </a>
+
+
+            </div>
+            <div class="span span8">
+                伯安网络 版权所有 Copyright 2014 800bestex.com Inc. All rights reserved. <a href="http://www.miibeian.gov.cn"
+                                                                                    target="_blank"
+                                                                                    style="text-decoration: underline;">沪ICP备11045012号</a>
+
+
+            </div>
+            <div class="span span3 text-right">
+                伯安快递微博：<a href="http://e.weibo.com/bestexpress" target="_blank" title="访问伯安快递官方微博"><img
+                    src="../static/picture/f3.png" alt="访问伯安快递官方微博"></a>
+            </div>
+        </div>
+        <div class="text-center">
+            <a style="color:#939393;" target="_blank"
+               href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011802001068">
+                <img src="../static/picture/beian.png"/>沪公网安备 31011802001068号
+            </a>
+            <a style="color:#939393;text-decoration: underline" target="_blank" href="/Images/yyzz.jpg">企业营业执照</a>
+        </div>
     </div>
+</div>
 </body>
+<script type="text/javascript" src="../layui/layui.all.js" charset="utf-8">
+</script>
+<script>
+
+    layui.use(['form', 'jquery', 'layer'], function () {
+        var form = layui.form,
+            $ = layui.jquery,
+            layer = layui.layer;
+        form.on('submit(demo)', function (data) {
+            $.ajax({
+                url: "../../mck/insert",
+                method: "post",
+                data: data.field,
+                success: function (d) {
+                    if (d.flg == 1) {
+                        setTimeout(function () {
+                            top.layer.close(index);
+                            top.layer.msg("留言成功！");
+                            layer.closeAll("iframe");
+                            //刷新父页面
+                            // parent.location.reload();
+                            location.href = "../help/wordResult.html";
+                        }, 50);
+                    } else {
+                        layer.msg("留言失败,一个订单只能留言一次", {icon: 1});
+                    }
+                },
+                dateType: "json"
+            });
+            var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
+            return false;
+        });
+
+        //监听搜索按钮
+        $('#query').on('click', function () {
+            //获取输入框数据
+            var utel = $('#utel').val();
+            // layer.msg(val);
+            if ($.trim(utel).length > 0) {
+                $.get(
+                    "../../mck/query",
+                    {utel: utel},
+                    function (data) {
+
+                        if(data.code==0){
+                                if(data.data[0]==null){
+                                    layer.tips('留言未回复,请耐心等待!!', '#query', {
+                                        tips: [2, '#ff6600'],
+                                        time: 2000
+                                    });
+                                }else{
+                                    layer.tab({
+                                        area: ['600px', '300px'],
+                                        tab: [{
+                                            title: '订单号'+data.data[0].orderNo,
+                                            content: '回复:'+data.data[0].respMsg
+                                        }]
+                                    });
+
+                                }
+
+                        }else{
+                            layer.tips('请输入留言时的手机号!!', '#query', {
+                                tips: [2, '#ff6600'],
+                                time: 2000
+                            });
+
+                        }
+                    },
+                    "json"
+                );
+            }else {
+
+                //layer.msg('亲,您未输入任何东西', {icon: 1});
+                layer.tips('对不起您未输入任何东西!!', '#query', {
+                    tips: [2, '#ff6600'],
+                    time: 2000
+                });
+            }
+        });
+
+    });
+
+</script>
 </html>
-<script src="../static/js/81837495ffad4e089cefb5382d2d1651.js"></script>
+<!--<script src="../static/js/81837495ffad4e089cefb5382d2d1651.js"></script>-->
 
-<script src="../static/js/12aca07aac2a4ff7b6b1b9ad7332e866.js"></script>
+<!--<script src="../static/js/12aca07aac2a4ff7b6b1b9ad7332e866.js"></script>-->
 
-<script src="../static/js/85c8f06dda144f088505ab4384687338.js"></script>
+<!--<script src="../static/js/85c8f06dda144f088505ab4384687338.js"></script>-->
 
 
-        <div class="hide">
-            <script type="text/javascript">
-                var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-                document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F8fd193f17ae8acf2be1a1cfc65323057' type='text/javascript'%3E%3C/script%3E"));
-            </script>
-            <script src="../static/js/stat.js" language="JavaScript"></script>
-        </div>
+<!--<div class="hide">-->
+<!--<script type="text/javascript">-->
+<!--var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");-->
+<!--document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F8fd193f17ae8acf2be1a1cfc65323057' type='text/javascript'%3E%3C/script%3E"));-->
+<!--</script>-->
+<!--<script src="../static/js/stat.js" language="JavaScript"></script>-->
+<!--</div>-->
 
